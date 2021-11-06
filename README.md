@@ -17,7 +17,7 @@ To enter virtual environment do
 
 To install requirements in virtual enviroment do
 
-`pip3 -r requirements.txt`
+`pip3 install -r requirements.txt`
 
 To run application on port 5000, 
 
