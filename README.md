@@ -1,7 +1,10 @@
 # aligned
 UCLA CS130 F21 Project
 Tony Li
+
 Nikhil Kumar
+
+Nicholas Mark
 
 Create a virtual environment in your root directory
 
