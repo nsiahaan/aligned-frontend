@@ -10,5 +10,27 @@
 
     <h1>Hello Aligned Devs</h1>
 </body>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.3.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
 
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyBtzSPw1owheKdEdo853-3AuyGPLfBxPhM",
+    authDomain: "aligned-5a855.firebaseapp.com",
+    projectId: "aligned-5a855",
+    storageBucket: "aligned-5a855.appspot.com",
+    messagingSenderId: "1075559714469",
+    appId: "1:1075559714469:web:73e28e807e9b258950c74c",
+    measurementId: "G-Y8QS7WXGGD"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
 </html>
