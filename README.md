@@ -1,4 +1,5 @@
 # aligned
+
 UCLA CS130 F21 Project
 Tony Li
 Nikhil Kumar
@@ -15,6 +16,6 @@ To install requirements in virtual enviroment do
 
 `pip3 -r requirements.txt`
 
-To run application on port 5000, 
+To run application on port 5000,
 
 `python3 run.py`
