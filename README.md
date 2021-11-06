@@ -10,6 +10,10 @@ Nicholas Mark
 
 Kevin Case
 
+Sally (Simwon) Seok
+
+Nikita Siahaan
+
 Create a virtual environment in your root directory
 
 `python3 -m venv venv`
