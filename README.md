@@ -7,6 +7,8 @@ Nikhil Kumar
 
 Nicholas Mark
 
+Kevin Case
+
 Create a virtual environment in your root directory
 
 `python3 -m venv venv`
