@@ -97,7 +97,7 @@ def addPic():
     try:
         todo_id = request.args.get('id')
         print(request.file)
-        picture = request.file['picture']
+        picture = request.files['picture']
         
 
         firebaseDB.storage().put(picture)
