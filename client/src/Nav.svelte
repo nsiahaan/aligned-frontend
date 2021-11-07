@@ -22,8 +22,6 @@
       </ul>
 </section> 
 
-
-
 <style>
     .nav-link {
         color:black;
