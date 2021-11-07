@@ -4,27 +4,31 @@ Aligned
 aligned.routes
 This module implements the routes for Aligned
 """
-from flask import render_template, url_for, redirect, request, jsonify
+from flask import render_template, url_for, redirect, request, jsonify, Flask
+from flask import send_from_directory
+from flask_cors import CORS
+import random
 
 from aligned import app, firebaseDB
 from aligned.api import *
 from aligned.signUp import signUp
+
 
 @app.route('/')
 def base():
     return send_from_directory('client/public', 'index.html')
 
 
-@app.route("/home", methods=['GET','POST'])
-def home():
-    # if request.method == 'POST':
-    #     if request.form['submit_button'] == 'DoSomething':
-    #         uid = firebaseDB.getUIDFromEmail('lol@lol.com')
-    #         #firebaseDB.buyPack(uid)
+@app.route("/<path:path>")
+def home(path):
+    return send_from_directory('client/public', path)
 
-    #     elif request.form['submit_button'] == 'Do Something Else':
-    #         pass 
-    return render_template('home.html', title='Home')
+@app.route("/rand")
+def hello():
+    return str(random.randint(0, 100))
+
+
+
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():

@@ -10,8 +10,22 @@
 	import Nav from './Nav.svelte';
 	import Home from './Home.svelte';
 	import MyProfile from './MyProfile.svelte'
-	import OpennedPackPage from '../OpennedPackPage.svelte';
+	import OpennedPackPage from './OpennedPackPage.svelte';
 	export let name;
+	let rand = -1;
+	let list;
+
+	function getRand() {
+		fetch("http://127.0.0.1:5005/rand")
+		.then(d => d.text())
+		.then(d => (rand = d));
+  }
+
+  function getList() {
+		fetch("http://127.0.0.1:5005/list")
+		.then(d => d.text())
+		.then(d => (list = d));
+  }
 </script>
 
 
@@ -19,6 +33,11 @@
 	<Nav/>
 	<Home/>
 </section>
+
+<h1>Your number is {list}!</h1>
+<button on:click={getList}>Get a random number</button>
+
+
 <section>
 	<OpennedPackPage/>
 </section>
