@@ -1,6 +1,6 @@
 <script>
     export let packCount;
-    let src = "images/buy-pack.jpg"
+    let src = "images/buy-pack.jpg";
     
     function buyPackHandler(){
         packCount += 1;
