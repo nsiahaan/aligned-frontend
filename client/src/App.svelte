@@ -1,10 +1,11 @@
 <script>
 	import Packs from './Packs.svelte'
+	import Nav from './Nav.svelte'
 	export let name;
 </script>
 
 <section>
-	<Packs/>
+	<Nav/>
 </section>
 
 <style>
