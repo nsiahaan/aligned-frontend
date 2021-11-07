@@ -1,11 +1,13 @@
 <script>
 	import Packs from './Packs.svelte'
 	import Nav from './Nav.svelte'
+	import Home from './Home.svelte'
 	export let name;
 </script>
 
 <section>
 	<Nav/>
+	<Home/>
 </section>
 
 <style>
