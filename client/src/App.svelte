@@ -1,11 +1,15 @@
 <script>
 	import Packs from './Packs.svelte'
 	import Nav from './Nav.svelte'
+import OpennedPackPage from '../OpennedPackPage.svelte';
 	export let name;
 </script>
 
 <section>
 	<Nav/>
+</section>
+<section>
+	<OpennedPackPage/>
 </section>
 
 <style>
