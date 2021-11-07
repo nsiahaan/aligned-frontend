@@ -6,10 +6,35 @@
 </head>
 
 <section>
-<nav class="nav">
-    <a class="nav-link active" aria-current="page" href="#">Active</a>
-    <a class="nav-link" href="#">Link</a>
-    <a class="nav-link" href="#">Link</a>
-    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-</nav>
-</section>
+    <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/home">HOME</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/packs">PACKS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/profile">PROFILE</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/account">ACCOUNT</a>
+        </li>
+      </ul>
+</section> 
+
+
+
+<style>
+    .nav-link {
+        color:black;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 30px;
+    }
+    .nav{
+        margin: auto;
+        width: 50%;
+        padding: 10px;
+    }
+
+</style>
+
