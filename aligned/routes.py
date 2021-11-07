@@ -10,9 +10,12 @@ from aligned import app, firebaseDB
 from aligned.api import *
 from aligned.signUp import signUp
 
+@app.route('/')
+def base():
+    return send_from_directory('client/public', 'index.html')
 
-@app.route('/', methods=['GET','POST'])
-@app.route("/home")
+
+@app.route("/home", methods=['GET','POST'])
 def home():
     # if request.method == 'POST':
     #     if request.form['submit_button'] == 'DoSomething':
