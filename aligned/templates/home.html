@@ -1,14 +1,15 @@
-<!DOCTYPE html>
+{% extends "layout.html" %}
+{% block content %}
 
-<html lang="en">
+<div class="jumbotron" style="background-color: rgb(211, 190, 235);">
+    <h1 class="display-4">Welcome to Aligned!</h1>
+    <p class="lead">Please <a href="#" class="text-info">Login</a> </p>
+    <hr class="my-4">
+    <form action="", method="post">
+      <input type="submit" name="submit_button" value="DoSomething">
+      <input type="submit" name="submit_button" value="DoSomethingElse">
+    </form>
 
-<head>
-
-</head>
-
-<body>  
-
-    <h1>Hello Aligned Devs</h1>
-</body>
-
-</html>
+</div>
+</div>
+{% endblock content %}

@@ -1,4 +1,5 @@
 # aligned
+
 UCLA CS130 F21 Project
 
 Tony Li
@@ -8,6 +9,10 @@ Nikhil Kumar
 Nicholas Mark
 
 Kevin Case
+
+Sally (Simwon) Seok
+
+Nikita Siahaan
 
 Create a virtual environment in your root directory
 
@@ -21,6 +26,6 @@ To install requirements in virtual enviroment do
 
 `pip3 install -r requirements.txt`
 
-To run application on port 5000, 
+To run application on port 5000,
 
 `python3 run.py`
