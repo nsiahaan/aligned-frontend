@@ -9,11 +9,16 @@ from aligned import app, firebaseDB
 
 
 
-@app.route('/')
+@app.route('/', methods=['GET','POST'])
 @app.route("/home")
 def home():
-    #Home Page
-    return render_template('home.html', title="Home")
+    if request.method == 'POST':
+        if request.form['submit_button'] == 'DoSomething':
+            uid = firebaseDB.getUIDFromEmail('lol@lol.com')
+            firebaseDB.buyPack(uid)
+        elif request.form['submit_button'] == 'Do Something Else':
+            pass 
+    return render_template('home.html')
 
 @app.route('/add', methods=['POST'])
 def create():
@@ -79,27 +84,26 @@ def delete(request):
         return f"An Error Occured: {e}"
     
 
-# import multipart as mp
-# # from multipart import tob
-# from io import BytesIO
+import multipart as mp
+from PIL import Image
+# from multipart import tob
+from io import BytesIO
+import os
 
+@app.route('/addPic', methods=['POST','PUT'])
+def addPic():
+    # add profile pic linked to user
+    try:
+        todo_id = request.args.get('id')
+        print(request.get_json())
+        picture = request.files['picture']
+        temp = tempfile.NamedTemporaryFile(delete=False)
+        picture.save(temp.name)
 
+        firebaseDB.storage().put(temp.name)
+        os.remove(temp.name)
 
-# @app.route('/addPic', methods=['POST','PUT'])
-# def addPic():
-#     # add profile pic linked to user
-#     try:
-#         todo_id = request.args.get('id')
-#         data = request.data
-#         s = data.split("\r")[0][2:]
-#         print(s)
-#         p = mp.MultipartParser(BytesIO(tob(data)),s)
-#         blob = p.parts()[0].value
-#         f = open("file.bin","wb")
-#         f.write(blob.encode("latin-1"))
-#         f.close()
-#         bucket = firebaseDB.storage.bucket()
+        return jsonify({"success": True}), 200
 
-
-#     except Exception as e:
-#         return f"An Error Occured: {e}"
+    except Exception as e:
+        return f"An Error Occured: {e}"

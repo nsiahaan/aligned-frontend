@@ -14,7 +14,10 @@ class User:
         js = getUser(uid)
         self.name = js["name"]
         self.age = js["age"]
+        self.gender = js["gender"]
         self.dob = js["dob"]
+        self.astro = js["astro"]
+        self.mbti = js["mbti"]
         self.sPref = js["sPref"]
         self.phoneNum = js["phoneNum"]
         self.email = js["email"]
@@ -22,7 +25,7 @@ class User:
         self.numViews = js["numViews"]
         self.numLikes = js["numLikes"]
         self.secretCrush = js["secretCrush"]
-        self.packs = js["packs"]
+        self.numPacks = js["packs"]
         self.likes = js["likes"]
         self.matchList = js["matchList"]
     
@@ -45,6 +48,9 @@ def addUser(json):
         "uid" : id,
         "age":json['age'],
         "dob":json['dob'],
+        "astro":json['astro'],
+        "gender":json['gender'],
+        "mbti":json['mbti'],
         "sPref":json['sPref'],
         "phoneNum":json['phoneNum'],
         "email":json['email'],
@@ -52,7 +58,7 @@ def addUser(json):
         "numViews":json['numViews'],
         "numLikes":json['numLikes'],
         "secretCrush":json['secretCrush'],
-        "myPacks":json['myPacks'],
+        "numPacks":json['numPacks'],
         "myLikes":json['myLikes'],
         "matchList":json['matchList'],
     }
@@ -73,63 +79,29 @@ def getUser(uid=None, parameter=None):
         else:
             return json
 
+def getUIDFromEmail(email):
+    uid =  users_ref.where("email", "==", email).get()
+    if len(uid) != 1:
+        return None
+    return uid[0].get('uid')
+
 def updateUser(uid, json):
     users_ref.document(uid).update(json)
 
 def deleteUser(uid):
     users_ref.document(uid).delete()
     
+def buyPack(uid):
+    currentPack = int(getUser(uid, parameter='numPacks'))
+    currentPack += 1
+    credits = int(getUser(uid, parameter='credits'))
+    credits -= 50
+    buyPack={
+        'numPacks':currentPack,
+        'credits':credits,
+    }
+    updateUser(uid, buyPack)
 
-
-'''
-===== PACKS FUNCTIONS ===== 
-
-createPack(uid)
-    gets a list/chunk of users, and calls compatibility_scores function
-        returns a list of compatibility scores
-    
-buyPack(uid)
-    add 1 to uid's pack counter
-    subtract credits from uid's credit
-
-===== MATCH FUNCTIONS ===== 
-
-createMatch(uuid1, uuid2)
-    removes respective uid's from users' secret crush list
-    removes respective uid's from users' myLike list
-    adds respective uid's to users' matchlist
-    
-
-    
-
-===== USER FUNCTIONS ===== 
-
-addUser(uid, json):
-    unique id: uuid number
-    name,  string
-    age,  number
-    DOB, string
-    sexualPref: string
-    phonenumber:string
-    email:string
-    credits: number
-    numViews: number
-    numLikes: number
-    secretCrushes: list of strings
-    ?myPacks: number
-    myLikes: list of strings
-    matchList: list of strings
-    
-
-
-getUser(uid, parameter=None)
-    returns user
-
-updateUser(uid, parameter)
-
-delUser(uid):
-    delete user from database
-'''
 
 
 
