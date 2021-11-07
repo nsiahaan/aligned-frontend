@@ -9,7 +9,7 @@ import json
 
 class User:
     
-    def __init__(self, uid, json):
+    def __init__(self, uid):
         self.uid = uid
         js = getUser(uid)
         self.name = js["name"]
@@ -25,8 +25,8 @@ class User:
         self.numViews = js["numViews"]
         self.numLikes = js["numLikes"]
         self.secretCrush = js["secretCrush"]
-        self.numPacks = js["packs"]
-        self.likes = js["likes"]
+        self.numPacks = js["numPacks"]
+        self.likes = js["myLikes"]
         self.matchList = js["matchList"]
     
     def getJson(self):
@@ -34,6 +34,7 @@ class User:
 
 cred = credentials.Certificate("/Users/nkumar/CSCode/aligned/key.json")
 default_app = firebase_admin.initialize_app(cred)
+
 db = firestore.client()
 users_ref = db.collection('users')
 
@@ -77,7 +78,7 @@ def getUser(uid=None, parameter=None):
         if parameter:
             return json.get(parameter)
         else:
-            return json
+            return json.to_dict()
 
 def getUIDFromEmail(email):
     uid =  users_ref.where("email", "==", email).get()

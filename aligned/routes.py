@@ -7,19 +7,30 @@ This module implements the routes for Aligned
 from flask import render_template, url_for, redirect, request, jsonify
 
 from aligned import app, firebaseDB
-from aligned.api import getHoroscope
+from aligned.api import *
+from aligned.signUp import signUp
 
 
 @app.route('/', methods=['GET','POST'])
 @app.route("/home")
 def home():
-    if request.method == 'POST':
-        if request.form['submit_button'] == 'DoSomething':
-            uid = firebaseDB.getUIDFromEmail('lol@lol.com')
-            firebaseDB.buyPack(uid)
-        elif request.form['submit_button'] == 'Do Something Else':
-            pass 
-    return render_template('home.html')
+    # if request.method == 'POST':
+    #     if request.form['submit_button'] == 'DoSomething':
+    #         uid = firebaseDB.getUIDFromEmail('lol@lol.com')
+    #         #firebaseDB.buyPack(uid)
+
+    #     elif request.form['submit_button'] == 'Do Something Else':
+    #         pass 
+    return render_template('home.html', title='Home')
+
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    form = signUp()
+    if request.method == "POST":
+        if form.submit_form.data:
+            return redirect(url_for('home'))
+        return render_template('signup.html', title='Sign Up', form=form)
+    return render_template('signup.html', title='Sign Up', form=form)
 
 @app.route('/add', methods=['POST'])
 def create():
@@ -85,25 +96,31 @@ def delete(request):
         return f"An Error Occured: {e}"
     
 
-import multipart as mp
-from PIL import Image
-# from multipart import tob
-from io import BytesIO
-import os
+
+import pyrebase
+config = {
+    "apiKey":"AIzaSyBtzSPw1owheKdEdo853-3AuyGPLfBxPhM",
+    "authDomain":"aligned-5a855.firebaseapp.com",
+    "databaseURL": "https://users.firebaseio.com",
+    "storageBucket": "aligned-5a855.appspot.com"
+}
+firebase = pyrebase.initialize_app(config)
+storage = firebase.storage()
+
 
 @app.route('/addPic', methods=['POST','PUT'])
 def addPic():
     # add profile pic linked to user
     try:
-        todo_id = request.args.get('id')
-        print(request.file)
-        picture = request.files['picture']
         
+        picture = request.files['file']
 
-        firebaseDB.storage().put(picture)
+        name = request.form['uid']
 
-
+        storage.child(name).put(picture)
+        
         return jsonify({"success": True}), 200
 
     except Exception as e:
         return f"An Error Occured: {e}"
+

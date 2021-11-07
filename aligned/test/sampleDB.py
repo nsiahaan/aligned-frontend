@@ -13,7 +13,7 @@ default_app = firebase_admin.initialize_app(cred)
 db = firestore.client()
 users_ref = db.collection('users')
 astroList = ['aries', 'leo', 'sagittrius', 'taurus', 'virgo', 'capricorn', 'gemini', 'libra', 'aquarius', 'cancer', 'scorpio', 'pisces']
-mbtiList = ['INFP', 'ENFP', 'INFJ', 'ENFJ', 'INTj', "ENTJ", "INTP", "ENTP", "ISFP", "ESFP", "ISTP", "ESTP", "ISFJ", "ESFJ", "ISTJ", "ESTJ"]
+mbtiList = ['INFP', 'ENFP', 'INFJ', 'ENFJ', 'INTJ', "ENTJ", "INTP", "ENTP", "ISFP", "ESFP", "ISTP", "ESTP", "ISFJ", "ESFJ", "ISTJ", "ESTJ"]
 sPrefList = ['male', 'female', 'both']
 genderList = ['male', 'female', 'non-binary']
 
