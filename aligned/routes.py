@@ -5,7 +5,10 @@ aligned.routes
 This module implements the routes for Aligned
 """
 from flask import render_template, url_for, redirect, request, jsonify
+
 from aligned import app, firebaseDB
+from aligned.api import getHoroscope
+
 
 
 
