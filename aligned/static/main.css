@@ -1,0 +1,31 @@
+nav {
+    background-color: rgb(230, 193, 255);
+}
+
+nav > .btn {
+    background-color: #ddd;
+    border: none;
+    color: black;
+    padding: 4px;
+    text-align: center;
+    font-size: 20px;
+    margin: 4px 2px;
+    transition: 0.3s;
+
+}
+
+nav > .btn:hover {
+    background-color: #ac3c2d;
+    color: white;
+}
+
+.fa-question-circle {
+    color: whitesmoke;
+    font-size: 4px;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 25px;
+    font-family: cursive;
+}

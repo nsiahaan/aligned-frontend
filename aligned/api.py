@@ -6,6 +6,8 @@ Connect to Pyaztro API
 """
 
 import pyaztro
+from aligned import firebaseDB
+
 
 '''
 Usage: 
@@ -74,7 +76,13 @@ astroCompatibilityChart = \
     ,[1,1,0,2,2,2,0,0,0,2,2,2] \
     ,[1,1,1,2,1,2,0,0,0,2,2,2]]
 
-
+'''
+Calculate the compatibility score (between 0 and 1) of user1 and user2 (both User objects)
+The total compatibility score is the weighted average of 3 individual scores:
+  static score from mbti compatibility chart, 
+  static score from astrology compatibility chart, and
+  dynamic score from PyAztro's daily astrology compatibility sign
+'''
 def compatibilityScore(user1,user2):
     MBTI_WEIGHT = 0.4
     STATIC_ASTRO_WEIGHT = 0.3
@@ -92,5 +100,17 @@ def compatibilityScore(user1,user2):
     totalScore = MBTI_WEIGHT*(mbtiScore/16) + STATIC_ASTRO_WEIGHT*(staticAstroScore/2) + DAILY_ASTRO_WEIGHT*(dailyAstroScore)
     return totalScore
 
+
+'''
+Generate the pack of 7 profiles for the user
+Input: user: User
+Output: list of Users
+'''
+# def generatePack(user):
+
+#   docs = firebaseDB.users_ref.where(...)
+
+#   for doc in docs:
+#     doc.to_dict()
 
 
