@@ -10,7 +10,7 @@
 	import Nav from './Nav.svelte';
 	import Home from './Home.svelte';
 	import MyProfile from './MyProfile.svelte'
-	import OpennedPackPage from '../OpennedPackPage.svelte';
+	import OpennedPackPage from './OpennedPackPage.svelte';
 	export let name;
 </script>
 
