@@ -6,6 +6,7 @@ This module implements the routes for Aligned
 """
 from flask import render_template, url_for, redirect, request, jsonify
 from aligned import app
+from aligned.api import getHoroscope
 
 
 @app.route('/')
