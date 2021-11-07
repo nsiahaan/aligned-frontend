@@ -4,6 +4,7 @@
     import Open_pack from './Open_pack.svelte'
 
     export let packCount = 15;
+    export let page = "Packs";
     //TODO: add logic for calling backend to display user's actual pack count.
 </script>
 
@@ -18,7 +19,7 @@
 <section>
     <div class="grid-container">
         <div class="open-pack">
-            <Open_pack/>
+            <Open_pack bind:page={page}/>
         </div>
 
         <div class="buy-pack">

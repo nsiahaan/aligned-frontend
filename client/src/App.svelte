@@ -15,36 +15,46 @@
 	let rand = -1;
 	let list;
 
-	function getRand() {
-		fetch("http://127.0.0.1:5005/rand")
-		.then(d => d.text())
-		.then(d => (rand = d));
-  }
+	export let page = "Home";
+
 
   function getList() {
 		fetch("http://127.0.0.1:5005/list")
-		.then(d => d.text())
-		.then(d => (list = d));
+		.then(d => console.log(d))
+		//.then(d => d.text())
+		//.then(d => (list = d));
   }
 </script>
 
+<Nav bind:page={page}/>
 
+{#if page=="Home"}
 <section> 
-	<Nav/>
 	<Home/>
 </section>
-
-<h1>Your number is {list}!</h1>
-<button on:click={getList}>Get a random number</button>
-
-
+{:else if page=="Packs"}
 <section>
-	<OpennedPackPage/>
+	<Packs bind:page={page}/>
 </section>
-
+{:else if page=="MyProfile"}
 <section>
 	<MyProfile/>
 </section>
+{:else if page=="OpenPacks"}
+<section>
+	<OpennedPackPage/>
+</section>
+{:else}
+<section>
+	404: Oops! This page doesn't exist.
+</section>
+{/if}
+
+<!-- 
+<h1>Your number is {list}!</h1>
+<button on:click={getList}>Get a random number</button>
+-->
+
 
 <style>
 	main {

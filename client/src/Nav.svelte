@@ -5,19 +5,35 @@
     crossorigin="anonymous">
 </head>
 
+<script>
+  export let page = "Home";
+  function setPageHome(){
+    page = "Home";
+  }
+  function setPagePacks(){
+    page = "Packs";
+  }
+  function setPageProfile(){
+    page = "MyProfile";
+  }
+  function setPageAccount(){
+    page = "Account";
+  }
+</script>
+
 <section>
     <ul class="nav">
         <li class="nav-item">
-          <a class="nav-link" href="/home">HOME</a>
+          <a class="nav-link" href="/#/home" on:click={setPageHome}>HOME</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/packs">PACKS</a>
+          <a class="nav-link" href="/#/packs" on:click={setPagePacks}>PACKS</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/profile">PROFILE</a>
+          <a class="nav-link" href="/#/profile" on:click={setPageProfile}>PROFILE</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/account">ACCOUNT</a>
+          <a class="nav-link" href="/#/account" on:click={setPageAccount}>ACCOUNT</a>
         </li>
       </ul>
 </section> 
