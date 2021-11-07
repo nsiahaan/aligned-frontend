@@ -19,9 +19,8 @@
         <li class="nav-item">
           <a class="nav-link" href="/account">ACCOUNT</a>
         </li>
-    </ul>
-</section>
-
+      </ul>
+</section> 
 
 <style>
     .nav-link {
