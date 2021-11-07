@@ -6,25 +6,24 @@
 </head>
 
 <script>
+	import Card from './Card.svelte';
 	import Packs from './Packs.svelte';
 	import Nav from './Nav.svelte';
 	import Home from './Home.svelte';
 	import MyProfile from './MyProfile.svelte'
-	import OpennedPackPage from '../OpennedPackPage.svelte';
+	import OpennedPackPage from './OpennedPackPage.svelte';
 	export let name;
 </script>
 
 
 <section> 
 	<Nav/>
-	<Home/>
 </section>
 <section>
 	<OpennedPackPage/>
 </section>
 
 <section>
-	<MyProfile/>
 </section>
 
 <style>

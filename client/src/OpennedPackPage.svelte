@@ -1,5 +1,11 @@
+
 <script>
-    const cards = [1,2,3,4,5,6,7]
+    import Card from './Card.svelte';
+    async function loadComponent(name) {
+			console.log(`./${name}.svelte`);
+        return await import(`./${name}.svelte`);
+    }
+    //const cards = [Card, Card, Card, Card, Card, Card, Card];
 </script>
 
 <head>
@@ -9,64 +15,61 @@
     crossorigin="anonymous">
 </head>
 
-<section>
     <center>
         <div class="container-fluid">
             <div class="cards-scroll">
                 <div class="card-butt">
-                    <div class=card>
-                        {cards[0]}
+                    <div class="card">
+                        <Card/>
                     </div>
                     <div><button type="button" class="btn btn-outline-dark">Match!</button>
                     </div>
                 </div>
                 <div class="card-butt">
-                    <div class=card>
-                        {cards[1]}
+                    <div class="card">
+                        <Card/>
                     </div>
                     <div><button type="button" class="btn btn-outline-dark">Match!</button>
                     </div>
                 </div>
                 <div class="card-butt">
-                    <div class=card>
-                        {cards[2]}
+                    <div class="card">
+                        <Card/>
                     </div>
                     <div><button type="button" class="btn btn-outline-dark">Match!</button>
                     </div>
                 </div>
                 <div class="card-butt">
-                    <div class=card>
-                        {cards[3]}
+                    <div class="card">
+                        <Card/>
                     </div>
                     <div><button type="button" class="btn btn-outline-dark">Match!</button>
                     </div>
                 </div>
                 <div class="card-butt">
-                    <div class=card>
-                        {cards[4]}
+                    <div class="card">
+                        <Card/>
                     </div>
                     <div><button type="button" class="btn btn-outline-dark">Match!</button>
                     </div>
                 </div>
                 <div class="card-butt">
-                    <div class=card>
-                        {cards[5]}
+                    <div class="card">
+                        <Card/>
                     </div>
                     <div><button type="button" class="btn btn-outline-dark">Match!</button>
                     </div>
                 </div>
                 <div class="card-butt">
-                    <div class=card>
-                        {cards[6]}
+                    <div class="card">
+                        <Card/>
                     </div>
                     <div><button type="button" class="btn btn-outline-dark">Match!</button>
                     </div>
-                </div>
+                </div> 
             </div>  
-        </div>
+        </div>    
     </center>
-    
-</section> 
 
 <style>
 
@@ -75,7 +78,7 @@
 }
 
 .cards-scroll {
-    overflow-x: auto;
+    overflow-x: scroll;
     white-space: nowrap;
 }
 
@@ -83,13 +86,16 @@
     display:inline-block;
 }
 
+.container-fluid {
+    height: 800px;
+}
+
 .card {
     display:inline-block;
-    padding: 100px;
     margin-top: 40px;
     margin-left: 40px;
     margin-right: 40px;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 }
     
 </style>
