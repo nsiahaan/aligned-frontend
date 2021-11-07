@@ -1,21 +1,32 @@
 <script>
     import App from './App.svelte'
-import Buy_pack from './Buy_pack.svelte'
+    import Buy_pack from './Buy_pack.svelte'
     import Open_pack from './Open_pack.svelte'
 
+    export let packCount = 15;
+    //TODO: add logic for calling backend to display user's actual pack count.
 </script>
 
-
-
-<div class="grid-container">
-    <div class="open-pack">
-        <Open_pack/>
+<section>
+    <div class="pack-remains">
+        Packs remaining: {packCount}
     </div>
+    <br>
+    <br>
+</section>
 
-    <div class="buy-pack">
-        <Buy_pack/>
+<section>
+    <div class="grid-container">
+        <div class="open-pack">
+            <Open_pack/>
+        </div>
+
+        <div class="buy-pack">
+            <Buy_pack bind:packCount={packCount}/>
+        </div>
     </div>
-</div>
+</section>
+
 
 
 <style>
@@ -24,6 +35,9 @@ import Buy_pack from './Buy_pack.svelte'
         grid-template-columns: 1fr 1fr;
         grid-gap: 20px;
         justify-items: center;
+    }
+    .pack-remains{
+        text-align: center;
     }
 </style>
 

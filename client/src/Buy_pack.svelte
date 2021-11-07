@@ -1,9 +1,9 @@
 <script>
-    export let userNumPacks;
+    export let packCount;
     let src = "images/buy-pack.jpg"
     
     function buyPackHandler(){
-        userNumPacks += 1;
+        packCount += 1;
     }
 </script>
 
