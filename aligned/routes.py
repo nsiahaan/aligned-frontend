@@ -11,7 +11,7 @@ from aligned import app
 @app.route('/')
 def base():
     return send_from_directory('client/public', 'index.html')
-@app.route("/home")
+@app.route('/home')
 def home():
     #Home Page
     return render_template('home.html', title="Home")
