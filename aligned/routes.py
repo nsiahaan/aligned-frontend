@@ -10,8 +10,6 @@ from aligned import app, firebaseDB
 from aligned.api import getHoroscope
 
 
-
-
 @app.route('/', methods=['GET','POST'])
 @app.route("/home")
 def home():
@@ -98,13 +96,12 @@ def addPic():
     # add profile pic linked to user
     try:
         todo_id = request.args.get('id')
-        print(request.get_json())
-        picture = request.files['picture']
-        temp = tempfile.NamedTemporaryFile(delete=False)
-        picture.save(temp.name)
+        print(request.file)
+        picture = request.file['picture']
+        
 
-        firebaseDB.storage().put(temp.name)
-        os.remove(temp.name)
+        firebaseDB.storage().put(picture)
+
 
         return jsonify({"success": True}), 200
 
