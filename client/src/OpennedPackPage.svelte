@@ -78,7 +78,7 @@
 <style>
 
 .btn {
-    margin-bottom: 40px;
+    margin-bottom: 5px;
 }
 
 .cards-scroll {
