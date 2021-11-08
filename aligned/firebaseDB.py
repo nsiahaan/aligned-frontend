@@ -32,7 +32,7 @@ class User:
     def getJson(self):
         return getUser(self.uid)
 
-cred = credentials.Certificate("/Users/nkumar/CSCode/aligned/key.json")
+cred = credentials.Certificate("./key.json")
 default_app = firebase_admin.initialize_app(cred)
 
 db = firestore.client()

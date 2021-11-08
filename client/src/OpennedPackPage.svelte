@@ -6,7 +6,11 @@
         return await import(`./${name}.svelte`);
     }
     //const cards = [Card, Card, Card, Card, Card, Card, Card];
+
+    
 </script>
+
+
 
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
@@ -86,13 +90,9 @@
     display:inline-block;
 }
 
-.container-fluid {
-    height: 800px;
-}
-
 .card {
     display:inline-block;
-    margin-top: 40px;
+    margin-top: 10px;
     margin-left: 40px;
     margin-right: 40px;
     margin-bottom: 15px;
