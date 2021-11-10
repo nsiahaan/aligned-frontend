@@ -113,7 +113,11 @@ storage = firebase.storage()
 
 @app.route('/addPic', methods=['POST','PUT'])
 def addPic():
-    # add profile pic linked to user
+    """
+    Input: form-data, data={'uid':uid}
+                      files={'file':myfile}
+    Adds myfile to Firebase Storage and renamed using uid
+    """
     try:
         
         picture = request.files['file']
@@ -129,6 +133,10 @@ def addPic():
 
 @app.route('/getPic', methods=['GET'])
 def getPic():
+    """
+    Route must take input 'uid' query parameter
+    Returns URL ref of the user's profile pic
+    """
     print("hello")
     try:
         uid = request.args.get('uid')

@@ -91,6 +91,40 @@ def addProfilePics():
         # call addPic API to add picture to firebase
         requests.post(url="http://localhost:5005/addPic", data={'uid':uid}, files={'file': response.content})
 
+def generateBio():
+    whoIAm = [
+    'reader', 'writer', 'smoker', 'swimmer', 'listener', 
+    'creator', 'explorer', 'runner', 'thinker', 'communicator', 'entrepeneur'
+    ]
+    descriptor = [
+    'avid', 'extreme', 'incurable', 'evil', 'hardcore', 'infuriating', 
+    'humble', 'lifelong', 'friendly', 'general', 'total', 'devoted', 
+    'typical', 'award-winning', 'certified', 'freelance'
+    ]
+    reallyCoolThing = [
+    'beer', 'coffee', 'bacon', 'web', 'zombie', 'ninja', 'pirate', 'anime', 
+    'music', 'TV', 'internet', 'pop culture', 'alcohol', 'food', 'travel'
+    ]
+    secondaryDescriptor = [
+    'nerd', 'junkie', 'maven', 'dork', 'geek', 'enthusiast', 'lover', 
+    'fanatic', 'expert', 'guru', 'wizard', 'scholar', 'evangelist', 
+    'buff', 'fan'
+    ]
+
+    my_descriptor = random.choice(descriptor)
+    my_whoIAm = random.choice(whoIAm)
+    my_reallyCoolThing = random.choice(reallyCoolThing)
+    my_secondaryDescriptor = random.choice(secondaryDescriptor)
+
+    return ' '.join([my_descriptor.capitalize(), my_whoIAm, '.',
+        my_reallyCoolThing.capitalize(), my_secondaryDescriptor])
+
+def generateBios4All():
+    r = requests.get('http://localhost:5005/list') #get all users
+    users = r.json()
+    for user in users:
+        uid = user['uid']
+        users_ref.document(uid).update({'bio': generateBio()})
 
 def createNUsers(n):
     for i in range(n):
@@ -114,6 +148,9 @@ def createNUsers(n):
         data = {
             "name":name,
             "age":age,
+
+            "bio":generateBio(),
+
             "dob":randomdate,
             "astro":astro,
             "gender":gender,
@@ -130,9 +167,12 @@ def createNUsers(n):
             "matchList":matchList,
         }
         addUser(data)
-        # time.sleep(.5)
-        # addProfilePic(gender, email)
+        ###
+        time.sleep(.3)
+        addProfilePic(gender, email)
 
 if __name__=="__main__":
     createNUsers(50)
-    addProfilePics()
+    ##### ONLY UNCOMMENT THIS IF THERE ARE MORE USERS THAN PICS/BIOS #####
+    # addProfilePics()
+    # generateBios4All()
