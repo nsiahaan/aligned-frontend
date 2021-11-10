@@ -1,14 +1,18 @@
 import firebase_admin
 from firebase_admin import credentials, firestore, storage
 
+# from aligned import firebaseDB ## idk why I can't import this module.
+
 import random
 import names
 import datetime
 import uuid
 import string
+import requests
+import time
 
 
-cred = credentials.Certificate("/Users/nkumar/CSCode/aligned/key.json")
+cred = credentials.Certificate("key.json")
 default_app = firebase_admin.initialize_app(cred)
 db = firestore.client()
 users_ref = db.collection('users')
@@ -62,6 +66,32 @@ def randomDate():
     random_date = start_date + datetime.timedelta(days=random_number_of_days)
     return str(random_date)
 
+def addProfilePic(gender, email):
+    uid = firebaseDB.getUIDFromEmail(email)
+    r = requests.get('https://randomuser.me/api/?gender='+gender)
+    pic = r.json()['results'][0]['picture']['medium']
+    response = requests.get(pic)
+    requests.post(url="http://localhost:5005/addPic", data={'uid':uid}, files={'file': response.content})
+
+def addProfilePics():
+    r = requests.get('http://localhost:5005/list') #get all users
+    users = r.json()
+    for user in users:
+        gender = user['gender']
+        # random assign if gender is non-binary
+        if gender == 'non-binary':
+            gender = ['male','female'][int(random.random() < .5)]
+        uid = user['uid']
+        
+        # get random profile pic with corresponding gender
+        resp = requests.get('https://randomuser.me/api/?gender='+gender)
+        pic = resp.json()['results'][0]['picture']['medium']
+        response = requests.get(pic)
+
+        # call addPic API to add picture to firebase
+        requests.post(url="http://localhost:5005/addPic", data={'uid':uid}, files={'file': response.content})
+
+
 def createNUsers(n):
     for i in range(n):
         name = (names.get_full_name())
@@ -100,6 +130,9 @@ def createNUsers(n):
             "matchList":matchList,
         }
         addUser(data)
+        # time.sleep(.5)
+        # addProfilePic(gender, email)
 
 if __name__=="__main__":
     createNUsers(50)
+    addProfilePics()
