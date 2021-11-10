@@ -10,6 +10,7 @@
 
     let cardBackShowing = false;
     let selected;
+    let list =[];
 
     const toggleBackFront = (e) => {
 		// if same card clicked twice to toggle front and back
@@ -24,18 +25,22 @@
 
     function getList() {
 		fetch("http://127.0.0.1:5005/list")
-		.then(d => console.log(d))
-		//.then(d => d.text())
-		//.then(d => (list = d));
+        .then(d => d.json())
+		.then(d => {
+            list = d; 
+            list = list.slice(0, 7);
+            return list;
+        })
+        .then(d=>console.log(d))
     }
     const People = [
         {
           picture: 'images/default_profile_pics/kanye-west.png',
           astropic: 'images/signs/gemini.png',
           personalitypic: 'images/mbti_pics/isfp.png',
-          fullname: 'Kanye West',
+          name: 'Kanye West',
           astro: 'Gemini',
-          personality: 'ISFP',
+          mbti: 'ISFP',
           age: 30,
           gender: 'Male',
           bio: 'Best there ever was. I made Taylor famous. \n Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
@@ -48,9 +53,9 @@
           picture: 'images/default_profile_pics/kim-kardashian.png',
           astropic: 'images/signs/pisces.png',
           personalitypic: 'images/mbti_pics/intj.png',
-          fullname: 'Kim Kardashian',
+          name: 'Kim Kardashian',
           astro: 'Pisces',
-          personality: 'INTJ',
+          mbti: 'INTJ',
           age: 32,
           gender: "Female",
           bio: 'I love my children, especially Chicago. \n Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
@@ -63,9 +68,9 @@
           picture: 'images/default_profile_pics/doja-cat.png',
           astropic: 'images/signs/leo.png',
           personalitypic: 'images/mbti_pics/enfj.png',
-          fullname: 'Doja Cat',
+          name: 'Doja Cat',
           astro: 'Leo',
-          personality: 'ENFP',
+          mbti: 'ENFP',
           age: 24,
           gender: 'Female',
           bio: 'Catch all my popular music on Tiktok. \n Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
@@ -78,9 +83,9 @@
           picture: 'images/default_profile_pics/awkwafina.png',
           astropic: 'images/signs/cancer.png',
           personalitypic: 'images/mbti_pics/esfp.png',
-          fullname: 'Awkwafina',
+          name: 'Awkwafina',
           astro: 'Cancer',
-          personality: 'ESFP',
+          mbti: 'ESFP',
           age: 27,
           gender: 'Female',
           bio: 'Did you know that Awkwafina isn\'t my real name? \n Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
@@ -93,9 +98,9 @@
           picture: 'images/default_profile_pics/chris-pine.png',
           astropic: 'images/signs/aries.png',
           personalitypic: 'images/mbti_pics/estp.png',
-          fullname: 'Chris Pine',
+          name: 'Chris Pine',
           astro: 'Aries',
-          personality: 'ESTP',
+          mbti: 'ESTP',
           age: 36,
           gender: 'Male',
           bio: 'I\'m the hottest Chris. \n Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
@@ -108,9 +113,9 @@
           picture: 'images/default_profile_pics/danny-devito.png',
           astropic: 'images/signs/sagittarius.png',
           personalitypic: 'images/mbti_pics/esfj.png',
-          fullname: 'Danny Devito',
+          name: 'Danny Devito',
           astro: 'Sagittarius',
-          personality: 'ESFJ',
+          mbti: 'ESFJ',
           age: '88',
           gender: 'Male',
           bio: 'Can I offer you an egg in this trying time?, \n Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
@@ -123,9 +128,9 @@
           picture: 'images/default_profile_pics/margot-robbie.png',
           astropic: 'images/signs/libra.png',
           personalitypic: 'images/mbti_pics/entp.png',
-          fullname: 'Margot Robie',
+          name: 'Margot Robie',
           astro: 'Libra',
-          personality: 'ENTP',
+          mbti: 'ENTP',
           age: 33,
           gender: 'Female',
           bio: 'You probably know me Suicide Squad, \n Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
@@ -144,11 +149,11 @@
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
     crossorigin="anonymous">
 </head>
-    <div on:load={getList}></div>
+    <button on:click={getList} class="btn btn-outline-dark">Open New Pack</button>
     <center>
         <div class="container-fluid">
             <div class="cards-scroll">
-                {#each People as person, i}
+                {#each list as person, i}
                 <div class="card-butt">
                     <!--<div class="flip-box">-->
                         <div class="card"> <!--class:show-back={selected===i} data-card-id={i}>-->
@@ -156,9 +161,9 @@
                                 AstroPic={person.astropic}
                                 Picture = {person.picture}
                                 PersonalityPic = {person.personalitypic}
-                                Name = {person.fullname}
+                                Name = {person.name}
                                 Astro = {person.astro}
-                                Personality = {person.personality}
+                                Personality = {person.mbti}
                                 Age = {person.age}
                                 Gender = {person.gender}
                                 Bio = {person.bio}
