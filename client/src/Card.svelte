@@ -83,6 +83,8 @@
         margin-top:10px;
         margin-bottom: 5px;
         vertical-align: middle;
+        border: 5px solid black;
+        border-radius: 50%;
       }
       #card-img-top3{
         width: 12%;

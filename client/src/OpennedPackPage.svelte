@@ -14,7 +14,6 @@
 		//.then(d => d.text())
 		//.then(d => (list = d));
     }
-    
     const People = [
         {
           picture: 'images/default_profile_pics/kanye-west.png',
@@ -25,7 +24,11 @@
           personality: 'ISFP',
           age: 30,
           gender: 'Male',
-          bio: 'Best there ever was. I made Taylor famous.'
+          bio: 'Best there ever was. I made Taylor famous. \n Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
+            'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure' +
+            'dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non' +
+            'proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit,' +
+            ' sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' 
         },
         {
           picture: 'images/default_profile_pics/kim-kardashian.png',
@@ -36,7 +39,11 @@
           personality: 'INTJ',
           age: 32,
           gender: "Female",
-          bio: 'I love my children, especially Chicago.'
+          bio: 'I love my children, especially Chicago. \n Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
+            'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure' +
+            'dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non' +
+            'proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit,' +
+            ' sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
         },
         {
           picture: 'images/default_profile_pics/doja-cat.png',
@@ -47,7 +54,11 @@
           personality: 'ENFP',
           age: 24,
           gender: 'Female',
-          bio: 'Catch all my popular music on Tiktok' 
+          bio: 'Catch all my popular music on Tiktok. \n Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
+            'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure' +
+            'dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non' +
+            'proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit,' +
+            ' sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' 
         },
         {
           picture: 'images/default_profile_pics/awkwafina.png',
@@ -58,7 +69,11 @@
           personality: 'ESFP',
           age: 27,
           gender: 'Female',
-          bio: 'Did you know that Awkwafina isn\'t my real name?'
+          bio: 'Did you know that Awkwafina isn\'t my real name? \n Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
+            'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure' +
+            'dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non' +
+            'proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit,' +
+            ' sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
         },
         {
           picture: 'images/default_profile_pics/chris-pine.png',
@@ -69,7 +84,11 @@
           personality: 'ESTP',
           age: 36,
           gender: 'Male',
-          bio: 'I\'m the hottest Chris'
+          bio: 'I\'m the hottest Chris. \n Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
+            'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure' +
+            'dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non' +
+            'proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit,' +
+            ' sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
         },
         {
           picture: 'images/default_profile_pics/danny-devito.png',
@@ -80,7 +99,11 @@
           personality: 'ESFJ',
           age: '88',
           gender: 'Male',
-          bio: 'Can I offer you an egg in this trying time?'
+          bio: 'Can I offer you an egg in this trying time?, \n Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
+            'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure' +
+            'dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non' +
+            'proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit,' +
+            ' sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
         },
         {
           picture: 'images/default_profile_pics/margot-robbie.png',
@@ -91,7 +114,11 @@
           personality: 'ENTP',
           age: 33,
           gender: 'Female',
-          bio: 'You probably know me Suicide Squad'
+          bio: 'You probably know me Suicide Squad, \n Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
+            'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure' +
+            'dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non' +
+            'proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit,' +
+            ' sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
         }
     ];
     
