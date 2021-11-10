@@ -1,4 +1,5 @@
 <script>
+import { dataset_dev } from "svelte/internal";
 import App from "./App.svelte";
 import BuyPack from "./Buy_pack.svelte";
 import Nav from "./Nav.svelte";
@@ -18,14 +19,41 @@ let bio = "I like food, dogs, and naps! More words go here.. and here.. words, w
     crossorigin="anonymous">
 </head>
 
-<div>
+<div class="container">
     <div class="card-holder">
-        <div class = "card" style = "width: 20rem;">
+        <h3 class = "option">MATCHES</h3>
+        <div class = card style = "width: 20rem;">
             <!-- svelte-ignore a11y-missing-attribute -->
             <img class="profile-picture" {src}>
             <div class="card-body">
                 <h5 class="profile-name">{name}</h5>
                 <h6 class="profile-type">{star_sign}  |  {mbti}</h6>
+                <p class="profile-bio">{bio}</p>
+            </div>
+        </div> 
+    </div>
+
+    <div class="card-holder">
+        <h3 class = "option">CRUSHES</h3>
+        <div class = "card" style = "width: 20rem;">
+            <!-- svelte-ignore a11y-missing-attribute -->
+            <img class="profile-picture" {src}>
+            <div class="card-body">
+                <h5 class="profile-name">{name}</h5>
+                <h6 class="profile-type">Capricorn |  ABCD</h6>
+                <p class="profile-bio">{bio}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-holder">
+        <h3 class = "option">OPEN PACKS</h3>
+        <div class = "card" style = "width: 20rem;">
+            <!-- svelte-ignore a11y-missing-attribute -->
+            <img class="profile-picture" {src}>
+            <div class="card-body">
+                <h5 class="profile-name">{name}</h5>
+                <h6 class="profile-type">Taurus |  ABCD</h6>
                 <p class="profile-bio">{bio}</p>
             </div>
         </div>
@@ -34,10 +62,14 @@ let bio = "I like food, dogs, and naps! More words go here.. and here.. words, w
 
 <style>
     .card-holder {
-        padding-top: 50px;
-        padding-left: 100px;
+        display: inline-block;
+        margin: auto;
+        padding: 50px;
     }
     .card-body {
+        text-align: center;
+    }
+    .option {
         text-align: center;
     }
 </style>
