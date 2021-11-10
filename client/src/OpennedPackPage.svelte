@@ -1,16 +1,101 @@
 
 <script>
     import Card from './Card.svelte';
-    async function loadComponent(name) {
-			console.log(`./${name}.svelte`);
-        return await import(`./${name}.svelte`);
-    }
+    //async function loadComponent(name) {
+	//		console.log(`./${name}.svelte`);
+    //    return await import(`./${name}.svelte`);
+    //}
     //const cards = [Card, Card, Card, Card, Card, Card, Card];
 
+    let AstroPic = 'images/signs/sagittarius.png';
+    function getList() {
+		fetch("http://127.0.0.1:5005/list")
+		.then(d => console.log(d))
+		//.then(d => d.text())
+		//.then(d => (list = d));
+    }
+    
+    const People = [
+        {
+          picture: 'images/default_profile_pics/kanye-west.png',
+          astropic: 'images/signs/gemini.png',
+          personalitypic: 'images/mbti_pics/isfp.png',
+          fullname: 'Kanye West',
+          astro: 'Gemini',
+          personality: 'ISFP',
+          age: 30,
+          gender: 'Male',
+          bio: 'Best there ever was. I made Taylor famous.'
+        },
+        {
+          picture: 'images/default_profile_pics/kim-kardashian.png',
+          astropic: 'images/signs/pisces.png',
+          personalitypic: 'images/mbti_pics/intj.png',
+          fullname: 'Kim Kardashian',
+          astro: 'Pisces',
+          personality: 'INTJ',
+          age: 32,
+          gender: "Female",
+          bio: 'I love my children, especially Chicago.'
+        },
+        {
+          picture: 'images/default_profile_pics/doja-cat.png',
+          astropic: 'images/signs/leo.png',
+          personalitypic: 'images/mbti_pics/enfj.png',
+          fullname: 'Doja Cat',
+          astro: 'Leo',
+          personality: 'ENFP',
+          age: 24,
+          gender: 'Female',
+          bio: 'Catch all my popular music on Tiktok' 
+        },
+        {
+          picture: 'images/default_profile_pics/awkwafina.png',
+          astropic: 'images/signs/cancer.png',
+          personalitypic: 'images/mbti_pics/esfp.png',
+          fullname: 'Awkwafina',
+          astro: 'Cancer',
+          personality: 'ESFP',
+          age: 27,
+          gender: 'Female',
+          bio: 'Did you know that Awkwafina isn\'t my real name?'
+        },
+        {
+          picture: 'images/default_profile_pics/chris-pine.png',
+          astropic: 'images/signs/aries.png',
+          personalitypic: 'images/mbti_pics/estp.png',
+          fullname: 'Chris Pine',
+          astro: 'Aries',
+          personality: 'ESTP',
+          age: 36,
+          gender: 'Male',
+          bio: 'I\'m the hottest Chris'
+        },
+        {
+          picture: 'images/default_profile_pics/danny-devito.png',
+          astropic: 'images/signs/sagittarius.png',
+          personalitypic: 'images/mbti_pics/esfj.png',
+          fullname: 'Danny Devito',
+          astro: 'Sagittarius',
+          personality: 'ESFJ',
+          age: '88',
+          gender: 'Male',
+          bio: 'Can I offer you an egg in this trying time?'
+        },
+        {
+          picture: 'images/default_profile_pics/margot-robbie.png',
+          astropic: 'images/signs/libra.png',
+          personalitypic: 'images/mbti_pics/entp.png',
+          fullname: 'Margot Robie',
+          astro: 'Libra',
+          personality: 'ENTP',
+          age: 33,
+          gender: 'Female',
+          bio: 'You probably know me Suicide Squad'
+        }
+    ];
     
 </script>
-
-
 
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
@@ -18,59 +103,30 @@
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
     crossorigin="anonymous">
 </head>
-
+    <div on:load={getList}></div>
     <center>
         <div class="container-fluid">
             <div class="cards-scroll">
+                {#each People as person}
                 <div class="card-butt">
                     <div class="card">
-                        <Card/>
+                        <Card 
+                            AstroPic={person.astroPic}
+                            Picture = {person.picture}
+                            PersonalityPic = {person.personalitypic}
+                            Name = {person.fullname}
+                            Astro = {person.astro}
+                            Personality = {person.personality}
+                            Age = {person.age}
+                            Gender = {person.gender}
+                            Bio = {person.bio}
+                        >
+                        </Card>
                     </div>
                     <div><button type="button" class="btn btn-outline-dark">Match!</button>
                     </div>
                 </div>
-                <div class="card-butt">
-                    <div class="card">
-                        <Card/>
-                    </div>
-                    <div><button type="button" class="btn btn-outline-dark">Match!</button>
-                    </div>
-                </div>
-                <div class="card-butt">
-                    <div class="card">
-                        <Card/>
-                    </div>
-                    <div><button type="button" class="btn btn-outline-dark">Match!</button>
-                    </div>
-                </div>
-                <div class="card-butt">
-                    <div class="card">
-                        <Card/>
-                    </div>
-                    <div><button type="button" class="btn btn-outline-dark">Match!</button>
-                    </div>
-                </div>
-                <div class="card-butt">
-                    <div class="card">
-                        <Card/>
-                    </div>
-                    <div><button type="button" class="btn btn-outline-dark">Match!</button>
-                    </div>
-                </div>
-                <div class="card-butt">
-                    <div class="card">
-                        <Card/>
-                    </div>
-                    <div><button type="button" class="btn btn-outline-dark">Match!</button>
-                    </div>
-                </div>
-                <div class="card-butt">
-                    <div class="card">
-                        <Card/>
-                    </div>
-                    <div><button type="button" class="btn btn-outline-dark">Match!</button>
-                    </div>
-                </div> 
+                {/each}
             </div>  
         </div>    
     </center>

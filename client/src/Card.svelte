@@ -6,20 +6,22 @@
 </head>
 
 <script>
-    let Picture = 'images/kanye-profile-pic.png';
-    let AstroPic = 'images/gemini.png';
-    let PersonalityPic = "images/infp.png";
-    let Name = "Kanye West";
-    let Astro = "Gemini";
-    let Personality = "INFP";
-    let Age = 30;
-    let Gender = "Male";
+    export let Picture = 'images/default_profile_pics/kanye-west.png';
+    export let AstroPic = 'images/signs/gemini.png';
+    export let PersonalityPic = "images/mbti_pics/infp.png";
+    export let Name = "Kanye West";
+    export let Astro = "Gemini";
+    export let Personality = "INFP";
+    export let Age = 30;
+    export let Gender = "Male";
+    export let Bio = "No info!!"
+
 </script>
 
 <div class="card" style="width: 25rem;">
     <div class='pics'>
-    <img src={AstroPic} id="card-img-top1" alt="...">
-    <img src={Picture} id="card-img-top2"  alt="...">
+        <img src={AstroPic} id="card-img-top1" alt="...">
+        <img src={Picture} id="card-img-top2"  alt="...">
         <img src={PersonalityPic} id="card-img-top3" alt="...">
     </div>
     <div class="card-body">
@@ -27,15 +29,7 @@
     <h6 class="card-subtitle mb-2 text-muted">{Astro}  |  {Personality}</h6>
     <h6 class="card-subtitle mb-2 text-muted">{Age}, {Gender}</h6>
         <div class="bottom-text"> 
-            <p class="card-text">About Me: <br>
-                Ye, born Kanye Omari West, June 8, 1977), 
-                commonly known by his former name Kanye West, is an American rapper, 
-                record producer, and fashion designer. Born in Atlanta and raised in Chicago, 
-                West gained recognition as a producer for Roc-A-Fella Records in the early 2000s, 
-                producing singles for several popular artists and developing a distinctive sampling 
-                style known as "chipmunk soul." Intent on pursuing a solo career as a rapper, West 
-                released his debut album, The College Dropout (2004), 
-                to critical and commercial success, and founded the record label GOOD Music. </p>
+            <p class="card-text">About Me: <br> {Bio} </p>
         </div>
     </div>
 </div>
