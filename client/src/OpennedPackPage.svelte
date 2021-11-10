@@ -1,13 +1,27 @@
 
 <script>
     import Card from './Card.svelte';
+    import Cardback from './Cardback.svelte';
+    
     //async function loadComponent(name) {
 	//		console.log(`./${name}.svelte`);
     //    return await import(`./${name}.svelte`);
     //}
-    //const cards = [Card, Card, Card, Card, Card, Card, Card];
 
-    let AstroPic = 'images/signs/sagittarius.png';
+    let cardBackShowing = false;
+    let selected;
+
+    const toggleBackFront = (e) => {
+		// if same card clicked twice to toggle front and back
+		if (selected === Number(e.target.dataset.cardId)) {
+			selected = null;
+			cardBackShowing = !cardBackShowing;
+		} else {
+			cardBackShowing = !cardBackShowing;
+			selected = Number(e.target.dataset.cardId)
+		}
+	}
+
     function getList() {
 		fetch("http://127.0.0.1:5005/list")
 		.then(d => console.log(d))
@@ -134,31 +148,41 @@
     <center>
         <div class="container-fluid">
             <div class="cards-scroll">
-                {#each People as person}
+                {#each People as person, i}
                 <div class="card-butt">
-                    <div class="card">
-                        <Card 
-                            AstroPic={person.astroPic}
-                            Picture = {person.picture}
-                            PersonalityPic = {person.personalitypic}
-                            Name = {person.fullname}
-                            Astro = {person.astro}
-                            Personality = {person.personality}
-                            Age = {person.age}
-                            Gender = {person.gender}
-                            Bio = {person.bio}
-                        >
-                        </Card>
-                    </div>
-                    <div><button type="button" class="btn btn-outline-dark">Match!</button>
-                    </div>
+                    <!--<div class="flip-box">-->
+                        <div class="card"> <!--class:show-back={selected===i} data-card-id={i}>-->
+                            <Card 
+                                AstroPic={person.astropic}
+                                Picture = {person.picture}
+                                PersonalityPic = {person.personalitypic}
+                                Name = {person.fullname}
+                                Astro = {person.astro}
+                                Personality = {person.personality}
+                                Age = {person.age}
+                                Gender = {person.gender}
+                                Bio = {person.bio}
+                            >
+                            </Card>
+                            <!--<Cardback/> -->
+                        </div>
+                    <!--<footer on:click={toggleBackFront} data-card-id={i}>Hi</footer>-->
+                    <div><button type="button" class="btn btn-outline-dark">Match!</button></div>
+                    <!--</div>-->
                 </div>
                 {/each}
-            </div>  
-        </div>    
+            </div>    
+        </div>  
     </center>
-
 <style>
+
+.flip-box{
+    perspective: 1000px;
+}
+
+.show-back {
+		transform: rotateY(180deg);
+	}
 
 .btn {
     margin-bottom: 5px;
@@ -179,6 +203,10 @@
     margin-left: 40px;
     margin-right: 40px;
     margin-bottom: 15px;
+    /*transition: transform 0.8s;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden; /* Safari */
 }
     
 </style>

@@ -6,6 +6,7 @@
 </head>
 
 <script>
+	import Cardback from './Cardback.svelte';
 	import Card from './Card.svelte';
 	import Packs from './Packs.svelte';
 	import Nav from './Nav.svelte';

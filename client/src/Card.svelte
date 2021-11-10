@@ -6,14 +6,14 @@
 </head>
 
 <script>
-    export let Picture = 'images/default_profile_pics/kanye-west.png';
-    export let AstroPic = 'images/signs/gemini.png';
-    export let PersonalityPic = "images/mbti_pics/infp.png";
-    export let Name = "Kanye West";
-    export let Astro = "Gemini";
-    export let Personality = "INFP";
-    export let Age = 30;
-    export let Gender = "Male";
+    export let Picture = 'images/default_profile_pics/no-user.png';
+    export let AstroPic;
+    export let PersonalityPic;
+    export let Name = "No Name";
+    export let Astro = "None";
+    export let Personality = "None";
+    export let Age = 0;
+    export let Gender = "None";
     export let Bio = "No info!!"
 
 </script>
@@ -41,43 +41,42 @@
         border-color: #c9d7f8;
         height: 75vh;
     }
-      .card-title {
-          text-align: center;
-      }
-      .card-subtitle {
-          text-align: center;
-          font-size: 12px;
-      }
-      .card-text {
-          text-align: center;
-          margin:5px;
-          height:35vh;
-          white-space: normal;
-          overflow-wrap: break-word;
-          overflow-y:auto;
-      }
-      .card-text {
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
-    scrollbar-width: none;  /* Firefox */
-}
-.card-text::-webkit-scrollbar { 
-    display: none;  /* Safari and Chrome */
-}
-      .bottom-text {
-          background-color: #c1b8ed;
-          width:100%;
-      }
-
-      .card-body {
-          padding: 0rem 0rem;
-      }
-      #card-img-top1{
+    .card-title {
+        text-align: center;
+    }
+    .card-subtitle {
+        text-align: center;
+        font-size: 12px;
+    }
+    .card-text {
+        text-align: center;
+        margin:5px;
+        height:35vh;
+        white-space: normal;
+        overflow-wrap: break-word;
+        overflow-y:auto;
+    }
+    .card-text {
+        -ms-overflow-style: none;  /* Internet Explorer 10+ */
+        scrollbar-width: none;  /* Firefox */
+    }
+    .card-text::-webkit-scrollbar { 
+        display: none;  /* Safari and Chrome */
+    }
+    .bottom-text {
+        background-color: #c1b8ed;
+        width:100%;
+    }
+    .card-body {
+        padding: 0rem 0rem;
+    }
+    #card-img-top1{
         margin-left: 10px;
         width: 10%;
         float:left;
         margin-top:25%;
-      }
-      #card-img-top2{
+    }
+    #card-img-top2{
         width:48%;
         margin:17px;
         margin-top:10px;
@@ -85,17 +84,16 @@
         vertical-align: middle;
         border: 5px solid black;
         border-radius: 50%;
-      }
-      #card-img-top3{
+    }
+    #card-img-top3{
         width: 12%;
         float:right;
         margin-top:22.5%;
         margin-right:10px;
-      }
-      .pics{
+    }
+    .pics{
         display: inline-block;
         vertical-align: middle;
         height: 100%;
-      }
-
+    }
   </style>
