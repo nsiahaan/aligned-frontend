@@ -4,7 +4,7 @@ Aligned
 aligned.routes
 This module implements the routes for Aligned
 """
-from flask import render_template, url_for, redirect, request, jsonify
+from flask import render_template, url_for, redirect, request, jsonify, send_from_directory
 
 from aligned import app, firebaseDB
 from aligned.api import *
@@ -124,6 +124,16 @@ def addPic():
         
         return jsonify({"success": True}), 200
 
+    except Exception as e:
+        return f"An Error Occured: {e}"
+
+@app.route('/getPic', methods=['GET'])
+def getPic():
+    print("hello")
+    try:
+        uid = request.args.get('uid')
+        print(uid)
+        return storage.child(uid).get_url()
     except Exception as e:
         return f"An Error Occured: {e}"
 
