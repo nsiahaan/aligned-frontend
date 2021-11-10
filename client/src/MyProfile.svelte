@@ -6,7 +6,7 @@
 </head>
 
 <script> 
-    let src = "images/kanye-profile-pic.png";
+    let src = "images/default_profile_pics/kanye-west.png";
     export let horoscope = "This is where my horoscope will be. Today, a surprise will befall you. \n Try and accept it, rather than reject.";
     export let name = "Kanye";
     export let MBTI = "ENTP";

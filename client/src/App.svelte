@@ -42,6 +42,7 @@
 </section>
 {:else if page=="MyProfile"}
 <section>
+	<MyProfile/>
 </section>
 {:else if page=="OpenPacks"}
 <section>
