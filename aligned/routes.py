@@ -1,6 +1,5 @@
 """
 Aligned 
-
 aligned.routes
 This module implements the routes for Aligned
 """
@@ -130,4 +129,3 @@ def addPic():
 
     except Exception as e:
         return f"An Error Occured: {e}"
-

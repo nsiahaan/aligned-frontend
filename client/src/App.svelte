@@ -6,11 +6,14 @@
 </head>
 
 <script>
+	import Cardback from './Cardback.svelte';
+	import Card from './Card.svelte';
 	import Packs from './Packs.svelte';
 	import Nav from './Nav.svelte';
 	import Home from './Home.svelte';
 	import MyProfile from './MyProfile.svelte'
 	import OpennedPackPage from './OpennedPackPage.svelte';
+  
 	export let name;
 	let rand = -1;
 	let list;
@@ -24,6 +27,7 @@
 		//.then(d => d.text())
 		//.then(d => (list = d));
   }
+
 </script>
 
 <Nav bind:page={page}/>
@@ -38,7 +42,6 @@
 </section>
 {:else if page=="MyProfile"}
 <section>
-	<MyProfile/>
 </section>
 {:else if page=="OpenPacks"}
 <section>
