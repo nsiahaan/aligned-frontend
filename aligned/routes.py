@@ -3,11 +3,8 @@ Aligned
 aligned.routes
 This module implements the routes for Aligned
 """
-from flask import render_template, url_for, redirect, request, jsonify, Flask
-from flask import send_from_directory
-from flask_cors import CORS
+from flask import render_template, url_for, redirect, request, jsonify, send_from_directory
 import random
-
 from aligned import app, firebaseDB
 from aligned.api import *
 from aligned.signUp import signUp
@@ -116,7 +113,11 @@ storage = firebase.storage()
 
 @app.route('/addPic', methods=['POST','PUT'])
 def addPic():
-    # add profile pic linked to user
+    """
+    Input: form-data, data={'uid':uid}
+                      files={'file':myfile}
+    Adds myfile to Firebase Storage and renamed using uid
+    """
     try:
         
         picture = request.files['file']
@@ -129,3 +130,18 @@ def addPic():
 
     except Exception as e:
         return f"An Error Occured: {e}"
+
+@app.route('/getPic', methods=['GET'])
+def getPic():
+    """
+    Route must take input 'uid' query parameter
+    Returns URL ref of the user's profile pic
+    """
+    print("hello")
+    try:
+        uid = request.args.get('uid')
+        print(uid)
+        return storage.child(uid).get_url()
+    except Exception as e:
+        return f"An Error Occured: {e}"
+

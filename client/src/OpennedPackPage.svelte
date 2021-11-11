@@ -2,15 +2,28 @@
 <script>
     import Card from './Card.svelte';
     import Cardback from './Cardback.svelte';
+    //import Info from './information.js';
     
     //async function loadComponent(name) {
 	//		console.log(`./${name}.svelte`);
     //    return await import(`./${name}.svelte`);
     //}
-
+    let aquariusLink = 'images/signs/aquarius.png';
+    let ariesLink = 'images/signs/aries.png';
+    let cancerLink = 'images/signs/cancer.png';
+    let capricornLink = 'images/signs/capricorn.png';
+    let geminiLink = 'images/signs/gemini.png';
+    let leoLink = 'images/signs/leo.png';
+    let libraLink = 'images/signs/libra.png';
+    let piscesLink = 'images/signs/pisces.png';
+    let sagittariusLink = 'images/signs/sagittarius.png';
+    let scorpioLink = 'images/signs/scorpio.png';
+    let taurusLink = 'images/signs/taurus.png';
+    let virgoLink = 'images/signs/virgo.png';
     let cardBackShowing = false;
     let selected;
     let list =[];
+    let pics =[];
 
     const toggleBackFront = (e) => {
 		// if same card clicked twice to toggle front and back
@@ -29,10 +42,31 @@
 		.then(d => {
             list = d; 
             list = list.slice(0, 7);
+            for (let person in list) {
+                if (person['astro'] == 'gemini') {
+                    console.log("HI");
+                    person['astropic'] = geminiLink;
+                }
+                if (person['astro'] == 'virgo') {
+                    person['astropic'] = virgoLink;
+                } 
+            }
             return list;
         })
         .then(d=>console.log(d))
     }
+
+    function getPics() {
+		fetch("http://127.0.0.1:5005/getPic")
+        .then(d => d.json())
+		.then(d => {
+            list = d; 
+            list = list.slice(0, 7);
+            return list;
+        })
+        .then(d=>console.log(d))
+    }
+
     const People = [
         {
           picture: 'images/default_profile_pics/kanye-west.png',
@@ -141,6 +175,7 @@
         }
     ];
     
+    //module.exports = getList;
 </script>
 
 <head>
