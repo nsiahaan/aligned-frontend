@@ -14,18 +14,28 @@ Sally (Simwon) Seok
 
 Nikita Siahaan
 
-Create a virtual environment in your root directory
+<br/>
+
+Directory Structure:
+
+`aligned` folder contains the backend (Flask).
+
+`client` folder contains the frontend (Svelte).
+
+`test` folder contains code for creating sample users and the `/test.py` file contains unit tests.
+
+<br/>
+
+To run the application:
+
+First, create a virtual environment in your root directory
 
 `python3 -m venv venv`
 
-To enter virtual environment do
+Enter the virtual environment and install required modules
 
-`source venv/bin/activate`
+`./enter-install-venv.sh`
 
-To install requirements in virtual enviroment do
+Run the application on port 5000
 
-`pip3 install -r requirements.txt`
-
-To run application on port 5000,
-
-`python3 run.py`
+`./deploy.sh`
