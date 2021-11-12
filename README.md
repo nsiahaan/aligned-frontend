@@ -28,6 +28,6 @@ Directory Structure:
 
 To run the application on port 5000:
 
-`./enter-install.venv.sh`
+`./enter-install-venv.sh`
 
 `./deploy.sh`
