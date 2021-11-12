@@ -26,8 +26,16 @@ Directory Structure:
 
 <br/>
 
-To run the application on port 5000:
+To run the application:
+
+First, create a virtual environment in your root directory
+
+`python3 -m venv venv`
+
+Enter the virtual environment and install required modules
 
 `./enter-install-venv.sh`
+
+Run the application on port 5000
 
 `./deploy.sh`
