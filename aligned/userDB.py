@@ -1,3 +1,7 @@
+"""
+This module provides functions for managing the user database.
+"""
+
 from flask import request, jsonify
 from aligned import app
 import uuid
@@ -7,30 +11,6 @@ from flask import jsonify
 from firebase_admin import credentials, firestore, storage
 import json
 
-class User:
-    
-    def __init__(self, uid):
-        self.uid = uid
-        js = getUser(uid)
-        self.name = js["name"]
-        self.age = js["age"]
-        self.gender = js["gender"]
-        self.dob = js["dob"]
-        self.astro = js["astro"]
-        self.mbti = js["mbti"]
-        self.sPref = js["sPref"]
-        self.phoneNum = js["phoneNum"]
-        self.email = js["email"]
-        self.credits = js["credits"]
-        self.numViews = js["numViews"]
-        self.numLikes = js["numLikes"]
-        self.secretCrush = js["secretCrush"]
-        self.numPacks = js["numPacks"]
-        self.likes = js["myLikes"]
-        self.matchList = js["matchList"]
-    
-    def getJson(self):
-        return getUser(self.uid)
 
 cred = credentials.Certificate("./key.json")
 default_app = firebase_admin.initialize_app(cred)
@@ -40,8 +20,10 @@ users_ref = db.collection('users')
 
 def addUser(json):
     """
-        create() : Add document to Firestore collection with request body
-        Ensure you pass a custom ID as part of json body in post request
+    Add a user to the database given their information in JSON format.
+    
+    Input: json: dictionary
+    Output: none
     """
     id = str(uuid.uuid4())
     data = {
@@ -68,8 +50,13 @@ def addUser(json):
 
 def getUser(uid=None, parameter=None):
     """
-        create() : Add document to Firestore collection with request body
-        Ensure you pass a custom ID as part of json body in post request
+    Get user(s) from the database. 
+    If UID is not given, return all users.
+    If UID is given without parameter, return all information about that user.
+    If UID is given with parameter, return the user's value for the parameter field.
+
+    Input: uid: string, parameter: string
+    Output: list of dictionaries, one dictionary, or int/string/list
     """
     if uid is None:
         return [doc.to_dict() for doc in users_ref.stream()]
@@ -81,27 +68,34 @@ def getUser(uid=None, parameter=None):
             return json.to_dict()
 
 def getUIDFromEmail(email):
-    uid =  users_ref.where("email", "==", email).get()
+    """
+    Given a user's email, return their UID.
+
+    Input: email: string
+    Output: string
+    """
+    uid = users_ref.where("email", "==", email).get()
     if len(uid) != 1:
         return None
     return uid[0].get('uid')
 
 def updateUser(uid, json):
+    """
+    Update a user's information in the database. 
+
+    Input: uid: string, json: dictionary
+    Output: none
+    """
     users_ref.document(uid).update(json)
 
 def deleteUser(uid):
+    """
+    Delete a user from the database.
+
+    Input: uid: string
+    Output: none
+    """
     users_ref.document(uid).delete()
-    
-def buyPack(uid):
-    currentPack = int(getUser(uid, parameter='numPacks'))
-    currentPack += 1
-    credits = int(getUser(uid, parameter='credits'))
-    credits -= 50
-    buyPack={
-        'numPacks':currentPack,
-        'credits':credits,
-    }
-    updateUser(uid, buyPack)
 
 
 
