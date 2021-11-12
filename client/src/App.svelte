@@ -14,12 +14,10 @@
 	import MyProfile from './MyProfile.svelte'
 	import OpennedPackPage from './OpennedPackPage.svelte';
   
-	export let name;
 	let rand = -1;
 	let list;
 
 	export let page = "Home";
-
 
   function getList() {
 		fetch("http://127.0.0.1:5005/list")
