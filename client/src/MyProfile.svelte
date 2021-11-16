@@ -6,8 +6,13 @@
 </head>
 
 <script> 
-    let src = "images/kanye-profile-pic.png";
-
+    let src = "images/default_profile_pics/kanye-west.png";
+    export let horoscope = "This is where my horoscope will be. Today, a surprise will befall you. \n Try and accept it, rather than reject.";
+    export let name = "Kanye";
+    export let MBTI = "ENTP";
+    export let starSign = "Taurus";
+    export let profileDescription = "This is my cute profile description. I like peen and vajayjay.";
+                    
 </script>
 
 <section>
@@ -33,11 +38,10 @@
                         <li><a class="dropdown-item" href="#">Take Personality Test</a></li>
                         </ul>
                     </div>
-                    <p> Name: </p>
-                    <p> MBTI: </p>
-                    <p> Star Sign: </p>
-                    <p> This is my cute profile description. I like peen and vajayjay.
-                    
+                    <p> Name: {name} </p>
+                    <p> MBTI: {MBTI} </p>
+                    <p> Star Sign: {starSign} </p>
+                    <p> {profileDescription}
                     </p>
                 </div>
             </div>
@@ -48,15 +52,18 @@
                     
                 </div>
             </div>
-            <div class="row horoscope">
-                This is where my horoscope will be.
+            <div class="row horoscope-text horoscope">
+                <p>{horoscope}</p>
             </div>
-            <div class="row horoscope">
+            <div class="row horoscope horoscope-bottom">
                 <div class="col">
-                Love Compatibility
+                Daily Love Compatibility
+                    <div>
+                        Taurus
+                    </div>
                 </div>
                 <div class="col">
-                Mood
+                Mood of the Day
                 </div>
                 <div class="col">
                 Lucky Number
@@ -73,6 +80,10 @@
 
 
 <style>
+
+    p{
+        font-size:larger;
+    }
     .rounded{
         border-radius: 100% !important;
         background-color: white;
@@ -83,6 +94,17 @@
         margin-top: 50px;
         margin-bottom: 50px;
     }
+
+    .horoscope-text{
+        padding-bottom: 3em;
+        padding-top: 1em;
+        text-align: center !important;
+    }
+
+    .horoscope-bottom{
+        padding-bottom: 1em;
+    }
+
     .resize {
         height: 300px;
         width: auto;
@@ -93,12 +115,12 @@
         height: auto;
         margin-top: 50px;
         margin-bottom: 50px;
-        padding: 3em;
+        padding-bottom: 3em;
     }
 
     .row{
         background-color: #c1b8ed;
-        outline-style: solid;
+        /* outline-style: solid; */
     }
 
     .horoscope {
@@ -109,6 +131,7 @@
         text-align: center;
     }
     .col{
-        outline-style: solid;
+        text-align: center;
+        /* outline-style: solid; */
     }
 </style>

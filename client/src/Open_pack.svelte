@@ -1,8 +1,9 @@
 <script>
     let src = "images/astro-card.webp";
-
+    export let page = "Packs";
     //Need to call backend function to create a pack
     function openPackHandler(){
+        page = "OpenPacks"
         //console.log("Open pack.");
     }   
 </script>

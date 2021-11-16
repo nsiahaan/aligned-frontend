@@ -3,10 +3,12 @@ Aligned
 
 aligned.routes
 Connect to Pyaztro API
+
+**** all the code in this file has been moved to user.py,
+will delete later when test.py is also updated ****
 """
 
 import pyaztro
-from aligned import firebaseDB
 
 
 '''
@@ -30,7 +32,7 @@ def getHoroscope(sign):
     return pyaztro.Aztro(sign=sign)
 
 
-# assign each personality type an index number, which is used in MBTICompatibilityChart
+# assign each personality type an index number, which is used in mbtiCompatibilityChart
 mbtiIndex = \
   {'INFP':0, 'ENFP':1, 'INFJ':2, 'ENFJ':3 \
   ,'INTJ':4, 'ENTJ':5, 'INTP':6, 'ENTP':7 \
@@ -56,7 +58,7 @@ mbtiCompatibilityChart = \
     ,[0,0,0,0,1,4,16,1,16,4,16,4,9,9,9,9]]
 
 
-# assign each astrological sign an index number, which is used in AstroCompatibilityChart
+# assign each astrological sign an index number, which is used in astroCompatibilityChart
 astroIndex = \
     {'aries':0, 'leo':1, 'sagittarius':2, 'taurus':3 \
     ,'virgo':4, 'capricorn':5, 'gemini':6, 'libra':7 \
@@ -99,18 +101,5 @@ def compatibilityScore(user1,user2):
     
     totalScore = MBTI_WEIGHT*(mbtiScore/16) + STATIC_ASTRO_WEIGHT*(staticAstroScore/2) + DAILY_ASTRO_WEIGHT*(dailyAstroScore)
     return totalScore
-
-
-'''
-Generate the pack of 7 profiles for the user
-Input: user: User
-Output: list of Users
-'''
-# def generatePack(user):
-
-#   docs = firebaseDB.users_ref.where(...)
-
-#   for doc in docs:
-#     doc.to_dict()
 
 

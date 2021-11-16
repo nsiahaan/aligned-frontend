@@ -1,30 +1,31 @@
 """
 Aligned 
-
 aligned.routes
 This module implements the routes for Aligned
 """
 from flask import render_template, url_for, redirect, request, jsonify, send_from_directory
+import random
 
-from aligned import app, firebaseDB
-from aligned.api import *
+from aligned import app, userDB
+
 from aligned.signUp import signUp
+
 
 @app.route('/')
 def base():
     return send_from_directory('client/public', 'index.html')
 
 
-@app.route("/home", methods=['GET','POST'])
-def home():
-    # if request.method == 'POST':
-    #     if request.form['submit_button'] == 'DoSomething':
-    #         uid = firebaseDB.getUIDFromEmail('lol@lol.com')
-    #         #firebaseDB.buyPack(uid)
+@app.route("/<path:path>")
+def home(path):
+    return send_from_directory('client/public', path)
 
-    #     elif request.form['submit_button'] == 'Do Something Else':
-    #         pass 
-    return render_template('home.html', title='Home')
+@app.route("/rand")
+def hello():
+    return str(random.randint(0, 100))
+
+
+
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -43,7 +44,7 @@ def create():
         e.g. json={'id': '1', 'title': 'Write a blog post'}
     """
     try:
-        firebaseDB.addUser(request.json)
+        userDB.addUser(request.json)
         return jsonify({"success": True}), 200
     except Exception as e:
         return f"An Error Occured: {e}"
@@ -60,12 +61,12 @@ def read():
         todo_id = request.args.get('uid') 
         parameter = request.args.get('param') 
         if todo_id:
-            user = firebaseDB.getUser(todo_id, parameter)
+            user = userDB.getUser(todo_id, parameter)
             if parameter:
                 return jsonify(user), 200
             return jsonify(user.to_dict()), 200
         else:
-            user = firebaseDB.getUser()
+            user = userDB.getUser()
             return jsonify(user), 200
     except Exception as e:
         return f"An Error Occured: {e}"
@@ -80,7 +81,7 @@ def update():
     """
     try:
         id = request.json['uid']
-        firebaseDB.updateUser(id, request.json)
+        userDB.updateUser(id, request.json)
         return jsonify({"success": True}), 200
     except Exception as e:
         return f"An Error Occured: {e}"
@@ -93,7 +94,7 @@ def delete(request):
     try:
         # Check for ID in URL query
         todo_id = request.args.get('id')
-        firebaseDB.deleteUser(todo_id)
+        userDB.deleteUser(todo_id)
         return jsonify({"success": True}), 200
     except Exception as e:
         return f"An Error Occured: {e}"
