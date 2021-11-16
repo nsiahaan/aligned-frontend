@@ -109,7 +109,10 @@ config = {
 }
 firebase = pyrebase.initialize_app(config)
 storage = firebase.storage()
-
+####### WHEN WE ADD AUTHENTICATION
+# auth = firebase.auth()
+# # user = auth.sign_in_with_email_and_password(email, password)
+# # storage.child(uid).get_url(user['idToken'])
 
 @app.route('/addPic', methods=['POST','PUT'])
 def addPic():
