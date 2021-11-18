@@ -24,16 +24,28 @@
 <section>
     <ul class="nav">
         <li class="nav-item">
-          <a class="nav-link" href="/#/home" on:click={setPageHome}>HOME</a>
+          <a class="nav-link" id="homelink" href="/#/home" on:click={setPageHome}>HOME</a>
+          {#if page == "Home"}
+            <div class="underline"></div>
+          {/if}
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/#/packs" on:click={setPagePacks}>PACKS</a>
+          <a class="nav-link" id="packslink" href="/#/packs" on:click={setPagePacks}>PACKS</a>
+          {#if page == "Packs"}
+            <div class="underline"></div>
+          {/if}
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/#/profile" on:click={setPageProfile}>PROFILE</a>
+          <a class="nav-link" id="profilelink" href="/#/profile" on:click={setPageProfile}>PROFILE</a>
+          {#if page == "MyProfile"}
+            <div class="underline"></div>
+          {/if}
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/#/account" on:click={setPageAccount}>ACCOUNT</a>
+          <a class="nav-link" id="accountlink" href="/#/account" on:click={setPageAccount}>ACCOUNT</a>
+          {#if page == "Account"}
+            <div class="underline"></div>
+          {/if}
         </li>
       </ul>
 </section> 
@@ -48,6 +60,12 @@
         margin: auto;
         width: 50%;
         padding: 10px;
+    }
+    .underline {
+      margin-top: -13px;
+      height:4px;
+      width:100%;
+      background-color: #ffc2f8;
     }
 
 </style>
