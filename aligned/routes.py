@@ -5,8 +5,9 @@ This module implements the routes for Aligned
 """
 from flask import render_template, url_for, redirect, request, jsonify, send_from_directory
 import random
+from werkzeug.security import generate_password_hash, check_password_hash
 
-from aligned import app, userDB
+from aligned import app, user, userDB
 
 from aligned.signUp import signUp
 
@@ -24,17 +25,47 @@ def home(path):
 def hello():
     return str(random.randint(0, 100))
 
+@app.route('/login', methods=['POST'])
+def login():
+    try:
+        json = request.json
+        email = json["email"]
+        password = json["password"] 
+        return userDB.loginUser(email, password)
+    except Exception as e:
+        print(e)
 
-
-
-@app.route('/signup', methods=['GET', 'POST'])
+@app.route('/signup', methods=['POST'])
 def signup():
-    form = signUp()
-    if request.method == "POST":
-        if form.submit_form.data:
-            return redirect(url_for('home'))
-        return render_template('signup.html', title='Sign Up', form=form)
-    return render_template('signup.html', title='Sign Up', form=form)
+    try:
+        json = request.json
+        email = json["email"]
+        password = json["password"] 
+        addedUser = userDB.signupUser(email, password)
+        print(addedUser)
+        if addedUser["status"] == "success":
+            id = addedUser["localId"]
+            data = {
+                "name":json['name'],
+                "age":json['age'],
+                "dob":json['dob'],
+                "astro":json['astro'],
+                "gender":json['gender'],
+                "mbti":json['mbti'],
+                "sPref":json['sPref'],
+                "phoneNum":json['phoneNum'],
+                "email":json['email'],
+                "credits":json['credits'],
+                "crushes":json['crushes'],
+                "numPacks":json['numPacks'],
+                "likes":json['likes'],
+                "matches":json['matches'],
+                "bio":json['bio']
+            }
+            userDB.addUser(data, id)
+        return addedUser
+    except Exception as e:
+        print(e)
 
 @app.route('/add', methods=['POST'])
 def create():

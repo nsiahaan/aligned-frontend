@@ -168,7 +168,7 @@ def createNUsers(n):
         # addProfilePic(gender, email)
 
 if __name__=="__main__":
-    #createNUsers(50)
+    createNUsers(350)
     ##### ONLY UNCOMMENT THIS IF THERE ARE MORE USERS THAN PICS/BIOS #####
-    addProfilePics()
-    generateBios4All()
+    #addProfilePics()
+    #generateBios4All()
