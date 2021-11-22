@@ -40,6 +40,7 @@
         border:10px solid;
         border-color: #c9d7f8;
         height: 75vh;
+        border-radius: 25px;
     }
     .card-title {
         text-align: center;

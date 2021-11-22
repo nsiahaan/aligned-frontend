@@ -102,8 +102,3 @@ def deleteUser(uid):
     Output: none
     """
     users_ref.document(uid).delete()
-
-
-
-
-
