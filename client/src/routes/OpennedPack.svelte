@@ -244,13 +244,13 @@
     <center>
         <div class="container-fluid">
             <div class="cards-scroll">
-                {#each list as person, i}
+                {#each People as person, i}
                 <div class="card-butt">
                     <!--<div class="flip-box">-->
                         <div class="card"> <!--class:show-back={selected===i} data-card-id={i}>-->
                             <Card 
                                 AstroPic={person.astropic}
-                                Picture={dictpics[person.uid]}
+                                Picture={person.picture}
                                 PersonalityPic = {person.personalitypic}
                                 Name = {person.name}
                                 Astro = {person.astro}
