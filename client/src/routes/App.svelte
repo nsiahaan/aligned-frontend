@@ -11,13 +11,13 @@
 	import Packs from '../Packs.svelte';
 	import Nav from '../Nav.svelte';
 	import Home from '../Home.svelte';
-	import MyProfile from '../MyProfile.svelte'
-	import OpennedPackPage from '../OpennedPackPage.svelte';
+	import MyProfile from './MyProfile.svelte'
+	import OpennedPackpage_tracker from '../OpennedPackPage.svelte';
   
 	let rand = -1;
 	let list;
 
-	export let page = "Home";
+	export let page_tracker = "Home";
 
   function getList() {
 		fetch("http://127.0.0.1:5005/list")
@@ -28,27 +28,27 @@
 
 </script>
 
-<Nav bind:page={page}/>
+<Nav bind:page_tracker={page_tracker} />
 
-{#if page=="Home"}
+{#if page_tracker=="Home"}
 <section> 
 	<Home/>
 </section>
-{:else if page=="Packs"}
+{:else if page_tracker=="Packs"}
 <section>
-	<Packs bind:page={page}/>
+	<Packs bind:page_tracker={page_tracker}/>
 </section>
-{:else if page=="MyProfile"}
+{:else if page_tracker=="MyProfile"}
 <section>
 	<MyProfile/>
 </section>
-{:else if page=="OpenPacks"}
+{:else if page_tracker=="OpenPacks"}
 <section>
-	<OpennedPackPage/>
+	<OpennedPackpage_tracker/>
 </section>
 {:else}
 <section>
-	404: Oops! This page doesn't exist.
+	404: Oops! This page_tracker doesn't exist.
 </section>
 {/if}
 
