@@ -35,25 +35,25 @@ let isOpen = false;
       </button>
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item" class:active={$page.path === '/Home'}>
+          <li class="nav-item p-3" class:active={$page.path === '/Home'}>
             <a class="nav-link" id="homelink" href="/Home" on:click={setpage_trackerHome}>HOME</a>
             {#if page_tracker == "Home"}
               <div class="underline"></div>
             {/if}
           </li>
-          <li class="nav-item" class:active={$page.path === '/Packs' || $page.path === '/OpennedPack'}>
+          <li class="nav-item p-3" class:active={$page.path === '/Packs' || $page.path === '/OpennedPack'}>
             <a class="nav-link" id="packslink" href="/Packs" on:click={setpage_trackerPacks}>PACKS</a>
             {#if page_tracker == "Packs" || page_tracker == "OpennedPack"}
               <div class="underline"></div>
             {/if}
           </li>
-          <li class="nav-item" class:active={$page.path === '/MyProfile'}>
+          <li class="nav-item p-3" class:active={$page.path === '/MyProfile'}>
             <a sveltekit:prefetch class="nav-link" id="profilelink" href="/MyProfile" on:click={setpage_trackerProfile}>PROFILE</a>
             {#if page_tracker == "MyProfile"}
               <div class="underline"></div>
             {/if}
           </li>
-          <li class="nav-item" class:active={$page.path === '/MyAccount'}>
+          <li class="nav-item p-3" class:active={$page.path === '/MyAccount'}>
             <a sveltekit:prefetch class="nav-link" id="accountlink" href="/MyAccount" on:click={setpage_trackerAccount}>ACCOUNT</a>
             {#if page_tracker == "Account"}
               <div class="underline"></div>
