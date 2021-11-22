@@ -8,11 +8,11 @@
 <script>
 	import Cardback from '../Cardback.svelte';
 	import Card from '../Card.svelte';
-	import Packs from '../Packs.svelte';
+	import Packs from './Packs.svelte';
 	import Nav from '../Nav.svelte';
 	import Home from './Home.svelte';
 	import MyProfile from './MyProfile.svelte'
-	import OpennedPackpage_tracker from '../OpennedPackPage.svelte';
+	import OppenedPack from './OpennedPack.svelte';
   
 	let rand = -1;
 	let list;
@@ -42,7 +42,7 @@
 </section>
 {:else if page_tracker=="OpenPacks"}
 <section>
-	<OpennedPackpage_tracker/>
+	<OpennedPack/>
 </section>
 {:else}
 <section>

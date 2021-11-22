@@ -12,7 +12,7 @@
 	import Nav from '../Nav.svelte';
 	import Home from './Home.svelte';
 	import MyProfile from './MyProfile.svelte'
-	import OpennedPackpage_tracker from './OpennedPack.svelte';
+	import OpennedPack from './OpennedPack.svelte';
   
 	let rand = -1;
 	let list;
@@ -42,7 +42,7 @@
 </section>
 {:else if page_tracker=="OpenPacks"}
 <section>
-	<OpennedPackpage_tracker/>
+	<OpennedPack/>
 </section>
 {:else}
 <section>
