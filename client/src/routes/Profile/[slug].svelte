@@ -9,6 +9,8 @@
     export let dob = "04/06/78"
     export let profileDescription = "This is my cute profile description.";
     export let gender = "Male";
+    let phoneNumber = '';
+    let email = ''
     let src = {};
 
     function getInfoAndPic(uid) {
@@ -22,6 +24,10 @@
         starSign = list.astro;
         dob = list.dob;
         MBTI = list.mbti;
+        profileDescription = list.bio;
+        email = list.email;
+        phoneNumber = list.phoneNum;
+        age = list.age;
 
         return list;
     })
@@ -34,18 +40,15 @@
         src = d;
         return src;
     })
-
-
     }
 
 
 </script>
 
-
 <svelte:window on:load={getInfoAndPic(id)}/>
 
-
 <!--- 
+    {JSON.stringify(list)}
     015a2ec5-47b6-4921-bed1-2520e16ad75b
   --->
 
@@ -66,7 +69,11 @@
                     <p> Name: {name} </p>
                     <p> MBTI: {MBTI} </p>
                     <p> Star Sign: {starSign} </p>
+                    <p> Age: {age} </p>
                     <p> Date of birth: {dob} </p>
+                    <p> Phone Number: {phoneNumber} </p>
+                    <p> Email: {email} </p>
+                    <br>
                     <p> {profileDescription}
                     </p>
                     
