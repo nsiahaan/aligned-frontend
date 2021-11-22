@@ -4,6 +4,7 @@
 <script>
     import Card from './Card.svelte';
     import Cardback from './Cardback.svelte';
+import App from './routes/App.svelte';
 
     let aquariusLink = 'images/signs/aquarius.png';
     let ariesLink = 'images/signs/aries.png';
@@ -23,7 +24,9 @@
     let dictpics = {};
     let pics =[];
 
-    const People = [
+   
+    
+    $: People = [
         {
           picture: 'images/default_profile_pics/kanye-west.png',
           astropic: 'images/signs/gemini.png',
@@ -163,6 +166,7 @@
                     </div>
                 <!--<footer on:click={toggleBackFront} data-card-id={i}>Hi</footer>-->
                 <div>
+
                     <a class="btn btn-outline-dark" href="/MyProfile"> View Profile </a> 
                 </div>
                 <!--</div>-->

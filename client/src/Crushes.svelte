@@ -21,7 +21,14 @@
     let dictpics = {};
     let pics =[];
 
-    const People = [
+    function removePerson() {
+        People.pop();
+        console.log("Remove");
+        console.log(People);
+        $: People = People;
+    }
+
+    $: People = [
         {
           picture: 'images/default_profile_pics/kanye-west.png',
           astropic: 'images/signs/gemini.png',
@@ -160,7 +167,9 @@
                         <!--<Cardback/> -->
                     </div>
                 <!--<footer on:click={toggleBackFront} data-card-id={i}>Hi</footer>-->
-                <div><button type="button" class="btn btn-outline-dark">Match!</button></div>
+                <div>
+                    <button class="btn btn-outline-dark" on:click={removePerson}> Match! </button>
+                </div>
                 <!--</div>-->
             </div>
             {/each}
