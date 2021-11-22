@@ -17,7 +17,7 @@
 	let rand = -1;
 	let list;
 
-	export let page_tracker = "Home";
+	export let page_tracker = window.location.pathname.replace(/[^\w\s]/gi, '');
 
   function getList() {
 		fetch("http://127.0.0.1:5005/list")
@@ -40,7 +40,7 @@
 <section>
 	<MyProfile/>
 </section>
-{:else if page_tracker=="OpenPacks"}
+{:else if page_tracker=="OpennedPack"}
 <section>
 	<OpennedPack/>
 </section>

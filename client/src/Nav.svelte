@@ -6,7 +6,7 @@
 </head>
 
 <script>
-  export let page_tracker = "Home";
+  export let page_tracker = window.location.pathname.replace(/[^\w\s]/gi, '');
   function setpage_trackerHome(){
     page_tracker = "Home";
   }

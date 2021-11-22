@@ -8,18 +8,12 @@
 	//		console.log(`./${name}.svelte`);
     //    return await import(`./${name}.svelte`);
     //}
-    let aquariusLink = 'images/signs/aquarius.png';
-    let ariesLink = 'images/signs/aries.png';
-    let cancerLink = 'images/signs/cancer.png';
-    let capricornLink = 'images/signs/capricorn.png';
-    let geminiLink = 'images/signs/gemini.png';
-    let leoLink = 'images/signs/leo.png';
-    let libraLink = 'images/signs/libra.png';
-    let piscesLink = 'images/signs/pisces.png';
-    let sagittariusLink = 'images/signs/sagittarius.png';
-    let scorpioLink = 'images/signs/scorpio.png';
-    let taurusLink = 'images/signs/taurus.png';
-    let virgoLink = 'images/signs/virgo.png';
+
+    let astroPicPath = 'images/signs/';
+    let mbtiPicPath = 'images/mbti_pics/';
+
+
+
     let cardBackShowing = false;
     let selected;
     let list =[];
@@ -133,7 +127,7 @@
     setInterval(()=> {
         $timer++;
     }, 1000);
-    let src = "images/astro-card.webp";
+    let src = "../images/astro-card.webp";
     
 
     //module.exports = getList;
@@ -156,19 +150,19 @@
         >Reveal Cards!</button>
     {/if}
 
-    {#if $timer > 5/7 && $timer < 35/7}
+    {#if $timer > 5.0/7 && $timer < 35/7}
     <img {src} alt="Open a pack here!"/>
     {/if}
-    {#if $timer > 10/7 && $timer < 35/7}
+    {#if $timer > 10.0/7 && $timer < 35/7}
     <img {src} alt="Open a pack here!"/>
     {/if}
-    {#if $timer > 15/7 && $timer < 35/7}
+    {#if $timer > 15.0/7 && $timer < 35/7}
     <img {src} alt="Open a pack here!"/>
     {/if}
-    {#if $timer > 20/7 && $timer < 35/7}
+    {#if $timer > 20.0/7 && $timer < 35/7}
     <img {src} alt="Open a pack here!"/>
     {/if}
-    {#if $timer > 25/7 && $timer < 35/7}
+    <!-- {#if $timer > 25/7 && $timer < 35/7}
     <img {src} alt="Open a pack here!"/>
     {/if}
     {#if $timer > 30/7 && $timer < 35/7}
@@ -176,20 +170,20 @@
     {/if}
     {#if $timer > 35/7 && $timer < 35/7}
     <img {src} alt="Open a pack here!"/>
-    {/if}
+    {/if} -->
 
 
     <center>
         <div class="container-fluid">
             <div class="cards-scroll">
-                {#each People as person, i}
+                {#each list as person, i}
                 <div class="card-butt">
                     <!--<div class="flip-box">-->
                         <div class="card"> <!--class:show-back={selected===i} data-card-id={i}>-->
                             <Card 
-                                AstroPic={person.astropic}
-                                Picture={person.picture}
-                                PersonalityPic = {person.personalitypic}
+                                AstroPic={astroPicPath + person.astro + '.png'}
+                                Picture={dictpics[person.uid]}
+                                PersonalityPic = {mbtiPicPath + person.mbti + '.png'}
                                 Name = {person.name}
                                 Astro = {person.astro}
                                 Personality = {person.mbti}

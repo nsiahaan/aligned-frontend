@@ -1,6 +1,8 @@
 <script>
     import Nav from '$lib/header/Nav.svelte'
-    export let page_tracker = "Home";
+    import {page} from '$app/stores';
+    export let page_tracker = $page.path.replace(/[^\w\s]/gi, '');
+    
 </script>
 
 <Nav bind:page_tracker={page_tracker} />

@@ -9,7 +9,7 @@
 
   import {page} from '$app/stores';
 
-  export let page_tracker = "Home";
+  export let page_tracker = window.location.pathname.replace(/[^\w\s]/gi, '');
   function setpage_trackerHome(){
     page_tracker = "Home";
   }
@@ -32,9 +32,9 @@
             <div class="underline"></div>
           {/if}
         </li>
-        <li class="nav-item" class:active={$page.path === '/Packs'}>
+        <li class="nav-item" class:active={$page.path === '/Packs' || $page.path === '/OpennedPack'}>
           <a class="nav-link" id="packslink" href="/Packs" on:click={setpage_trackerPacks}>PACKS</a>
-          {#if page_tracker == "Packs"}
+          {#if page_tracker == "Packs" || page_tracker == "OpennedPack"}
             <div class="underline"></div>
           {/if}
         </li>
@@ -59,6 +59,10 @@
         font-family: Arial, Helvetica, sans-serif;
         font-size: 30px;
         text-align: center;
+    }
+    .nav-link:hover{
+      color:#ffc2f8;
+      text-decoration: none;
     }
     .nav{
         margin: auto;
