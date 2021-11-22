@@ -4,6 +4,7 @@ This module contains the User class, which represents a user of Aligned.
 
 import pyaztro
 from aligned import userDB
+import random
 
 # constants to be used in User.compatibilityScore()
 MBTI_WEIGHT = 0.4
@@ -11,7 +12,10 @@ STATIC_ASTRO_WEIGHT = 0.3
 DAILY_ASTRO_WEIGHT = 0.3
 
 # constant to be used in User.generatePack()
-COMPATIBILITY_THRESHOLD = 0.8
+COMPATIBILITY_THRESHOLD = 0.4
+
+# number of credits needed to buy a pack
+PRICE_PER_PACK = 50
 
 # assign each personality type an index number, which is used in mbtiCompatibilityChart
 mbtiIndex = \
@@ -38,7 +42,6 @@ mbtiCompatibilityChart = \
     ,[0,0,0,0,1,4,1,1,4,16,4,16,9,9,9,9] \
     ,[0,0,0,0,1,4,16,1,16,4,16,4,9,9,9,9]]
 
-
 # assign each astrological sign an index number, which is used in astroCompatibilityChart
 astroIndex = \
     {'aries':0, 'leo':1, 'sagittarius':2, 'taurus':3 \
@@ -59,13 +62,13 @@ astroCompatibilityChart = \
     ,[1,1,0,2,2,2,0,0,0,2,2,2] \
     ,[1,1,1,2,1,2,0,0,0,2,2,2]]
 
-
 class User:
     
     def __init__(self, uid):
         """
         Constructs a user given the user's uid in the user database.
         The user must already exist in the user database.
+        Only the user's public information is contained in the User object.
 
         Input: uid: string
         Output: User
@@ -73,21 +76,21 @@ class User:
         self.uid = uid
         js = userDB.getUser(uid)
         self.name = js["name"]
-        self.age = js["age"]
-        self.gender = js["gender"]
-        self.dob = js["dob"]
+        #self.age = js["age"]
+        #self.dob = js["dob"]
         self.astro = js["astro"]
         self.mbti = js["mbti"]
+        self.gender = js["gender"]
         self.sPref = js["sPref"]
-        self.phoneNum = js["phoneNum"]
-        self.email = js["email"]
-        self.credits = js["credits"]
-        self.numViews = js["numViews"]
-        self.numLikes = js["numLikes"]
-        self.secretCrush = js["secretCrush"]
-        self.numPacks = js["numPacks"]
-        self.likes = js["myLikes"]
-        self.matchList = js["matchList"]
+        #self.phoneNum = js["phoneNum"]
+        #self.email = js["email"]
+        #self.credits = js["credits"]
+        #self.numViews = js["numViews"]
+        #self.numLikes = js["numLikes"]
+        #self.numPacks = js["numPacks"]
+        #self.likes = js["likes"]
+        #self.matches = js["matches"]
+        #self.crushes = js["crushes"]
     
     def getJSON(self):
         """
@@ -153,60 +156,141 @@ class User:
 
     def generatePack(self):
         """
-        UNFINISHED - change database sPref to list and add shuffling 
         Generate the pack of 7 profiles for the user.
+        The pack should contain 3 users with any compatibility and 4 with high compatibility.
         (If there are not enough users in the database it may be less than 7.)
         
         Input: none
-        Output: set
+        Output: list of UIDs
         """
 
-        pack = set()
+        pack = []
 
         docs = userDB.users_ref\
             .where('gender', 'in', self.sPref)\
             .where('sPref', 'array_contains', self.gender)\
-            .stream() #.get()?
+            .get()
 
-        ### shuffle docs
+        usedIndices = set()
+        highestIndex = len(docs)-1
 
-        for doc in docs:
-            user2uid = doc.to_dict()["uid"]
-
-            # The user should not be in their own pack
-            if (self.uid == user2uid):
+        # add 3 users with any compatibility
+        while (len(pack) < 3) and (len(usedIndices) < len(docs)):
+            randomIndex = random.randint(0,highestIndex)
+            if randomIndex in usedIndices:
                 continue
+            usedIndices.add(randomIndex)
+            user2uid = docs[randomIndex].to_dict()["uid"]
+            if (self.uid == user2uid):
+                # the user should not be in their own pack
+                continue
+            pack.append(user2uid)
 
+        # add 4 users with high compatibility
+        while (len(pack) < 7) and (len(usedIndices) < len(docs)):
+            randomIndex = random.randint(0,highestIndex)
+            if randomIndex in usedIndices:
+                continue
+            usedIndices.add(randomIndex)
+            user2uid = docs[randomIndex].to_dict()["uid"]
+            if (self.uid == user2uid):
+                # the user should not be in their own pack
+                continue
             user2 = User(user2uid)
-            
-            # The pack should contain 3 users with any compatibility
-            # and 4 with high compatibility
-            if (len(pack) < 3):
-                pack.add(user2)
-            elif (self.compatibilityScore(user2) > COMPATIBILITY_THRESHOLD):
-                pack.add(user2)
-                if (len(pack) >= 7):
-                    break
+            if (self.compatibilityScore(user2) > COMPATIBILITY_THRESHOLD):
+                pack.append(user2uid)
 
+        random.shuffle(pack)
         return pack
+
+    def openPack(self):
+        """
+        Update the user's number of packs in the database to reflect opening (using) a pack,
+        and return the set of 7 Users in the pack.
+
+        Input: none
+        Output: list of UIDs
+        """
+
+        currentNumPacks = int(userDB.getUser(self.uid, parameter='numPacks'))
+        currentNumPacks -= 1
+        openPack = {
+            'numPacks': currentNumPacks
+        }
+        userDB.updateUser(self.uid, openPack)
+
+        return self.generatePack()
 
     def buyPack(self):
         """
-        UNFINISHED - need to also update class attributes, not just the database
-        Update the user's number of packs and number of credits to reflect purchasing a pack.
+        Update the user's number of packs and number of credits in the database to reflect purchasing a pack.
 
         Input: none
         Output: none
         """
 
-        currentPack = int(userDB.getUser(self.uid, parameter='numPacks'))
-        currentPack += 1
-        credits = int(userDB.getUser(self.uid, parameter='credits'))
-        credits -= 50
-        buyPack= {
-            'numPacks':currentPack,
-            'credits':credits,
+        currentNumPacks = int(userDB.getUser(self.uid, parameter='numPacks'))
+        currentNumPacks += 1
+        currentCredits = int(userDB.getUser(self.uid, parameter='credits'))
+        currentCredits -= PRICE_PER_PACK
+        buyPack = {
+            'numPacks': currentNumPacks,
+            'credits': currentCredits,
         }
         userDB.updateUser(self.uid, buyPack)
+
+    def sendLike(self,user2):
+        """
+        Send a like to user2 and check for a match.
+        Sending a like means adding my UID to user2's crushes array in the database and
+        adding user2's UID to my likes array in the database.
+        Return True if this like resulted in a match and False if not. 
+
+        Input: user2: User
+        Output: boolean
+        """
+
+        # add user2 to my likes
+        currentLikes = userDB.getUser(self.uid, parameter='likes')
+        currentLikes.append(user2.uid)
+        addLike = {
+            'likes': currentLikes
+        }
+        userDB.updateUser(self.uid, addLike)
+
+        # add me to user2's crushes
+        currentCrushes = userDB.getUser(user2.uid, parameter='crushes')
+        currentCrushes.append(self.uid)
+        addCrush = {
+            'crushes': currentCrushes
+        }
+        userDB.updateUser(user2.uid, addCrush)
+
+        # check for match
+        theirLikes = userDB.getUser(user2.uid, parameter='likes')
+        if (self.uid in theirLikes):
+            # it's a match!
+
+            # add user2 to my matches
+            currentMatches = userDB.getUser(self.uid, parameter='matches')
+            currentMatches.append(user2.uid)
+            addMatch = {
+                'matches': currentMatches
+            }
+            userDB.updateUser(self.uid, addMatch)
+
+            # add me to user2's matches
+            currentMatches = userDB.getUser(user2.uid, parameter='matches')
+            currentMatches.append(self.uid)
+            addMatch = {
+                'matches': currentMatches
+            }
+            userDB.updateUser(user2.uid, addMatch)
+
+            return True
+        else:
+            return False
+
+
 
       
