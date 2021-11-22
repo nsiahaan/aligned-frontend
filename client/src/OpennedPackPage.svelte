@@ -26,7 +26,7 @@
     let dictpics = {};
     let pics =[];
 
-    let defaultTestUIDs = ['d5f36d98-84df-4b12-b739-075b4c1aad0b', 'd340a698-2e8a-4649-96ee-e3bf359e8ff4', 'e45ffc64-1b95-4784-a610-742a017a7138', 'b052485c-7f4a-49b4-8a63-98bdcc0d6cb5', 'a826ce6c-f443-43fe-a0b1-c90aff03468e', 'f94b9c5d-9ceb-462c-a015-acbb15281cd1', '4286ee06-9a54-474c-bd07-d1cd9f6f64ee']
+    let defaultTestUIDs = ['217e2e1b-e242-4081-8678-44277014f940', '25108608-f3be-4813-a9f8-6ff85ef9720a', '271e0366-621f-4709-b80d-ebfbb0f6a51d', '277dc304-7cea-41bb-a5e1-9bc6d69827bd', '2e30119b-fe18-4ad2-a91d-a7aa88b8a3e8', '2eb789f3-5b3e-4a28-b4f7-748ae2f30422', '33a500de-5e97-4f11-89b1-8cf72cc00a99']
 
     const toggleBackFront = (e) => {
 		// if same card clicked twice to toggle front and back
