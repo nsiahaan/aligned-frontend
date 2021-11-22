@@ -12,13 +12,13 @@ import requests
 import time
 
 
-cred = credentials.Certificate("key.json")
+cred = credentials.Certificate("/Users/nkumar/CSCode/aligned/key.json")
 default_app = firebase_admin.initialize_app(cred)
 db = firestore.client()
 users_ref = db.collection('users')
-astroList = ['aries', 'leo', 'sagittrius', 'taurus', 'virgo', 'capricorn', 'gemini', 'libra', 'aquarius', 'cancer', 'scorpio', 'pisces']
+astroList = ['aries', 'leo', 'sagittarius', 'taurus', 'virgo', 'capricorn', 'gemini', 'libra', 'aquarius', 'cancer', 'scorpio', 'pisces']
 mbtiList = ['INFP', 'ENFP', 'INFJ', 'ENFJ', 'INTJ', "ENTJ", "INTP", "ENTP", "ISFP", "ESFP", "ISTP", "ESTP", "ISFJ", "ESFJ", "ISTJ", "ESTJ"]
-sPrefList = ['male', 'female', 'both']
+sPrefList = [['male'],['female'],['non-binary'], ['male', 'female'], ["male", 'non-binary'], ['female', 'non-binary'], ['male', 'female', 'non-binary']]
 genderList = ['male', 'female', 'non-binary']
 
 def addUser(json):
@@ -39,12 +39,11 @@ def addUser(json):
         "phoneNum":json['phoneNum'],
         "email":json['email'],
         "credits":json['credits'],
-        "numViews":json['numViews'],
-        "numLikes":json['numLikes'],
-        "secretCrush":json['secretCrush'],
+        "crushes":json['crushes'],
         "numPacks":json['numPacks'],
-        "myLikes":json['myLikes'],
-        "matchList":json['matchList'],
+        "likes":json['likes'],
+        "matches":json['matches'],
+        "bio":json["bio"]
     }
     users_ref.document(id).set(data, merge=True )
 
@@ -71,10 +70,10 @@ def addProfilePic(gender, email):
     r = requests.get('https://randomuser.me/api/?gender='+gender)
     pic = r.json()['results'][0]['picture']['medium']
     response = requests.get(pic)
-    requests.post(url="http://localhost:5005/addPic", data={'uid':uid}, files={'file': response.content})
+    requests.post(url="http://localhost:5006/addPic", data={'uid':uid}, files={'file': response.content})
 
 def addProfilePics():
-    r = requests.get('http://localhost:5005/list') #get all users
+    r = requests.get('http://localhost:5006/list') #get all users
     users = r.json()
     for user in users:
         gender = user['gender']
@@ -89,7 +88,7 @@ def addProfilePics():
         response = requests.get(pic)
 
         # call addPic API to add picture to firebase
-        requests.post(url="http://localhost:5005/addPic", data={'uid':uid}, files={'file': response.content})
+        requests.post(url="http://localhost:5006/addPic", data={'uid':uid}, files={'file': response.content})
 
 def generateBio():
     whoIAm = [
@@ -120,7 +119,7 @@ def generateBio():
         my_reallyCoolThing.capitalize(), my_secondaryDescriptor])
 
 def generateBios4All():
-    r = requests.get('http://localhost:5005/list') #get all users
+    r = requests.get('http://localhost:5006/list') #get all users
     users = r.json()
     for user in users:
         uid = user['uid']
@@ -128,29 +127,28 @@ def generateBios4All():
 
 def createNUsers(n):
     for i in range(n):
-        name = (names.get_full_name())
         age = random.randint(1, 100)
         randomdate = randomDate()
         astro = random.choice(astroList)
         mbti = random.choice(mbtiList)
         sPref = random.choice(sPrefList)
         gender = random.choice(genderList)
+        if gender == "non-binary":
+            name = names.get_full_name()
+        else:
+            name = (names.get_full_name( gender=gender ))
         phoneNum = randomNumber()
         email = randomChar(7)+"@gmail.com"
         credits = random.randint(500, 25000)
-        numViews = random.randint(1, 100)
-        numLikes = random.randint(1, 50)
-        myLikes = []
-        matchList = []
-        secretCrush = []
+        likes = []
+        matches = []
+        crushes = []
         numPacks = random.randint(0, 10)
 
         data = {
             "name":name,
             "age":age,
-
             "bio":generateBio(),
-
             "dob":randomdate,
             "astro":astro,
             "gender":gender,
@@ -159,20 +157,18 @@ def createNUsers(n):
             "phoneNum":phoneNum,
             "email":email,
             "credits":credits,
-            "numViews":numViews,
-            "numLikes":numLikes,
-            "secretCrush":secretCrush,
+            "crushes":crushes,
             "numPacks":numPacks,
-            "myLikes":myLikes,
-            "matchList":matchList,
+            "likes":likes,
+            "matches":matches,
         }
         addUser(data)
         ###
-        time.sleep(.3)
-        addProfilePic(gender, email)
+        # time.sleep(.3)
+        # addProfilePic(gender, email)
 
 if __name__=="__main__":
-    createNUsers(50)
+    #createNUsers(50)
     ##### ONLY UNCOMMENT THIS IF THERE ARE MORE USERS THAN PICS/BIOS #####
-    # addProfilePics()
-    # generateBios4All()
+    addProfilePics()
+    generateBios4All()
