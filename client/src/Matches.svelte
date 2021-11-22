@@ -4,7 +4,7 @@
 <script>
     import Card from './Card.svelte';
     import Cardback from './Cardback.svelte';
-import App from './routes/App.svelte';
+    import App from './routes/App.svelte';
 
     let aquariusLink = 'images/signs/aquarius.png';
     let ariesLink = 'images/signs/aries.png';
