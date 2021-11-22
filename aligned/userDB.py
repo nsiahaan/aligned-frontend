@@ -47,6 +47,12 @@ def addUser(json):
     }
     users_ref.document(id).set(data, merge=True )
 
+def getUsers(uids=[]):
+    docs = [users_ref.document(uid) for uid in uids]
+    # print(docs)
+    foos = db.get_all(docs)
+    # [print(foo.to_dict()) for foo in foos]
+    return [foo.to_dict() for foo in foos]
 
 def getUser(uid=None, parameter=None):
     """

@@ -58,13 +58,18 @@ def read():
     """
     try:
         # Check if ID was passed to URL query
-        todo_id = request.args.get('uid') 
+        todo_id = request.args.getlist('uid') 
         parameter = request.args.get('param') 
-        if todo_id:
-            user = userDB.getUser(todo_id, parameter)
+        if todo_id and len(todo_id) == 1:
+            user = userDB.getUser(todo_id[0], parameter)
             if parameter:
                 return jsonify(user), 200
-            return jsonify(user.to_dict()), 200
+            return jsonify(user), 200
+        
+        elif todo_id:
+            users = userDB.getUsers(todo_id)
+            print(users[0])
+            return {user['uid']: user for user in users}
         else:
             user = userDB.getUser()
             return jsonify(user), 200
@@ -141,11 +146,9 @@ def getPic():
     Route must take input 'uid' query parameter
     Returns URL ref of the user's profile pic
     """
-    print("hello")
     try:
-        uid = request.args.get('uid')
-        print(uid)
-        return storage.child(uid).get_url()
+        uids = request.args.getlist('uid')
+        return {uid: storage.child(uid).get_url() for uid in uids}
     except Exception as e:
         return f"An Error Occured: {e}"
 
