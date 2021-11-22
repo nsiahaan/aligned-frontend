@@ -20,7 +20,8 @@ let bio = "I like food, dogs, and naps! More words go here.. and here.. words, w
 
 <div class="container">
     <div class="card-holder">
-        <h3 class = "option">MATCHES</h3>
+        <h3 class = "option">
+            <a class="btn btn-outline-dark" href="/Matches"> MATCHES </a></h3>
         <div class = card style = "width: 20rem;">
             <!-- svelte-ignore a11y-missing-attribute -->
             <img class="profile-picture" {src}>
@@ -33,7 +34,7 @@ let bio = "I like food, dogs, and naps! More words go here.. and here.. words, w
     </div>
 
     <div class="card-holder">
-        <h3 class = "option">CRUSHES</h3>
+        <h3 class = "option"> <a class="btn btn-outline-dark" href="/Crushes"> CRUSHES </a> </h3>
         <div class = "card" style = "width: 20rem;">
             <!-- svelte-ignore a11y-missing-attribute -->
             <img class="profile-picture" {src}>
@@ -46,7 +47,7 @@ let bio = "I like food, dogs, and naps! More words go here.. and here.. words, w
     </div>
 
     <div class="card-holder">
-        <h3 class = "option">OPEN PACKS</h3>
+        <h3 class = "option"> <a class="btn btn-outline-dark" href="/Packs">OPEN PACKS</a></h3>
         <div class = "card" style = "width: 20rem;">
             <!-- svelte-ignore a11y-missing-attribute -->
             <img class="profile-picture" {src}>
