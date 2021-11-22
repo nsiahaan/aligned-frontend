@@ -117,6 +117,7 @@ def deleteUser(uid):
     """
     users_ref.document(uid).delete()
 
+
 def loginUser(email, password):
     auth = fb.auth()
     try:

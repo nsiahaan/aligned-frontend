@@ -26,7 +26,7 @@
     let dictpics = {};
     let pics =[];
 
-    let defaultTestUIDs = ['d5f36d98-84df-4b12-b739-075b4c1aad0b', 'd340a698-2e8a-4649-96ee-e3bf359e8ff4', 'e45ffc64-1b95-4784-a610-742a017a7138', 'b052485c-7f4a-49b4-8a63-98bdcc0d6cb5', 'a826ce6c-f443-43fe-a0b1-c90aff03468e', 'f94b9c5d-9ceb-462c-a015-acbb15281cd1', '4286ee06-9a54-474c-bd07-d1cd9f6f64ee']
+    let defaultTestUIDs = ['17465e7f-35d0-4a4f-931a-b4185e507b04', '217e2e1b-e242-4081-8678-44277014f940', '5cd73c82-94ac-4163-95b1-1ae5be851ea9', '39018b26-8c19-4279-ba0a-271f10a7b8df', '2e30119b-fe18-4ad2-a91d-a7aa88b8a3e8', '3acbc757-6d94-44ec-aee5-d7f0278e992b', '3b5a34c7-d906-477d-b66c-88100495f43f']
 
     const toggleBackFront = (e) => {
 		// if same card clicked twice to toggle front and back
@@ -121,114 +121,21 @@
         .then(d=>console.log(d))
     }
 
-    const People = [
-        {
-          picture: 'images/default_profile_pics/kanye-west.png',
-          astropic: 'images/signs/gemini.png',
-          personalitypic: 'images/mbti_pics/isfp.png',
-          name: 'Kanye West',
-          astro: 'Gemini',
-          mbti: 'ISFP',
-          age: 30,
-          gender: 'Male',
-          bio: 'Best there ever was. I made Taylor famous. \n Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
-            'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure' +
-            'dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non' +
-            'proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit,' +
-            ' sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' 
-        },
-        {
-          picture: 'images/default_profile_pics/kim-kardashian.png',
-          astropic: 'images/signs/pisces.png',
-          personalitypic: 'images/mbti_pics/intj.png',
-          name: 'Kim Kardashian',
-          astro: 'Pisces',
-          mbti: 'INTJ',
-          age: 32,
-          gender: "Female",
-          bio: 'I love my children, especially Chicago. \n Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
-            'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure' +
-            'dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non' +
-            'proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit,' +
-            ' sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-        },
-        {
-          picture: 'images/default_profile_pics/doja-cat.png',
-          astropic: 'images/signs/leo.png',
-          personalitypic: 'images/mbti_pics/enfj.png',
-          name: 'Doja Cat',
-          astro: 'Leo',
-          mbti: 'ENFP',
-          age: 24,
-          gender: 'Female',
-          bio: 'Catch all my popular music on Tiktok. \n Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
-            'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure' +
-            'dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non' +
-            'proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit,' +
-            ' sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' 
-        },
-        {
-          picture: 'images/default_profile_pics/awkwafina.png',
-          astropic: 'images/signs/cancer.png',
-          personalitypic: 'images/mbti_pics/esfp.png',
-          name: 'Awkwafina',
-          astro: 'Cancer',
-          mbti: 'ESFP',
-          age: 27,
-          gender: 'Female',
-          bio: 'Did you know that Awkwafina isn\'t my real name? \n Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
-            'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure' +
-            'dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non' +
-            'proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit,' +
-            ' sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-        },
-        {
-          picture: 'images/default_profile_pics/chris-pine.png',
-          astropic: 'images/signs/aries.png',
-          personalitypic: 'images/mbti_pics/estp.png',
-          name: 'Chris Pine',
-          astro: 'Aries',
-          mbti: 'ESTP',
-          age: 36,
-          gender: 'Male',
-          bio: 'I\'m the hottest Chris. \n Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
-            'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure' +
-            'dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non' +
-            'proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit,' +
-            ' sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-        },
-        {
-          picture: 'images/default_profile_pics/danny-devito.png',
-          astropic: 'images/signs/sagittarius.png',
-          personalitypic: 'images/mbti_pics/esfj.png',
-          name: 'Danny Devito',
-          astro: 'Sagittarius',
-          mbti: 'ESFJ',
-          age: '88',
-          gender: 'Male',
-          bio: 'Can I offer you an egg in this trying time?, \n Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
-            'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure' +
-            'dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non' +
-            'proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit,' +
-            ' sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-        },
-        {
-          picture: 'images/default_profile_pics/margot-robbie.png',
-          astropic: 'images/signs/libra.png',
-          personalitypic: 'images/mbti_pics/entp.png',
-          name: 'Margot Robie',
-          astro: 'Libra',
-          mbti: 'ENTP',
-          age: 33,
-          gender: 'Female',
-          bio: 'You probably know me Suicide Squad, \n Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
-            'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure' +
-            'dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non' +
-            'proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit,' +
-            ' sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-        }
-    ];
+
+    let showme = true;
+    function dontShowMe() {
+        showme = false;
+    }
+
+    import { tweened } from 'svelte/motion';
+    let original = 0; // TYPE NUMBER OF SECONDS HERE
+    let timer = tweened(original)
+    setInterval(()=> {
+        $timer++;
+    }, 1000);
+    let src = "images/astro-card.webp";
     
+
     //module.exports = getList;
 </script>
 
@@ -238,9 +145,40 @@
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
     crossorigin="anonymous">
 </head>
-    <button on:click={() => getList(defaultTestUIDs)} 
+<body>
+    {#if $timer >= 5 && showme}
+    <button 
+            on:click={() => getList(defaultTestUIDs)} 
             on:click={() => getPics(defaultTestUIDs)}
-        class="btn btn-outline-dark">Open New Pack</button>
+            on:click={dontShowMe}
+        class="btn btn-outline-dark"
+        id="openPackButton" 
+        >Reveal Cards!</button>
+    {/if}
+
+    {#if $timer > 5/7 && $timer < 35/7}
+    <img {src} alt="Open a pack here!"/>
+    {/if}
+    {#if $timer > 10/7 && $timer < 35/7}
+    <img {src} alt="Open a pack here!"/>
+    {/if}
+    {#if $timer > 15/7 && $timer < 35/7}
+    <img {src} alt="Open a pack here!"/>
+    {/if}
+    {#if $timer > 20/7 && $timer < 35/7}
+    <img {src} alt="Open a pack here!"/>
+    {/if}
+    {#if $timer > 25/7 && $timer < 35/7}
+    <img {src} alt="Open a pack here!"/>
+    {/if}
+    {#if $timer > 30/7 && $timer < 35/7}
+    <img {src} alt="Open a pack here!"/>
+    {/if}
+    {#if $timer > 35/7 && $timer < 35/7}
+    <img {src} alt="Open a pack here!"/>
+    {/if}
+
+
     <center>
         <div class="container-fluid">
             <div class="cards-scroll">
@@ -270,6 +208,7 @@
             </div>    
         </div>  
     </center>
+</body>
 <style>
 
 .flip-box{

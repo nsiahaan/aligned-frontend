@@ -30,8 +30,9 @@
           {/if}
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="packslink" on:click={setpage_trackerPacks}>PACKS</a>
-          {#if page_tracker == "Packs"}
+
+          <a class="nav-link" id="packslink" href="/#/packs" on:click={setPagePacks}>PACKS</a>
+          {#if page == "Packs" || page == "OpenPacks"}
             <div class="underline"></div>
           {/if}
         </li>
