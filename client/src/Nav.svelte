@@ -6,7 +6,7 @@
 </head>
 
 <script>
-  export let page_tracker = "Home";
+  export let page_tracker = "Home"; 
   function setpage_trackerHome(){
     page_tracker = "Home";
   }

@@ -6,6 +6,7 @@
 </head>
 
 <script>
+	import Landing from './Landing.svelte';
 	import Cardback from '../Cardback.svelte';
 	import Card from '../Card.svelte';
 	import Packs from './Packs.svelte';
@@ -17,7 +18,7 @@
 	let rand = -1;
 	let list;
 
-	export let page_tracker = "Home";
+	export let page_tracker = "Home"; 
 
   function getList() {
 		fetch("http://127.0.0.1:5005/list")
