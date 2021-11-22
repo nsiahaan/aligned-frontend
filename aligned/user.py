@@ -165,6 +165,8 @@ class User:
         """
 
         pack = []
+        myLikes = userDB.getUser(self.uid, parameter='likes')
+        myMatches = userDB.getUser(self.uid, parameter='matches')
 
         docs = userDB.users_ref\
             .where('gender', 'in', self.sPref)\
@@ -184,6 +186,9 @@ class User:
             if (self.uid == user2uid):
                 # the user should not be in their own pack
                 continue
+            if (user2uid in myLikes) or (user2uid in myMatches):
+                # the user should not be shown people they've already liked or matched with
+                continue
             pack.append(user2uid)
 
         # add 4 users with high compatibility
@@ -195,6 +200,9 @@ class User:
             user2uid = docs[randomIndex].to_dict()["uid"]
             if (self.uid == user2uid):
                 # the user should not be in their own pack
+                continue
+            if (user2uid in myLikes) or (user2uid in myMatches):
+                # the user should not be shown people they've already liked or matched with
                 continue
             user2 = User(user2uid)
             if (self.compatibilityScore(user2) > COMPATIBILITY_THRESHOLD):
@@ -250,47 +258,60 @@ class User:
         Output: boolean
         """
 
-        # add user2 to my likes
-        currentLikes = userDB.getUser(self.uid, parameter='likes')
-        currentLikes.append(user2.uid)
-        addLike = {
-            'likes': currentLikes
-        }
-        userDB.updateUser(self.uid, addLike)
-
-        # add me to user2's crushes
-        currentCrushes = userDB.getUser(user2.uid, parameter='crushes')
-        currentCrushes.append(self.uid)
-        addCrush = {
-            'crushes': currentCrushes
-        }
-        userDB.updateUser(user2.uid, addCrush)
-
         # check for match
         theirLikes = userDB.getUser(user2.uid, parameter='likes')
         if (self.uid in theirLikes):
             # it's a match!
 
+            # remove me from their likes
+            theirLikes.remove(self.uid)
+            removeLike = {
+                'likes': theirLikes
+            }
+            userDB.updateUser(user2.uid, removeLike)
+
+            # remove them from my crushes
+            myCrushes = userDB.getUser(self.uid, parameter='crushes')
+            myCrushes.remove(user2.uid)
+            removeCrush = {
+                'crushes' : myCrushes
+            }
+            userDB.updateUser(self.uid, removeCrush)
+
             # add user2 to my matches
-            currentMatches = userDB.getUser(self.uid, parameter='matches')
-            currentMatches.append(user2.uid)
+            myMatches = userDB.getUser(self.uid, parameter='matches')
+            myMatches.append(user2.uid)
             addMatch = {
-                'matches': currentMatches
+                'matches': myMatches
             }
             userDB.updateUser(self.uid, addMatch)
 
             # add me to user2's matches
-            currentMatches = userDB.getUser(user2.uid, parameter='matches')
-            currentMatches.append(self.uid)
+            theirMatches = userDB.getUser(user2.uid, parameter='matches')
+            theirMatches.append(self.uid)
             addMatch = {
-                'matches': currentMatches
+                'matches': theirMatches
             }
             userDB.updateUser(user2.uid, addMatch)
 
             return True
+        
         else:
+
+            # add user2 to my likes
+            myLikes = userDB.getUser(self.uid, parameter='likes')
+            myLikes.append(user2.uid)
+            addLike = {
+                'likes': myLikes
+            }
+            userDB.updateUser(self.uid, addLike)
+
+            # add me to user2's crushes
+            theirCrushes = userDB.getUser(user2.uid, parameter='crushes')
+            theirCrushes.append(self.uid)
+            addCrush = {
+                'crushes': theirCrushes
+            }
+            userDB.updateUser(user2.uid, addCrush)
+
             return False
-
-
-
-      
