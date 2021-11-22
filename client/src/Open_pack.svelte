@@ -12,6 +12,6 @@
 
 <img {src} alt="Open a pack here!"/>
 <br>
-<button on:click={openPackHandler}> <a href = "/OpennedPack">
-    Open Pack!
-</button>
+<br>
+<a href="/OpennedPack" class="btn btn-outline-dark">Open Pack</a>
+

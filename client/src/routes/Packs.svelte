@@ -16,13 +16,18 @@
 </section>
 
 <section>
-    <div class="grid-container">
-        <div class="open-pack">
-            <Open_pack bind:page_tracker={page_tracker}/>
-        </div>
-
-        <div class="buy-pack">
-            <Buy_pack bind:packCount={packCount}/>
+    <div class="container">
+        <div class = "row">
+            <div class = "col">
+                <div class="open-pack">
+                    <Open_pack bind:page_tracker={page_tracker}/>
+                </div>
+            </div>
+            <div class="col">
+                <div class="buy-pack">
+                    <Buy_pack bind:packCount={packCount}/>
+                </div>
+            </div>
         </div>
     </div>
 </section>

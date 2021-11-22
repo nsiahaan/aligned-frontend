@@ -44,8 +44,8 @@
             <div class="underline"></div>
           {/if}
         </li>
-        <li class="nav-item">
-          <a sveltekit:prefetch class="nav-link" id="accountlink" on:click={setpage_trackerAccount}>ACCOUNT</a>
+        <li class="nav-item" class:active={$page.path === '/MyAccount'}>
+          <a sveltekit:prefetch class="nav-link" id="accountlink" href="/MyAccount" on:click={setpage_trackerAccount}>ACCOUNT</a>
           {#if page_tracker == "Account"}
             <div class="underline"></div>
           {/if}

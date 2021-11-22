@@ -9,7 +9,8 @@
 
 <img {src} class="resize" alt="Buy a pack here!"/>
 <br>
-<button class="button" on:click={buyPackHandler}>
+<br>
+<button class="btn btn-outline-dark" on:click={buyPackHandler}>
     Buy Pack!
 </button>
 
