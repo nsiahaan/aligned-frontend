@@ -3,13 +3,10 @@ Aligned
 aligned.routes
 This module implements the routes for Aligned
 """
-from flask import render_template, url_for, redirect, request, jsonify, send_from_directory
+from flask import request, jsonify, send_from_directory
 import random
-from werkzeug.security import generate_password_hash, check_password_hash
 
-from aligned import app, user, userDB
-
-from aligned.signUp import signUp
+from aligned import app, userDB
 
 
 @app.route('/')
@@ -63,7 +60,7 @@ def signup():
                 "bio":json['bio']
             }
             userDB.addUser(data, id)
-        return addedUser
+        return jsonify(addedUser), 200
     except Exception as e:
         print(e)
 
@@ -131,20 +128,10 @@ def delete(request):
         return f"An Error Occured: {e}"
     
 
-
 import pyrebase
-config = {
-    "apiKey":"AIzaSyBtzSPw1owheKdEdo853-3AuyGPLfBxPhM",
-    "authDomain":"aligned-5a855.firebaseapp.com",
-    "databaseURL": "https://users.firebaseio.com",
-    "storageBucket": "aligned-5a855.appspot.com"
-}
-firebase = pyrebase.initialize_app(config)
+
+firebase = pyrebase.initialize_app(userDB.firebaseConfig)
 storage = firebase.storage()
-####### WHEN WE ADD AUTHENTICATION
-# auth = firebase.auth()
-# # user = auth.sign_in_with_email_and_password(email, password)
-# # storage.child(uid).get_url(user['idToken'])
 
 @app.route('/addPic', methods=['POST','PUT'])
 def addPic():

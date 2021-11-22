@@ -26,7 +26,7 @@ firebaseConfig = {
   "storageBucket": "aligned-5a855.appspot.com",
   "messagingSenderId": "1075559714469",
   "appId": "1:1075559714469:web:73e28e807e9b258950c74c",
-  "databaseURL": "https://aligned-5a855-default-rtdb.firebaseio.com",
+  "databaseURL": "https://users.firebaseio.com",
   "measurementId": "G-Y8QS7WXGGD"
 }
 
@@ -114,16 +114,16 @@ def loginUser(email, password):
     try:
         user = auth.sign_in_with_email_and_password(email, password)
         user["status"] = "success"
-        return jsonify(user)
+        return jsonify(user), 200
     except: 
-        return jsonify({"status":"error"})
+        return jsonify({"status":"error"}), 400
     
 def signupUser(email, password):
     auth = fb.auth()
     try:
         user = auth.create_user_with_email_and_password(email, password)
         user["status"] = "success"
-        return jsonify(user)
+        return user
     except: 
-        return jsonify({"status":"error"})
+        return {"status":"error"}
     
