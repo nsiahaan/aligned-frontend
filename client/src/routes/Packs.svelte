@@ -34,13 +34,6 @@
 
 
 <style>
-    .grid-container {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        grid-gap: 20px;
-        justify-items: center;
-        text-align: center;
-    }
     .pack-remains{
         text-align: center;
     }
