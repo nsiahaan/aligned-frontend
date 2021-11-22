@@ -23,7 +23,10 @@
     let cardBackShowing = false;
     let selected;
     let list =[];
+    let dictpics = {};
     let pics =[];
+
+    let defaultTestUIDs = ['d5f36d98-84df-4b12-b739-075b4c1aad0b', 'd340a698-2e8a-4649-96ee-e3bf359e8ff4', 'e45ffc64-1b95-4784-a610-742a017a7138', 'b052485c-7f4a-49b4-8a63-98bdcc0d6cb5', 'a826ce6c-f443-43fe-a0b1-c90aff03468e', 'f94b9c5d-9ceb-462c-a015-acbb15281cd1', '4286ee06-9a54-474c-bd07-d1cd9f6f64ee']
 
     const toggleBackFront = (e) => {
 		// if same card clicked twice to toggle front and back
@@ -36,8 +39,54 @@
 		}
 	}
 
-    function getList() {
-		fetch("http://127.0.0.1:5005/list")
+    function getListUIDs(uids) {
+        let params = "?uid=" + uids.join("&uid=")
+        let url = "http://127.0.0.1:5005/list" + params
+        fetch(url)
+        .then(d => d.json())
+        .then(d => {
+
+            list = Object.values(d);
+            for (let person in list) {
+                if (person['astro'] == 'gemini') {
+                    console.log("HI");
+                    person['astropic'] = geminiLink;
+                }
+                if (person['astro'] == 'virgo') {
+                    person['astropic'] = virgoLink;
+                } 
+            }
+
+            return list;
+        })
+    }
+    function getListUID(uid) {
+        let params = "?uid=" + uid
+        let url = "http://127.0.0.1:5005/list" + params
+        fetch(url)
+        .then(d => d.json())
+        .then(d => {
+            list = [d]; 
+            let person = list[0]
+            if (person['astro'] == 'gemini') {
+                console.log("HI");
+                person['astropic'] = geminiLink;
+            }
+            if (person['astro'] == 'virgo') {
+                person['astropic'] = virgoLink;
+            } 
+            
+            return list;
+        })
+    }
+    function getList(uids) {
+        if (typeof uids == "string" || typeof uids == "number") {
+            return getListUID(uids)
+        } else if (uids.constructor === Array){
+            return getListUIDs(uids)
+        }
+        let url = "http://127.0.0.1:5005/list"
+		fetch(url)
         .then(d => d.json())
 		.then(d => {
             list = d; 
@@ -53,16 +102,21 @@
             }
             return list;
         })
-        .then(d=>console.log(d))
     }
 
-    function getPics() {
-		fetch("http://127.0.0.1:5005/getPic")
+    function getPics(uids=[]) {
+        let params = "?uid="
+        if (typeof uids == "string" || typeof uids == "number") {
+            params += uids
+        } else {
+            params += uids.join("&uid=")
+        }
+        let url = "http://127.0.0.1:5005/getPic" + params
+		fetch(url)
         .then(d => d.json())
-		.then(d => {
-            list = d; 
-            list = list.slice(0, 7);
-            return list;
+        .then(d => {
+            dictpics = d;
+            return dictpics;
         })
         .then(d=>console.log(d))
     }
@@ -184,7 +238,9 @@
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
     crossorigin="anonymous">
 </head>
-    <button on:click={getList} class="btn btn-outline-dark">Open New Pack</button>
+    <button on:click={() => getList(defaultTestUIDs)} 
+            on:click={() => getPics(defaultTestUIDs)}
+        class="btn btn-outline-dark">Open New Pack</button>
     <center>
         <div class="container-fluid">
             <div class="cards-scroll">
@@ -194,7 +250,7 @@
                         <div class="card"> <!--class:show-back={selected===i} data-card-id={i}>-->
                             <Card 
                                 AstroPic={person.astropic}
-                                Picture = {person.picture}
+                                Picture={dictpics[person.uid]}
                                 PersonalityPic = {person.personalitypic}
                                 Name = {person.name}
                                 Astro = {person.astro}
