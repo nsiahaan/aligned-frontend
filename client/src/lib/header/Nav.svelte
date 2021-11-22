@@ -58,11 +58,13 @@
         color:black;
         font-family: Arial, Helvetica, sans-serif;
         font-size: 30px;
+        text-align: center;
     }
     .nav{
         margin: auto;
         width: 50%;
         padding: 10px;
+        text-align: center;
     }
     .underline {
       margin-top: -13px;

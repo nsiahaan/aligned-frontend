@@ -9,7 +9,7 @@
 <script> 
     let src = "images/default_profile_pics/kanye-west.png";
     import Card from '../Card.svelte';
-    export let horoscope = "This is where my horoscope will be. Today, a surprise will befall you. \n Try and accept it, rather than reject.";
+    export let horoscope = "This is where my horoscope will be. Today, a surprise will befall you. \n Try and accept it, rather than reject. This is where my horoscope will be. Today, a surprise will befall you. \n Try and accept it, rather than reject.This is where my horoscope will be. Today, a surprise will befall you. \n Try and accept it, rather than reject.This is where my horoscope will be. Today, a surprise will befall you. \n Try and accept it, rather than reject.This is where my horoscope will be. Today, a surprise will befall you. \n Try and accept it, rather than reject.";
     export let name = "Kanye";
     export let MBTI = "ENTP";
     export let starSign = "Taurus";
@@ -36,15 +36,12 @@
         Gender = {gender}
         Bio = {profileDescription}
     /> 
-</div>
+    </div>
     <div class="big-box">
         <div class="container">           
             <div class="row horoscope-wrapper">
                 <br>
                 <p> Daily Horoscope </p>
-                <div class="container">
-                    
-                </div>
             </div>
             <div class="row horoscope-text horoscope">
                 <p>{horoscope}</p>
@@ -81,13 +78,14 @@
         float: left;
         height: auto;
         display:inline-block;
-        margin-top: 50px;
+        margin-top: 10vh;
         margin-left: 40px;
-        margin-right: 40px;
+        margin-right: 20px;
         margin-bottom: 15px;
     }
     p{
-        font-size:larger;
+        font-size: larger;
+
     }
     .rounded{
         border-radius: 100% !important;
@@ -116,12 +114,15 @@
         margin: auto;
     }
     .big-box{
+        width: 50%;
+        margin-right: 10%;
         background-color: #c1b8ed;
         height: auto;
-        margin-top: 50px;
+        margin-top: 10%;
         margin-bottom: 50px;
         padding-bottom: 3em;
         float: right;
+        outline-style: solid;
     }
 
     .row-box{
