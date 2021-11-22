@@ -23,12 +23,14 @@ import App from './routes/App.svelte';
     let list =[];
     let dictpics = {};
     let pics =[];
+    let link = "/Profile/"
 
    
     
     $: People = [
         {
           picture: 'images/default_profile_pics/kanye-west.png',
+          uid: '0333d185-c173-48f1-915d-34bb470c807f',
           astropic: 'images/signs/gemini.png',
           personalitypic: 'images/mbti_pics/isfp.png',
           name: 'Kanye West',
@@ -44,6 +46,7 @@ import App from './routes/App.svelte';
         },
         {
           picture: 'images/default_profile_pics/kim-kardashian.png',
+          uid: '0333d185-c173-48f1-915d-34bb470c807f',
           astropic: 'images/signs/pisces.png',
           personalitypic: 'images/mbti_pics/intj.png',
           name: 'Kim Kardashian',
@@ -59,6 +62,7 @@ import App from './routes/App.svelte';
         },
         {
           picture: 'images/default_profile_pics/doja-cat.png',
+          uid: '0333d185-c173-48f1-915d-34bb470c807f',
           astropic: 'images/signs/leo.png',
           personalitypic: 'images/mbti_pics/enfj.png',
           name: 'Doja Cat',
@@ -74,6 +78,7 @@ import App from './routes/App.svelte';
         },
         {
           picture: 'images/default_profile_pics/awkwafina.png',
+          uid: '015a2ec5-47b6-4921-bed1-2520e16ad75b',
           astropic: 'images/signs/cancer.png',
           personalitypic: 'images/mbti_pics/esfp.png',
           name: 'Awkwafina',
@@ -89,6 +94,7 @@ import App from './routes/App.svelte';
         },
         {
           picture: 'images/default_profile_pics/chris-pine.png',
+          uid: '015a2ec5-47b6-4921-bed1-2520e16ad75b',
           astropic: 'images/signs/aries.png',
           personalitypic: 'images/mbti_pics/estp.png',
           name: 'Chris Pine',
@@ -104,6 +110,7 @@ import App from './routes/App.svelte';
         },
         {
           picture: 'images/default_profile_pics/danny-devito.png',
+          uid: '015a2ec5-47b6-4921-bed1-2520e16ad75b',
           astropic: 'images/signs/sagittarius.png',
           personalitypic: 'images/mbti_pics/esfj.png',
           name: 'Danny Devito',
@@ -119,6 +126,7 @@ import App from './routes/App.svelte';
         },
         {
           picture: 'images/default_profile_pics/margot-robbie.png',
+          uid: '015a2ec5-47b6-4921-bed1-2520e16ad75b',
           astropic: 'images/signs/libra.png',
           personalitypic: 'images/mbti_pics/entp.png',
           name: 'Margot Robie',
@@ -166,8 +174,7 @@ import App from './routes/App.svelte';
                     </div>
                 <!--<footer on:click={toggleBackFront} data-card-id={i}>Hi</footer>-->
                 <div>
-
-                    <a class="btn btn-outline-dark" href="/MyProfile"> View Profile </a> 
+                    <a class="btn btn-outline-dark" href={link + person.uid}> View Profile </a> 
                 </div>
                 <!--</div>-->
             </div>
