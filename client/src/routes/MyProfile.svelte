@@ -11,7 +11,7 @@
     export let name = "Kanye";
     export let MBTI = "ENTP";
     export let starSign = "Taurus";
-    export let profileDescription = "This is my cute profile description. I like peen and vajayjay.";
+    export let profileDescription = "This is my cute profile description.";
                     
 </script>
 
@@ -34,8 +34,8 @@
                             </svg>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="#">Edit Profile</a></li>
-                        <li><a class="dropdown-item" href="#">Take Personality Test</a></li>
+                        <li><a class="dropdown-item" href="https://google.com">Edit Profile</a></li>
+                        <li><a class="dropdown-item" href="https://www.16personalities.com/free-personality-test">Take Personality Test</a></li>
                         </ul>
                     </div>
                     <p> Name: {name} </p>
