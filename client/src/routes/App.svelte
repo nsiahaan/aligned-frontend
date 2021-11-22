@@ -6,13 +6,13 @@
 </head>
 
 <script>
-	import Cardback from './Cardback.svelte';
-	import Card from './Card.svelte';
-	import Packs from './Packs.svelte';
-	import Nav from './Nav.svelte';
-	import Home from './Home.svelte';
-	import MyProfile from './MyProfile.svelte'
-	import OpennedPackPage from './OpennedPackPage.svelte';
+	import Cardback from '../Cardback.svelte';
+	import Card from '../Card.svelte';
+	import Packs from '../Packs.svelte';
+	import Nav from '../Nav.svelte';
+	import Home from '../Home.svelte';
+	import MyProfile from '../MyProfile.svelte'
+	import OpennedPackPage from '../OpennedPackPage.svelte';
   
 	let rand = -1;
 	let list;

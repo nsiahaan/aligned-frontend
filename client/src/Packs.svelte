@@ -1,5 +1,4 @@
 <script>
-    import App from './App.svelte'
     import Buy_pack from './Buy_pack.svelte'
     import Open_pack from './Open_pack.svelte'
 

@@ -11,7 +11,7 @@
     export let name = "Kanye";
     export let MBTI = "ENTP";
     export let starSign = "Taurus";
-    export let profileDescription = "This is my cute profile description. I like peen and vajayjay.";
+    export let profileDescription = "This is my cute profile description.";
                     
 </script>
 
