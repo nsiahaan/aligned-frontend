@@ -56,10 +56,6 @@
         font-family: Arial, Helvetica, sans-serif;
         font-size: 30px;
     }
-    .nav-link:hover{
-      color:#ffc2f8;
-      text-decoration: none;
-    }
     .nav{
         margin: auto;
         width: 50%;

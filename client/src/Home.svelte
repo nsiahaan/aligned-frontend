@@ -1,6 +1,6 @@
 <script>
 import { dataset_dev } from "svelte/internal";
-import App from "./App.svelte";
+import App from "./routes/App.svelte";
 import BuyPack from "./Buy_pack.svelte";
 import Nav from "./Nav.svelte";
 
