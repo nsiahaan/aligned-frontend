@@ -1,8 +1,7 @@
 <script>
 import { dataset_dev } from "svelte/internal";
-import App from "./routes/App.svelte";
-import BuyPack from "./Buy_pack.svelte";
-import Nav from "./Nav.svelte";
+import BuyPack from "../Buy_pack.svelte";
+import Nav from "../Nav.svelte";
 
 let src = "images/corgi.jpg";
 let name = "Random Random Corgi!";

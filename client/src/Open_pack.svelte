@@ -4,6 +4,7 @@
     //Need to call backend function to create a pack
     function openPackHandler(){
         page_tracker = "OpenPacks"
+
         //console.log("Open pack.");
     }   
 </script>
@@ -11,6 +12,6 @@
 
 <img {src} alt="Open a pack here!"/>
 <br>
-<button on:click={openPackHandler}>
+<button on:click={openPackHandler}> <a href = "/OpennedPack">
     Open Pack!
 </button>

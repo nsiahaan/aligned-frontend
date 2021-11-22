@@ -6,6 +6,9 @@
 </head>
 
 <script>
+
+  import {page} from '$app/stores';
+
   export let page_tracker = "Home";
   function setpage_trackerHome(){
     page_tracker = "Home";
@@ -23,26 +26,26 @@
 
 <section>
     <ul class="nav">
-        <li class="nav-item">
-          <a class="nav-link" id="homelink" on:click={setpage_trackerHome}>HOME</a>
+        <li class="nav-item" class:active={$page.path === '/Home'}>
+          <a class="nav-link" id="homelink" href="/Home" on:click={setpage_trackerHome}>HOME</a>
           {#if page_tracker == "Home"}
             <div class="underline"></div>
           {/if}
         </li>
-        <li class="nav-item">
-          <a class="nav-link" id="packslink" on:click={setpage_trackerPacks}>PACKS</a>
+        <li class="nav-item" class:active={$page.path === '/Packs'}>
+          <a class="nav-link" id="packslink" href="/Packs" on:click={setpage_trackerPacks}>PACKS</a>
           {#if page_tracker == "Packs"}
             <div class="underline"></div>
           {/if}
         </li>
-        <li class="nav-item">
-          <a class="nav-link" id="profilelink" on:click={setpage_trackerProfile}>PROFILE</a>
+        <li class="nav-item" class:active={$page.path === '/MyProfile'}>
+          <a sveltekit:prefetch class="nav-link" id="profilelink" href="/MyProfile" on:click={setpage_trackerProfile}>PROFILE</a>
           {#if page_tracker == "MyProfile"}
             <div class="underline"></div>
           {/if}
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="accountlink" on:click={setpage_trackerAccount}>ACCOUNT</a>
+          <a sveltekit:prefetch class="nav-link" id="accountlink" on:click={setpage_trackerAccount}>ACCOUNT</a>
           {#if page_tracker == "Account"}
             <div class="underline"></div>
           {/if}

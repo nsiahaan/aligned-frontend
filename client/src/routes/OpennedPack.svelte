@@ -1,7 +1,7 @@
 
 <script>
-    import Card from './Card.svelte';
-    import Cardback from './Cardback.svelte';
+    import Card from '../Card.svelte';
+    import Cardback from '../Cardback.svelte';
     //import Info from './information.js';
     
     //async function loadComponent(name) {

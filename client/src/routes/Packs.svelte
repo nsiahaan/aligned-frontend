@@ -1,6 +1,6 @@
 <script>
-    import Buy_pack from './Buy_pack.svelte'
-    import Open_pack from './Open_pack.svelte'
+    import Buy_pack from '../Buy_pack.svelte'
+    import Open_pack from '../Open_pack.svelte'
 
     export let packCount = 15;
     export let page_tracker = "Packs";

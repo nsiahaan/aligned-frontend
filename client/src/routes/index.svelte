@@ -8,9 +8,9 @@
 <script>
 	import Cardback from '../Cardback.svelte';
 	import Card from '../Card.svelte';
-	import Packs from '../Packs.svelte';
+	import Packs from './Packs.svelte';
 	import Nav from '../Nav.svelte';
-	import Home from '../Home.svelte';
+	import Home from './Home.svelte';
 	import MyProfile from './MyProfile.svelte'
 	import OpennedPackpage_tracker from '../OpennedPackPage.svelte';
   
@@ -27,8 +27,6 @@
   }
 
 </script>
-
-<Nav bind:page_tracker={page_tracker} />
 
 {#if page_tracker=="Home"}
 <section> 
