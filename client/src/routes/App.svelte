@@ -18,8 +18,8 @@
 	let list;
 
 	export let page_tracker = window.location.pathname.replace(/[^\w\s]/gi, '');
-
-  function getList() {
+	
+  	function getList() {
 		fetch("http://127.0.0.1:5005/list")
 		.then(d => console.log(d))
 		//.then(d => d.text())
