@@ -15,7 +15,7 @@
 
     function getInfoAndPic(uid) {
     let params = "?uid=" + uid
-    let url = "http://127.0.0.1:5006/list" + params
+    let url = "http://127.0.0.1:5005/list" + params
     fetch(url)
     .then(d => d.json())
     .then(d => {
@@ -33,7 +33,7 @@
     })
 
     
-    url = "http://127.0.0.1:5006/getPic" + params
+    url = "http://127.0.0.1:5005/getPic" + params
     fetch(url)
     .then(d => d.json())
     .then(d => {
