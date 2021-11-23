@@ -8,22 +8,22 @@
 
 <script> 
     import {astroPicPath, mbtiPicPath} from '../constants.js';
-    import {youser} from '../store.js';
-    import {onMount} from 'svelte';
-    let pic
-    onMount(async () => {
-        let uid = $youser.uid
-        let params = "?uid=" + uid
-
-        let url = "http://127.0.0.1:5005/getPic" + params
-        fetch(url)
-        .then(d => d.json())
-        .then(d => {
-            pic = d[uid]
-            console.log(d[uid])
-            return d[uid]
-        })
-    })
+    import {youser, profilePic} from '../store.js';
+//     import {onMount} from 'svelte';
+//     let pic
+//     onMount(async () => {
+//         let uid = $youser.uid
+//         let params = "?uid=" + uid
+// 
+//         let url = "http://127.0.0.1:5005/getPic" + params
+//         fetch(url)
+//         .then(d => d.json())
+//         .then(d => {
+//             pic = d[uid]
+//             console.log(d[uid])
+//             return d[uid]
+//         })
+//     })
 
     
     let src = "images/default_profile_pics/kanye-west.png";
@@ -47,7 +47,7 @@
         {#if $youser.uid}
         <Card 
         AstroPic={$astroPicPath + $youser.astro + '.png'}
-        Picture={pic}
+        Picture={$profilePic}
         PersonalityPic = {$mbtiPicPath + $youser.mbti + '.png'}
         Name = {$youser.name}
         Astro = {$youser.astro}

@@ -7,7 +7,7 @@
 
 
 <script>
-	import { youser,isAuthenticated } from '../store.js'
+	import { youser,isAuthenticated, profilePic } from '../store.js'
 
 	let email = "";
 	let password = "";
@@ -27,8 +27,21 @@
 	        .then(d => {
 	            youser.set(d)
 	            return d;
-	        }).then(d => console.log(d))
+	        }).then(d => {
+	        	let uid = d.uid
+		        let params = "?uid=" + uid
+
+		        let url = "http://127.0.0.1:5005/getPic" + params
+		        fetch(url)
+		        .then(d => d.json())
+		        .then(d => {
+		        	console.log(d[uid])
+		            profilePic.set(d[uid])
+		            return d[uid]
+		        })
+	        })
         })
+        
     }
 
 	function submitCreds() {
