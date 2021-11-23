@@ -22,7 +22,7 @@
     let result = null;
 
     async function doPost () {
-		const res = await fetch('http://127.0.0.1:5005/signup', {
+		const res = await fetch('http://127.0.0.1:5006/signup', {
 			method: 'POST',
 			body: JSON.stringify({
 				name,
