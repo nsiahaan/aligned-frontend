@@ -7,6 +7,7 @@ from aligned import app
 import uuid
 
 import firebase_admin, firebase
+from firebase import Firebase
 from flask import jsonify
 from firebase_admin import credentials, firestore, storage
 import json
@@ -18,14 +19,27 @@ default_app = firebase_admin.initialize_app(cred)
 db = firestore.client()
 users_ref = db.collection('users')
 
-def addUser(json):
+firebaseConfig = {
+  "apiKey": "AIzaSyBtzSPw1owheKdEdo853-3AuyGPLfBxPhM",
+  "authDomain": "aligned-5a855.firebaseapp.com",
+  "projectId": "aligned-5a855",
+  "storageBucket": "aligned-5a855.appspot.com",
+  "messagingSenderId": "1075559714469",
+  "appId": "1:1075559714469:web:73e28e807e9b258950c74c",
+  "databaseURL": "https://users.firebaseio.com",
+  "measurementId": "G-Y8QS7WXGGD"
+}
+
+fb = Firebase(firebaseConfig)
+
+def addUser(json, id):
     """
     Add a user to the database given their information in JSON format.
     
     Input: json: dictionary
     Output: none
     """
-    id = str(uuid.uuid4())
+    id = id
     data = {
         "name":json['name'],
         "uid" : id,
@@ -38,12 +52,11 @@ def addUser(json):
         "phoneNum":json['phoneNum'],
         "email":json['email'],
         "credits":json['credits'],
-        "numViews":json['numViews'],
-        "numLikes":json['numLikes'],
-        "secretCrush":json['secretCrush'],
+        "crushes":json['crushes'],
         "numPacks":json['numPacks'],
-        "myLikes":json['myLikes'],
-        "matchList":json['matchList'],
+        "likes":json['likes'],
+        "matches":json['matches'],
+        "bio":json["bio"]
     }
     users_ref.document(id).set(data, merge=True )
 
@@ -53,6 +66,7 @@ def getUsers(uids=[]):
     foos = db.get_all(docs)
     # [print(foo.to_dict()) for foo in foos]
     return [foo.to_dict() for foo in foos]
+
 
 def getUser(uid=None, parameter=None):
     """
@@ -104,6 +118,21 @@ def deleteUser(uid):
     users_ref.document(uid).delete()
 
 
-
-
-
+def loginUser(email, password):
+    auth = fb.auth()
+    try:
+        user = auth.sign_in_with_email_and_password(email, password)
+        user["status"] = "success"
+        return jsonify(user), 200
+    except: 
+        return jsonify({"status":"error"}), 400
+    
+def signupUser(email, password):
+    auth = fb.auth()
+    try:
+        user = auth.create_user_with_email_and_password(email, password)
+        user["status"] = "success"
+        return user
+    except: 
+        return {"status":"error"}
+    

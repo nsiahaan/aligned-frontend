@@ -1,15 +1,7 @@
-<head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
-    rel="stylesheet" 
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
-    crossorigin="anonymous">
-</head>
-
-
-<script> 
-    let src = "images/default_profile_pics/kanye-west.png";
-    import Card from '../Card.svelte';
-    export let horoscope = "This is where my horoscope will be. Today, a surprise will befall you. \n Try and accept it, rather than reject.";
+<script>
+    import { page } from '$app/stores';
+    let id = $page.params.slug
+    let list = []
     export let name = "Kanye";
     export let MBTI = "ENTP";
     export let starSign = "Taurus";
@@ -17,9 +9,50 @@
     export let dob = "04/06/78"
     export let profileDescription = "This is my cute profile description.";
     export let gender = "Male";
+    let phoneNumber = '';
+    let email = ''
+    let src = {};
+
+    function getInfoAndPic(uid) {
+    let params = "?uid=" + uid
+    let url = "http://127.0.0.1:5006/list" + params
+    fetch(url)
+    .then(d => d.json())
+    .then(d => {
+        list = d;
+        name = list.name;
+        starSign = list.astro;
+        dob = list.dob;
+        MBTI = list.mbti;
+        profileDescription = list.bio;
+        email = list.email;
+        phoneNumber = list.phoneNum;
+        age = list.age;
+
+        return list;
+    })
+
     
+    url = "http://127.0.0.1:5006/getPic" + params
+    fetch(url)
+    .then(d => d.json())
+    .then(d => {
+        src = d;
+        return src;
+    })
+    }
+
 
 </script>
+
+<svelte:window on:load={getInfoAndPic(id)}/>
+
+<!--- 
+    {JSON.stringify(list)}
+    015a2ec5-47b6-4921-bed1-2520e16ad75b
+  --->
+
+
 
 <section>
     <div class="big-box">
@@ -28,26 +61,19 @@
                 <div class="col">
                     <!-- svelte-ignore a11y-img-redundant-alt -->
                     <div class="center"> 
-                        <img {src} class="resize" alt="Profile Picture is displayed here"/>
+                        <img src={src[id]} class="resize" alt="Profile Picture is displayed here"/>
                     </div>
                 </div>
                 <div class="col-8">
                     <br>
-                    <div class="dropdown d-flex align-items-end justify-content-end">
-                        <button class="btn btn-secondary rounded" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
-                                <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-                            </svg>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="https://google.com">Edit Profile</a></li>
-                        <li><a class="dropdown-item" href="https://www.16personalities.com/free-personality-test">Take Personality Test</a></li>
-                        </ul>
-                    </div>
                     <p> Name: {name} </p>
                     <p> MBTI: {MBTI} </p>
                     <p> Star Sign: {starSign} </p>
+                    <p> Age: {age} </p>
                     <p> Date of birth: {dob} </p>
+                    <p> Phone Number: {phoneNumber} </p>
+                    <p> Email: {email} </p>
+                    <br>
                     <p> {profileDescription}
                     </p>
                     
@@ -117,3 +143,12 @@
         /* outline-style: solid; */
     }
 </style>
+
+
+
+
+
+
+
+
+

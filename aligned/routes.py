@@ -3,12 +3,10 @@ Aligned
 aligned.routes
 This module implements the routes for Aligned
 """
-from flask import render_template, url_for, redirect, request, jsonify, send_from_directory
+from flask import request, jsonify, send_from_directory
 import random
 
 from aligned import app, userDB
-
-from aligned.signUp import signUp
 
 
 @app.route('/')
@@ -24,17 +22,47 @@ def home(path):
 def hello():
     return str(random.randint(0, 100))
 
+@app.route('/login', methods=['POST'])
+def login():
+    try:
+        json = request.json
+        email = json["email"]
+        password = json["password"] 
+        return userDB.loginUser(email, password)
+    except Exception as e:
+        print(e)
 
-
-
-@app.route('/signup', methods=['GET', 'POST'])
+@app.route('/signup', methods=['POST'])
 def signup():
-    form = signUp()
-    if request.method == "POST":
-        if form.submit_form.data:
-            return redirect(url_for('home'))
-        return render_template('signup.html', title='Sign Up', form=form)
-    return render_template('signup.html', title='Sign Up', form=form)
+    try:
+        json = request.json
+        email = json["email"]
+        password = json["password"] 
+        addedUser = userDB.signupUser(email, password)
+        print(addedUser)
+        if addedUser["status"] == "success":
+            id = addedUser["localId"]
+            data = {
+                "name":json['name'],
+                "age":json['age'],
+                "dob":json['dob'],
+                "astro":json['astro'],
+                "gender":json['gender'],
+                "mbti":json['mbti'],
+                "sPref":json['sPref'],
+                "phoneNum":json['phoneNum'],
+                "email":json['email'],
+                "credits":json['credits'],
+                "crushes":json['crushes'],
+                "numPacks":json['numPacks'],
+                "likes":json['likes'],
+                "matches":json['matches'],
+                "bio":json['bio']
+            }
+            userDB.addUser(data, id)
+        return jsonify(addedUser), 200
+    except Exception as e:
+        print(e)
 
 @app.route('/add', methods=['POST'])
 def create():
@@ -105,20 +133,10 @@ def delete(request):
         return f"An Error Occured: {e}"
     
 
-
 import pyrebase
-config = {
-    "apiKey":"AIzaSyBtzSPw1owheKdEdo853-3AuyGPLfBxPhM",
-    "authDomain":"aligned-5a855.firebaseapp.com",
-    "databaseURL": "https://users.firebaseio.com",
-    "storageBucket": "aligned-5a855.appspot.com"
-}
-firebase = pyrebase.initialize_app(config)
+
+firebase = pyrebase.initialize_app(userDB.firebaseConfig)
 storage = firebase.storage()
-####### WHEN WE ADD AUTHENTICATION
-# auth = firebase.auth()
-# # user = auth.sign_in_with_email_and_password(email, password)
-# # storage.child(uid).get_url(user['idToken'])
 
 @app.route('/addPic', methods=['POST','PUT'])
 def addPic():
