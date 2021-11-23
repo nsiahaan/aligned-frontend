@@ -57,15 +57,22 @@
 				<input type="password" id="password" bind:value={password}><br><br>
 			</div>
 		</div>
-
-		<button class="button" on:click={submitCreds}>Sign In</button>
 		{#if invalidCreds}
-			<p>Invalid email or password</p>
+			<p class="msg">Invalid email or password</p>
 		{/if}
+		<button class="button" on:click={submitCreds}>Sign In</button>
+		
 	</div>
 </div>
 
 <style>
+	.msg {
+		position: absolute;
+		left: 50%;
+		margin-top: -60px;
+		margin-left: -90px;
+		color: red;
+	}
 	.outerouter {
 		height: 560px;
 		margin-top: 50px;
