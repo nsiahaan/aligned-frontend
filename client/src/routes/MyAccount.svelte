@@ -7,7 +7,17 @@
 
 
 <script> 
-    let src = "images/default_profile_pics/kanye-west.png";
+    import {astroPicPath, mbtiPicPath} from '../constants.js';
+    import {youser, profilePic} from '../store.js';
+    import {onMount} from 'svelte';
+    let pic;
+    onMount(async () => {
+        pic = $profilePic;
+        console.log(pic);
+    })
+    
+    
+    let src = "https://firebasestorage.googleapis.com/v0/b/aligned-5a855.appspot.com/o/KmQOWT6ShjdiAXKAgcQYyM3rpCo1?alt=media";
     import Card from '../Card.svelte';
     export let horoscope = "This is where my horoscope will be. Today, a surprise will befall you. \n Try and accept it, rather than reject.";
     export let name = "Kanye";
@@ -28,7 +38,10 @@
                 <div class="col">
                     <!-- svelte-ignore a11y-img-redundant-alt -->
                     <div class="center"> 
-                        <img {src} class="resize" alt="Profile Picture is displayed here"/>
+
+                        <img {pic} class="resize" alt="Profile Picture is displayed here"/>
+
+                        }
                     </div>
                 </div>
                 <div class="col-8">
@@ -44,11 +57,11 @@
                         <li><a class="dropdown-item" href="https://www.16personalities.com/free-personality-test">Take Personality Test</a></li>
                         </ul>
                     </div>
-                    <p> Name: {name} </p>
-                    <p> MBTI: {MBTI} </p>
-                    <p> Star Sign: {starSign} </p>
-                    <p> Date of birth: {dob} </p>
-                    <p> {profileDescription}
+                    <p> Name: {$youser.name} </p>
+                    <p> MBTI: {$youser.mbti} </p>
+                    <p> Star Sign: {$youser.astro} </p>
+                    <p> Date of birth: {$youser.dob} </p>
+                    <p> {$youser.bio}
                     </p>
                     
                 </div>
@@ -73,6 +86,9 @@
     }
     .center{
         text-align: center;
+        height: 300px;
+        width: 300px;
+        overflow: hidden;
         margin-top: 50px;
         margin-bottom: 50px;
     }
@@ -89,8 +105,9 @@
 
     .resize {
         height: 300px;
+        margin-left: -75px;
         width: auto;
-        margin: auto;
+        /*margin: auto;*/
     }
     .big-box{
         background-color: #c1b8ed;

@@ -43,19 +43,19 @@ def addUser(json, id):
     data = {
         "name":json['name'],
         "uid" : id,
-        "age":json['age'],
+        #"age":json['age'],
         "dob":json['dob'],
-        "astro":json['astro'],
+        #"astro":json['astro'],
         "gender":json['gender'],
         "mbti":json['mbti'],
         "sPref":json['sPref'],
-        "phoneNum":json['phoneNum'],
+        #"phoneNum":json['phoneNum'],
         "email":json['email'],
-        "credits":json['credits'],
-        "crushes":json['crushes'],
-        "numPacks":json['numPacks'],
-        "likes":json['likes'],
-        "matches":json['matches'],
+        #"credits":json['credits'],
+        #"crushes":json['crushes'],
+        #"numPacks":json['numPacks'],
+        #"likes":json['likes'],
+        #"matches":json['matches'],
         "bio":json["bio"]
     }
     users_ref.document(id).set(data, merge=True )

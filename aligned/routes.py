@@ -4,7 +4,7 @@ aligned.routes
 This module implements the routes for Aligned
 """
 from flask import request, jsonify, send_from_directory
-import random
+import random, json
 
 from aligned import app, userDB
 
@@ -35,34 +35,37 @@ def login():
 @app.route('/signup', methods=['POST'])
 def signup():
     try:
-        json = request.json
-        email = json["email"]
-        password = json["password"] 
+        json1 = request.data
+        print(type(request))
+        json1 = json1.decode('utf-8')
+        print(json1)
+        print(type(json1))
+        json1 = json.loads(json1)
+        print(type(json1))
+        email = json1["email"]
+        print(email)
+        print("Got here")
+        password = json1["password"]
         addedUser = userDB.signupUser(email, password)
         print(addedUser)
+
         if addedUser["status"] == "success":
             id = addedUser["localId"]
             data = {
-                "name":json['name'],
-                "age":json['age'],
-                "dob":json['dob'],
-                "astro":json['astro'],
-                "gender":json['gender'],
-                "mbti":json['mbti'],
-                "sPref":json['sPref'],
-                "phoneNum":json['phoneNum'],
-                "email":json['email'],
-                "credits":json['credits'],
-                "crushes":json['crushes'],
-                "numPacks":json['numPacks'],
-                "likes":json['likes'],
-                "matches":json['matches'],
-                "bio":json['bio']
+                "name":json1['name'],
+                "dob":json1['dob'],
+                "gender":json1['gender'],
+                "mbti":json1['mbti'],
+                "sPref":json1['sexPref'],
+                "email":json1['email'],
+                "bio":json1['bio']
             }
             userDB.addUser(data, id)
         return jsonify(addedUser), 200
     except Exception as e:
         print(e)
+        return "404"
+
 
 @app.route('/add', methods=['POST'])
 def create():
@@ -74,6 +77,15 @@ def create():
     try:
         userDB.addUser(request.json)
         return jsonify({"success": True}), 200
+    except Exception as e:
+        return f"An Error Occured: {e}"
+
+@app.route('/getuid',methods=['GET'])
+def getuid():
+    try:
+        email = request.args.get('email')
+        uid = userDB.getUIDFromEmail(email)
+        return jsonify(uid), 200
     except Exception as e:
         return f"An Error Occured: {e}"
 
