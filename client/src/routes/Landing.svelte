@@ -1,6 +1,6 @@
 <section>
     <div class="nav-area">
-        <button type="button" class="btn btn-outline-dark">Log In</button>
+        <button type="button" class="btn btn-outline-light" id="login-button">Log In</button>
     </div>
 
     <div class="container1">
@@ -10,15 +10,17 @@
         <h3>Calculated connections.</h3>
         <p>It's like dating, but better. See what the skies may bring you as the stars align...</p>
         <div class="buttons">
-            <button type="button" class="btn btn-outline-dark">Sign Up</button>
+            <button type="button" class="btn btn-outline-dark" id="signup-button">Sign Up</button>
         </div>
     </div>
 </section>
 
 <style>
     :global(body) {
-        background-color: pink;
-        background-image: url("https://drive.google.com/file/d/1jNPUVDQKxyFmE7K2ivNhA3jRA3LZ4YJI/view");
+        background-color: white;
+        background-image: url("https://i.imgur.com/VsIoeOJ.png");
+        background-repeat: no-repeat;
+        background-size: 100% auto;
     } 
     div.container1 {
         color: black;
@@ -37,5 +39,13 @@
     }
     .buttons {
         padding-top: 25px
+    }
+    #login-button {
+        background-color: white;
+        color: black;
+    }
+    #signup-button {
+        background-color: #39398e;
+        color: white;
     }
 </style>
