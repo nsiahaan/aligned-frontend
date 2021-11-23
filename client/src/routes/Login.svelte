@@ -5,6 +5,7 @@
     crossorigin="anonymous">
 </head>
 
+
 <script>
 	import { youser,isAuthenticated } from '../store.js'
 
