@@ -80,6 +80,15 @@ def create():
     except Exception as e:
         return f"An Error Occured: {e}"
 
+@app.route('/getuid',methods=['GET'])
+def getuid():
+    try:
+        email = request.args.get('email')
+        uid = userDB.getUIDFromEmail(email)
+        return jsonify(uid), 200
+    except Exception as e:
+        return f"An Error Occured: {e}"
+
 @app.route('/list', methods=['GET'])
 def read():
     """
