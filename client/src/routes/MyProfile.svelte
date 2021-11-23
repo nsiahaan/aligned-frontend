@@ -7,6 +7,25 @@
 
 
 <script> 
+    import {astroPicPath, mbtiPicPath} from '../constants.js';
+    import {youser, profilePic} from '../store.js';
+//     import {onMount} from 'svelte';
+//     let pic
+//     onMount(async () => {
+//         let uid = $youser.uid
+//         let params = "?uid=" + uid
+// 
+//         let url = "http://127.0.0.1:5005/getPic" + params
+//         fetch(url)
+//         .then(d => d.json())
+//         .then(d => {
+//             pic = d[uid]
+//             console.log(d[uid])
+//             return d[uid]
+//         })
+//     })
+
+    
     let src = "images/default_profile_pics/kanye-west.png";
     import Card from '../Card.svelte';
     export let horoscope = "This is where my horoscope will be. Today, a surprise will befall you. \n Try and accept it, rather than reject. This is where my horoscope will be. Today, a surprise will befall you. \n Try and accept it, rather than reject.This is where my horoscope will be. Today, a surprise will befall you. \n Try and accept it, rather than reject.This is where my horoscope will be. Today, a surprise will befall you. \n Try and accept it, rather than reject.This is where my horoscope will be. Today, a surprise will befall you. \n Try and accept it, rather than reject.";
@@ -25,17 +44,19 @@
 <section>
 <div>
     <div class="card">
+        {#if $youser.uid}
         <Card 
-        AstroPic={taurusLink}
-        Picture={src}
-        PersonalityPic = {taurusLink}
-        Name = {name}
-        Astro = {starSign}
-        Personality = {MBTI}
-        Age = {age}
-        Gender = {gender}
-        Bio = {profileDescription}
-    /> 
+        AstroPic={$astroPicPath + $youser.astro + '.png'}
+        Picture={$profilePic}
+        PersonalityPic = {$mbtiPicPath + $youser.mbti + '.png'}
+        Name = {$youser.name}
+        Astro = {$youser.astro}
+        Personality = {$youser.mbti}
+        Age = {$youser.dob}
+        Gender = {$youser.gender}
+        Bio = {$youser.bio}
+    />
+    {/if} 
     </div>
     <div class="big-box">
         <div class="container">           

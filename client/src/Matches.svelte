@@ -1,23 +1,10 @@
-
-
-
 <script>
     import Card from './Card.svelte';
     import Cardback from './Cardback.svelte';
     import App from './routes/App.svelte';
+    import { youser, profilePic } from './store.js';
+    import { astroPicPath, mbtiPicPath } from './constants.js';
 
-    let aquariusLink = 'images/signs/aquarius.png';
-    let ariesLink = 'images/signs/aries.png';
-    let cancerLink = 'images/signs/cancer.png';
-    let capricornLink = 'images/signs/capricorn.png';
-    let geminiLink = 'images/signs/gemini.png';
-    let leoLink = 'images/signs/leo.png';
-    let libraLink = 'images/signs/libra.png';
-    let piscesLink = 'images/signs/pisces.png';
-    let sagittariusLink = 'images/signs/sagittarius.png';
-    let scorpioLink = 'images/signs/scorpio.png';
-    let taurusLink = 'images/signs/taurus.png';
-    let virgoLink = 'images/signs/virgo.png';
     let cardBackShowing = false;
     let selected;
     let list =[];
@@ -25,8 +12,44 @@
     let pics =[];
     let link = "/Profile/"
 
-   
     
+    function getPics(uids=[]) {
+        let params = "?uid="
+        if (typeof uids == "string" || typeof uids == "number") {
+            params += uids
+        } else {
+            params += uids.join("&uid=")
+        }
+        let url = "http://127.0.0.1:5005/getPic" + params
+        fetch(url)
+        .then(d => d.json())
+        .then(d => {
+            dictpics = d;
+            return dictpics;
+        })
+        .then(d=>console.log(d))
+    }
+    function getListUIDs(uids) {
+        let params = "?uid=" + uids.join("&uid=")
+        let url = "http://127.0.0.1:5005/list" + params
+        fetch(url)
+        .then(d => d.json())
+        .then(d => {
+
+            list = Object.values(d);
+
+            return list;
+        })
+    }
+
+
+    import {onMount} from 'svelte'
+    onMount(()=> {
+        console.log($youser.matches);
+        getPics($youser.matches);
+        getListUIDs($youser.matches);
+    })
+
     $: People = [
         {
           picture: 'images/default_profile_pics/kanye-west.png',
@@ -154,14 +177,15 @@
 <center>
     <div class="container-fluid">
         <div class="cards-scroll">
-            {#each People as person, i}
+            {#each list as person}
             <div class="card-butt">
                 <!--<div class="flip-box">-->
                     <div class="card"> <!--class:show-back={selected===i} data-card-id={i}>-->
                         <Card 
-                            AstroPic={person.astropic}
-                            Picture={person.picture}
-                            PersonalityPic = {person.personalitypic}
+                            AstroPic={$astroPicPath + person.astro + '.png'}
+                            Picture={dictpics[person.uid]}
+                            PersonalityPic = {$mbtiPicPath + person.mbti + '.png'}
+
                             Name = {person.name}
                             Astro = {person.astro}
                             Personality = {person.mbti}

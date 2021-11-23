@@ -7,12 +7,42 @@
 
 
 <script>
-	import { youser,isAuthenticated } from '../store.js'
+	import { youser,isAuthenticated, profilePic } from '../store.js'
 
 	let email = "";
 	let password = "";
+	let uid = "";
 	let invalidCreds = false;
 
+	function getUser(email) {
+        let params = "?email=" + email
+        let url = "http://127.0.0.1:5005/getuid" + params
+        fetch(url)
+        .then(d => d.json())
+        .then(d => {
+            let params = "?uid=" + d
+            let url = "http://127.0.0.1:5005/list" + params
+            fetch(url)
+	        .then(d => d.json())
+	        .then(d => {
+	            youser.set(d)
+	            return d;
+	        }).then(d => {
+	        	let uid = d.uid
+		        let params = "?uid=" + uid
+
+		        let url = "http://127.0.0.1:5005/getPic" + params
+		        fetch(url)
+		        .then(d => d.json())
+		        .then(d => {
+		        	console.log(d[uid])
+		            profilePic.set(d[uid])
+		            return d[uid]
+		        })
+	        })
+        })
+        
+    }
 
 	function submitCreds() {
 		if (email == "" || password == "") {
@@ -38,13 +68,15 @@
 				return data;
 			} else {
 				invalidCreds = false;
-				youser.set(data);
+				// youser.set(data);
 				isAuthenticated.set(true)
+				getUser(data['email'])
 				return data;
 			}
 		}).then(d=>console.log(d))
 	}
 </script>
+
 <div class="outerouter">
 	<div class="pinkbox">
 		<div class="title">
