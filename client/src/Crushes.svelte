@@ -2,19 +2,9 @@
 <script>
     import Card from './Card.svelte';
     import Cardback from './Cardback.svelte';
+    import { youser, profilePic } from './store.js';
+    import { astroPicPath, mbtiPicPath } from './constants.js';
 
-    let aquariusLink = 'images/signs/aquarius.png';
-    let ariesLink = 'images/signs/aries.png';
-    let cancerLink = 'images/signs/cancer.png';
-    let capricornLink = 'images/signs/capricorn.png';
-    let geminiLink = 'images/signs/gemini.png';
-    let leoLink = 'images/signs/leo.png';
-    let libraLink = 'images/signs/libra.png';
-    let piscesLink = 'images/signs/pisces.png';
-    let sagittariusLink = 'images/signs/sagittarius.png';
-    let scorpioLink = 'images/signs/scorpio.png';
-    let taurusLink = 'images/signs/taurus.png';
-    let virgoLink = 'images/signs/virgo.png';
     let cardBackShowing = false;
     let selected;
     let list =[];
@@ -27,115 +17,44 @@
         console.log(People);
         $: People = People;
     }
-
-    $: People = [
-        {
-          picture: 'images/default_profile_pics/kanye-west.png',
-          astropic: 'images/signs/gemini.png',
-          personalitypic: 'images/mbti_pics/isfp.png',
-          name: 'Kanye West',
-          astro: 'Gemini',
-          mbti: 'ISFP',
-          age: 30,
-          gender: 'Male',
-          bio: 'Best there ever was. I made Taylor famous. \n Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
-            'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure' +
-            'dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non' +
-            'proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit,' +
-            ' sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' 
-        },
-        {
-          picture: 'images/default_profile_pics/kim-kardashian.png',
-          astropic: 'images/signs/pisces.png',
-          personalitypic: 'images/mbti_pics/intj.png',
-          name: 'Kim Kardashian',
-          astro: 'Pisces',
-          mbti: 'INTJ',
-          age: 32,
-          gender: "Female",
-          bio: 'I love my children, especially Chicago. \n Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
-            'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure' +
-            'dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non' +
-            'proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit,' +
-            ' sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-        },
-        {
-          picture: 'images/default_profile_pics/doja-cat.png',
-          astropic: 'images/signs/leo.png',
-          personalitypic: 'images/mbti_pics/enfj.png',
-          name: 'Doja Cat',
-          astro: 'Leo',
-          mbti: 'ENFP',
-          age: 24,
-          gender: 'Female',
-          bio: 'Catch all my popular music on Tiktok. \n Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
-            'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure' +
-            'dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non' +
-            'proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit,' +
-            ' sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' 
-        },
-        {
-          picture: 'images/default_profile_pics/awkwafina.png',
-          astropic: 'images/signs/cancer.png',
-          personalitypic: 'images/mbti_pics/esfp.png',
-          name: 'Awkwafina',
-          astro: 'Cancer',
-          mbti: 'ESFP',
-          age: 27,
-          gender: 'Female',
-          bio: 'Did you know that Awkwafina isn\'t my real name? \n Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
-            'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure' +
-            'dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non' +
-            'proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit,' +
-            ' sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-        },
-        {
-          picture: 'images/default_profile_pics/chris-pine.png',
-          astropic: 'images/signs/aries.png',
-          personalitypic: 'images/mbti_pics/estp.png',
-          name: 'Chris Pine',
-          astro: 'Aries',
-          mbti: 'ESTP',
-          age: 36,
-          gender: 'Male',
-          bio: 'I\'m the hottest Chris. \n Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
-            'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure' +
-            'dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non' +
-            'proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit,' +
-            ' sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-        },
-        {
-          picture: 'images/default_profile_pics/danny-devito.png',
-          astropic: 'images/signs/sagittarius.png',
-          personalitypic: 'images/mbti_pics/esfj.png',
-          name: 'Danny Devito',
-          astro: 'Sagittarius',
-          mbti: 'ESFJ',
-          age: '88',
-          gender: 'Male',
-          bio: 'Can I offer you an egg in this trying time?, \n Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
-            'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure' +
-            'dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non' +
-            'proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit,' +
-            ' sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-        },
-        {
-          picture: 'images/default_profile_pics/margot-robbie.png',
-          astropic: 'images/signs/libra.png',
-          personalitypic: 'images/mbti_pics/entp.png',
-          name: 'Margot Robie',
-          astro: 'Libra',
-          mbti: 'ENTP',
-          age: 33,
-          gender: 'Female',
-          bio: 'You probably know me Suicide Squad, \n Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
-            'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure' +
-            'dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non' +
-            'proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit,' +
-            ' sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+    function getPics(uids=[]) {
+        let params = "?uid="
+        if (typeof uids == "string" || typeof uids == "number") {
+            params += uids
+        } else {
+            params += uids.join("&uid=")
         }
-    ];
-    
+        let url = "http://127.0.0.1:5005/getPic" + params
+        fetch(url)
+        .then(d => d.json())
+        .then(d => {
+            dictpics = d;
+            return dictpics;
+        })
+        .then(d=>console.log(d))
+    }
+    function getListUIDs(uids) {
+        let params = "?uid=" + uids.join("&uid=")
+        let url = "http://127.0.0.1:5005/list" + params
+        fetch(url)
+        .then(d => d.json())
+        .then(d => {
+
+            list = Object.values(d);
+
+            return list;
+        })
+    }
+
+
+    import {onMount} from 'svelte'
+    onMount(()=> {
+        console.log($youser.crushes);
+        getPics($youser.crushes);
+        getListUIDs($youser.crushes);
+    })
+
+
 </script>
 
 <head>
@@ -148,14 +67,15 @@
 <center>
     <div class="container-fluid">
         <div class="cards-scroll">
-            {#each People as person, i}
+            {#each list as person}
             <div class="card-butt">
                 <!--<div class="flip-box">-->
                     <div class="card"> <!--class:show-back={selected===i} data-card-id={i}>-->
                         <Card 
-                            AstroPic={person.astropic}
-                            Picture={person.picture}
-                            PersonalityPic = {person.personalitypic}
+                            AstroPic={$astroPicPath + person.astro + '.png'}
+                            Picture={dictpics[person.uid]}
+                            PersonalityPic = {$mbtiPicPath + person.mbti + '.png'}
+
                             Name = {person.name}
                             Astro = {person.astro}
                             Personality = {person.mbti}
