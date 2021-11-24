@@ -8,7 +8,13 @@
 
 <script>
 	import { youser,isAuthenticated, profilePic } from '../store.js'
-
+	import {onMount} from 'svelte';
+	onMount(() => {
+		youser.useLocalStorage();
+		isAuthenticated.useLocalStorage();
+		profilePic.useLocalStorage();	
+	})
+	
 	let email = "";
 	let password = "";
 	let uid = "";
@@ -41,7 +47,7 @@
 		        })
 	        })
         })
-        
+
     }
 
 	function submitCreds() {
