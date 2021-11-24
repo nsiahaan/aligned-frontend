@@ -7,6 +7,7 @@ from flask import request, jsonify, send_from_directory
 import random, json
 
 from aligned import app, userDB
+from aligned.user import User
 
 
 @app.route('/')
@@ -19,7 +20,7 @@ def home(path):
     return send_from_directory('client/public', path)
 
 @app.route("/rand")
-def hello():
+def rand():
     return str(random.randint(0, 100))
 
 @app.route('/login', methods=['POST'])
@@ -143,7 +144,53 @@ def delete(request):
         return jsonify({"success": True}), 200
     except Exception as e:
         return f"An Error Occured: {e}"
-    
+
+
+
+'''Actions for a specific user'''
+
+@app.route('/horoscope', methods=['POST'])
+def horoscope():
+    try:
+        uid = request.form['uid']
+        user = User(uid)
+        return jsonify(user.getHoroscope()), 200
+    except Exception as e:
+        return f"An Error Occurred: {e}"
+
+
+@app.route('/openPack', methods=['POST'])
+def openPack():
+    try:
+        uid = request.form['uid']
+        user = User(uid)
+        return jsonify(user.openPack()), 200
+    except Exception as e:
+        return f"An Error Occurred: {e}"
+
+@app.route('/buyPack', methods=['POST'])
+def buyPack():
+    try:
+        uid = request.form['uid']
+        user = User(uid)
+        user.buyPack()
+        return "", 200
+    except Exception as e:
+        return f"An Error Occurred: {e}"
+
+@app.route('/sendLike', methods=['POST'])
+def sendLike():
+    try:
+        uid1 = request.form['uid1']
+        uid2 = request.form['uid2']
+        user1 = User(uid1)
+        user2 = User(uid2)
+        return jsonify(user1.sendLike(user2)), 200
+    except Exception as e:
+        return f"An Error Occurred: {e}"
+
+
+
 
 import pyrebase
 
