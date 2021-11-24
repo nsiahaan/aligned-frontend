@@ -156,8 +156,7 @@ def horoscope():
         user = User(uid)
         return jsonify(user.getHoroscope()), 200
     except Exception as e:
-        return f"An Error Occurred: {e}"
-
+        return f"An Error Occurred: {e}", 400
 
 @app.route('/openPack', methods=['POST'])
 def openPack():
@@ -166,7 +165,7 @@ def openPack():
         user = User(uid)
         return jsonify(user.openPack()), 200
     except Exception as e:
-        return f"An Error Occurred: {e}"
+        return f"An Error Occurred: {e}", 400
 
 @app.route('/buyPack', methods=['POST'])
 def buyPack():
@@ -176,7 +175,7 @@ def buyPack():
         user.buyPack()
         return "", 200
     except Exception as e:
-        return f"An Error Occurred: {e}"
+        return f"An Error Occurred: {e}", 400
 
 @app.route('/sendLike', methods=['POST'])
 def sendLike():
@@ -187,7 +186,7 @@ def sendLike():
         user2 = User(uid2)
         return jsonify(user1.sendLike(user2)), 200
     except Exception as e:
-        return f"An Error Occurred: {e}"
+        return f"An Error Occurred: {e}", 400
 
 
 
