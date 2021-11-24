@@ -47,18 +47,18 @@
 </script>
 
 <form>
-    <div class="form-group">
+    <div class="form-group col-md-6 col-centered"> 
       <label for="name">Name</label>
       <input type="text" class="form-control" id="nameInput" placeholder="Enter name" bind:value={name} required> 
     </div>
     <br>
-    <div class="form-group">
+    <div class="form-group col-md-6 col-centered">
         <label for="birthday">Date of Birth</label>
         <br>
         <input type="date" id="birthday" name="dateofbirth" bind:value={dob}>
     </div>
     <br> 
-    <div class="form-group">
+    <div class="form-group col-md-6 col-centered">
         <label for="gender">Gender</label>
         <select class="form-control" id="genderInput" bind:value={gender} required>
           <option></option>
@@ -68,7 +68,7 @@
         </select>
     </div>
     <br>
-    <div class="form-group">
+    <div class="form-group col-md-6 col-centered" >
         <label for="MBTI">MBTI</label>
         <select class="form-control" id="mbtiInput" bind:value={mbti} required>
           <option></option>
@@ -90,9 +90,9 @@
           <option>ESTP</option>
           <option></option>
         </select>
-        <small>If you don't know your MBTI?, takes this quick quiz!</small><br><br>
+        <small>If you don't know your MBTI?, takes this quick quiz! https://www.16personalities.com/free-personality-test</small><br><br>
     </div>
-    <div class="form-group">
+    <div class="form-group col-md-6 col-centered">
         <label for="sexual-preference" id="sexual-prefInput">Sexual Preference</label> 
         <br>
         <div class="form-check form-check-inline" required>
@@ -110,45 +110,47 @@
     </div>
     <br>
     <!--
-    <div class="form-group">
+    <div class="form-group col-md-5">
         <label for="phone">Phone Number</label><br>
         <input type="tel" id="phone" placeholder="123-457-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required bind:value={phone}><br>
         <small>Format: 123-456-7890</small><br><br>
     </div> -->
-    <div class="form-group">
+    <div class="form-group col-md-6 col-centered">
         <label for="bio">Write your Bio!!</label>
         <textarea class="form-control" id="inputBio" rows="3" placeholder="Tell me about yourself!" required bind:value={bio}></textarea>
     </div>
     <br>
-    <div class="form-group">
+    <div class="form-group col-md-6 col-centered">
         <label for="exampleFormControlFile1">Find a Profile Picture!</label> <br>
         <input type="file" class="form-control-file" id="inputPicture" accept="image/png, image/gif, image/jpeg" bind:value={picture} required>
     </div>
     <br>
     <div class="form-row">
-        <div class="form-group col-md-5">
+        <div class="form-group col-md-6 col-centered">
           <label for="insta">Instagram</label>
           <input type="text" class="form-control" id="inputInsta" bind:value={instagram}>
         </div> <br>
-        <div class="form-group col-md-5">
+        <div class="form-group col-md-6 col-centered">
           <label for="snap">Snapchat</label>
           <input type="text" class="form-control" id="inputSnap" bind:value={snapchat}>
         </div>
     </div>
     <br>
     <div class="form-row">
-        <div class="form-group col-md-5">
+        <div class="form-group col-md-6 col-centered">
           <label for="inputEmail4">Email</label>
           <input type="email" class="form-control" id="inputEmail4" placeholder="Email" bind:value={email}>
         </div>
         <br>
-        <div class="form-group col-md-5">
+        <div class="form-group col-md-6 col-centered">
           <label for="inputPassword4">Password</label>
           <input type="password" class="form-control" id="inputPassword4" placeholder="Password" bind:value={password}>
         </div>
         <br>
     </div>
-    <button type="button" on:click={doPost}>Submit</button>
+    <div style="text-align:center;">
+        <button type="button" class="btn btn-outline-secondary" on:click={doPost}>Submit</button>
+    </div>    
 </form>
     <br>
     <br>
@@ -160,7 +162,7 @@
 
 
 <style>
-    textarea {
+textarea {
   width: 100%;
   height: 150px;
   padding: 12px 20px;
@@ -169,6 +171,11 @@
   border-radius: 4px;
   background-color: #f8f8f8;
   resize: none;
+}
+
+.col-centered{
+    margin: 0 auto;
+    float: none;
 }
 
 </style>
