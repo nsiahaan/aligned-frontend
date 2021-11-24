@@ -36,18 +36,11 @@ def login():
 def signup():
     try:
         json1 = request.data
-        print(type(request))
         json1 = json1.decode('utf-8')
-        print(json1)
-        print(type(json1))
         json1 = json.loads(json1)
-        print(type(json1))
         email = json1["email"]
-        print(email)
-        print("Got here")
         password = json1["password"]
         addedUser = userDB.signupUser(email, password)
-        print(addedUser)
 
         if addedUser["status"] == "success":
             id = addedUser["localId"]
