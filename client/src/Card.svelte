@@ -17,7 +17,6 @@
     export let Bio = "No info!!"
 
 </script>
-
 <div class="card" style="width: 25rem;">
     <div class='pics'>
         <img src={AstroPic} id="card-img-top1" alt="...">
@@ -35,11 +34,12 @@
 </div>
 
 
-  <style>
+<style>
     .card{
         border:10px solid;
         border-color: #c9d7f8;
         height: 75vh;
+        border-radius: 25px;
     }
     .card-title {
         text-align: center;
@@ -66,6 +66,7 @@
     .bottom-text {
         background-color: #c1b8ed;
         width:100%;
+        height:35vh;
     }
     .card-body {
         padding: 0rem 0rem;
@@ -96,4 +97,4 @@
         vertical-align: middle;
         height: 100%;
     }
-  </style>
+</style>

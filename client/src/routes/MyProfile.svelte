@@ -5,52 +5,64 @@
     crossorigin="anonymous">
 </head>
 
+
 <script> 
+    import {astroPicPath, mbtiPicPath} from '../constants.js';
+    import {youser, profilePic} from '../store.js';
+//     import {onMount} from 'svelte';
+//     let pic
+//     onMount(async () => {
+//         let uid = $youser.uid
+//         let params = "?uid=" + uid
+// 
+//         let url = "http://127.0.0.1:5005/getPic" + params
+//         fetch(url)
+//         .then(d => d.json())
+//         .then(d => {
+//             pic = d[uid]
+//             console.log(d[uid])
+//             return d[uid]
+//         })
+//     })
+
+    
     let src = "images/default_profile_pics/kanye-west.png";
-    export let horoscope = "This is where my horoscope will be. Today, a surprise will befall you. \n Try and accept it, rather than reject.";
+    import Card from '../Card.svelte';
+    export let horoscope = "This is where my horoscope will be. Today, a surprise will befall you. \n Try and accept it, rather than reject. This is where my horoscope will be. Today, a surprise will befall you. \n Try and accept it, rather than reject.This is where my horoscope will be. Today, a surprise will befall you. \n Try and accept it, rather than reject.This is where my horoscope will be. Today, a surprise will befall you. \n Try and accept it, rather than reject.This is where my horoscope will be. Today, a surprise will befall you. \n Try and accept it, rather than reject.";
     export let name = "Kanye";
     export let MBTI = "ENTP";
     export let starSign = "Taurus";
+    export let age = "88";
+    let taurusLink = 'images/signs/taurus.png';
+
     export let profileDescription = "This is my cute profile description.";
-                    
+    export let gender = "Male";
+    
+
 </script>
 
 <section>
+<div>
+    <div class="card">
+        {#if $youser.uid}
+        <Card 
+        AstroPic={$astroPicPath + $youser.astro + '.png'}
+        Picture={$profilePic}
+        PersonalityPic = {$mbtiPicPath + $youser.mbti + '.png'}
+        Name = {$youser.name}
+        Astro = {$youser.astro}
+        Personality = {$youser.mbti}
+        Age = {$youser.dob}
+        Gender = {$youser.gender}
+        Bio = {$youser.bio}
+    />
+    {/if} 
+    </div>
     <div class="big-box">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <!-- svelte-ignore a11y-img-redundant-alt -->
-                    <div class="center"> 
-                        <img {src} class="resize" alt="Profile Picture is displayed here"/>
-                    </div>
-                </div>
-                <div class="col-8">
-                    <br>
-                    <div class="dropdown d-flex align-items-end justify-content-end">
-                        <button class="btn btn-secondary rounded" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-three-dots-vertical" viewBox="0 0 16 16">
-                                <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-                            </svg>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="https://google.com">Edit Profile</a></li>
-                        <li><a class="dropdown-item" href="https://www.16personalities.com/free-personality-test">Take Personality Test</a></li>
-                        </ul>
-                    </div>
-                    <p> Name: {name} </p>
-                    <p> MBTI: {MBTI} </p>
-                    <p> Star Sign: {starSign} </p>
-                    <p> {profileDescription}
-                    </p>
-                </div>
-            </div>
+        <div class="container">           
             <div class="row horoscope-wrapper">
                 <br>
                 <p> Daily Horoscope </p>
-                <div class="container">
-                    
-                </div>
             </div>
             <div class="row horoscope-text horoscope">
                 <p>{horoscope}</p>
@@ -74,6 +86,8 @@
             </div>
         </div> 
     </div>
+</div>
+    
 </section>
 
 
@@ -81,8 +95,18 @@
 
 <style>
 
+    .card{
+        float: left;
+        height: auto;
+        display:inline-block;
+        margin-top: 10vh;
+        margin-left: 40px;
+        margin-right: 20px;
+        margin-bottom: 15px;
+    }
     p{
-        font-size:larger;
+        font-size: larger;
+
     }
     .rounded{
         border-radius: 100% !important;
@@ -111,14 +135,18 @@
         margin: auto;
     }
     .big-box{
+        width: 50%;
+        margin-right: 10%;
         background-color: #c1b8ed;
         height: auto;
-        margin-top: 50px;
+        margin-top: 10%;
         margin-bottom: 50px;
         padding-bottom: 3em;
+        float: right;
+        outline-style: solid;
     }
 
-    .row{
+    .row-box{
         background-color: #c1b8ed;
         /* outline-style: solid; */
     }

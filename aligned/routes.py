@@ -3,12 +3,11 @@ Aligned
 aligned.routes
 This module implements the routes for Aligned
 """
-from flask import render_template, url_for, redirect, request, jsonify, send_from_directory
-import random
+from flask import request, jsonify, send_from_directory
+import random, json
 
 from aligned import app, userDB
-
-from aligned.signUp import signUp
+from aligned.user import User
 
 
 @app.route('/')
@@ -21,20 +20,53 @@ def home(path):
     return send_from_directory('client/public', path)
 
 @app.route("/rand")
-def hello():
+def rand():
     return str(random.randint(0, 100))
 
+@app.route('/login', methods=['POST'])
+def login():
+    try:
+        json = request.json
+        email = json["email"]
+        password = json["password"] 
+        return userDB.loginUser(email, password)
+    except Exception as e:
+        print(e)
 
-
-
-@app.route('/signup', methods=['GET', 'POST'])
+@app.route('/signup', methods=['POST'])
 def signup():
-    form = signUp()
-    if request.method == "POST":
-        if form.submit_form.data:
-            return redirect(url_for('home'))
-        return render_template('signup.html', title='Sign Up', form=form)
-    return render_template('signup.html', title='Sign Up', form=form)
+    try:
+        json1 = request.data
+        print(type(request))
+        json1 = json1.decode('utf-8')
+        print(json1)
+        print(type(json1))
+        json1 = json.loads(json1)
+        print(type(json1))
+        email = json1["email"]
+        print(email)
+        print("Got here")
+        password = json1["password"]
+        addedUser = userDB.signupUser(email, password)
+        print(addedUser)
+
+        if addedUser["status"] == "success":
+            id = addedUser["localId"]
+            data = {
+                "name":json1['name'],
+                "dob":json1['dob'],
+                "gender":json1['gender'],
+                "mbti":json1['mbti'],
+                "sPref":json1['sexPref'],
+                "email":json1['email'],
+                "bio":json1['bio']
+            }
+            userDB.addUser(data, id)
+        return jsonify(addedUser), 200
+    except Exception as e:
+        print(e)
+        return "404"
+
 
 @app.route('/add', methods=['POST'])
 def create():
@@ -46,6 +78,15 @@ def create():
     try:
         userDB.addUser(request.json)
         return jsonify({"success": True}), 200
+    except Exception as e:
+        return f"An Error Occured: {e}"
+
+@app.route('/getuid',methods=['GET'])
+def getuid():
+    try:
+        email = request.args.get('email')
+        uid = userDB.getUIDFromEmail(email)
+        return jsonify(uid), 200
     except Exception as e:
         return f"An Error Occured: {e}"
 
@@ -103,22 +144,57 @@ def delete(request):
         return jsonify({"success": True}), 200
     except Exception as e:
         return f"An Error Occured: {e}"
-    
+
+
+
+'''Actions for a specific user'''
+
+@app.route('/horoscope', methods=['POST'])
+def horoscope():
+    try:
+        uid = request.form['uid']
+        user = User(uid)
+        return jsonify(user.getHoroscope()), 200
+    except Exception as e:
+        return f"An Error Occurred: {e}", 400
+
+@app.route('/openPack', methods=['POST'])
+def openPack():
+    try:
+        uid = request.form['uid']
+        user = User(uid)
+        return jsonify(user.openPack()), 200
+    except Exception as e:
+        return f"An Error Occurred: {e}", 400
+
+@app.route('/buyPack', methods=['POST'])
+def buyPack():
+    try:
+        uid = request.form['uid']
+        user = User(uid)
+        user.buyPack()
+        return "", 200
+    except Exception as e:
+        return f"An Error Occurred: {e}", 400
+
+@app.route('/sendLike', methods=['POST'])
+def sendLike():
+    try:
+        uid1 = request.form['uid1']
+        uid2 = request.form['uid2']
+        user1 = User(uid1)
+        user2 = User(uid2)
+        return jsonify(user1.sendLike(user2)), 200
+    except Exception as e:
+        return f"An Error Occurred: {e}", 400
+
+
 
 
 import pyrebase
-config = {
-    "apiKey":"AIzaSyBtzSPw1owheKdEdo853-3AuyGPLfBxPhM",
-    "authDomain":"aligned-5a855.firebaseapp.com",
-    "databaseURL": "https://users.firebaseio.com",
-    "storageBucket": "aligned-5a855.appspot.com"
-}
-firebase = pyrebase.initialize_app(config)
+
+firebase = pyrebase.initialize_app(userDB.firebaseConfig)
 storage = firebase.storage()
-####### WHEN WE ADD AUTHENTICATION
-# auth = firebase.auth()
-# # user = auth.sign_in_with_email_and_password(email, password)
-# # storage.child(uid).get_url(user['idToken'])
 
 @app.route('/addPic', methods=['POST','PUT'])
 def addPic():

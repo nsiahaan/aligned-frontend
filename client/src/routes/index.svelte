@@ -13,7 +13,9 @@
 	import Home from './Home.svelte';
 	import MyProfile from './MyProfile.svelte'
 	import OpennedPack from './OpennedPack.svelte';
-  
+	import Login from './Login.svelte';
+
+	import { isAuthenticated } from '../store.js';  
 	let rand = -1;
 	let list;
 
@@ -28,25 +30,25 @@
 
 </script>
 
-{#if page_tracker=="Home"}
+{#if page_tracker=="Home" && $isAuthenticated}
 <section> 
 	<Home/>
 </section>
-{:else if page_tracker=="Packs"}
+{:else if page_tracker=="Packs" && $isAuthenticated}
 <section>
 	<Packs bind:page_tracker={page_tracker}/>
 </section>
-{:else if page_tracker=="MyProfile"}
+{:else if page_tracker=="MyProfile" && $isAuthenticated}
 <section>
 	<MyProfile/>
 </section>
-{:else if page_tracker=="OpenPacks"}
+{:else if page_tracker=="OpennedPack" && $isAuthenticated}
 <section>
 	<OpennedPack/>
 </section>
 {:else}
 <section>
-	404: Oops! This page_tracker doesn't exist.
+	<Login/>
 </section>
 {/if}
 
