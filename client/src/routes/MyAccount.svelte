@@ -11,7 +11,7 @@
     import {youser, profilePic} from '../store.js';
     import {onMount} from 'svelte';
     let pic;
-    onMount(async () => {
+    onMount(() => {
         pic = $profilePic;
         console.log(pic);
     })
