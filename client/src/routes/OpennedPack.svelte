@@ -39,6 +39,17 @@
             })
     }
 
+    function sendLike(uid2){
+        let url = "http://127.0.0.1:5005/sendLike"
+        fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                uid1: $youser.uid,
+                uid2: uid2
+            })
+        })
+    }
 
     let astroPicPath = 'images/signs/';
     let mbtiPicPath = 'images/mbti_pics/';
@@ -224,7 +235,8 @@
                             <!--<Cardback/> -->
                         </div>
                     <!--<footer on:click={toggleBackFront} data-card-id={i}>Hi</footer>-->
-                    <div><button type="button" class="btn btn-outline-dark">Match!</button></div>
+                    <div><button type="button" class="btn btn-outline-dark" 
+                        on:click={() => sendLike(person.uid)}>Send Like!</button></div>
                     <!--</div>-->
                 </div>
                 {/each}
@@ -244,7 +256,7 @@
 	}
 
 .btn {
-    margin-bottom: 5px;
+    margin-bottom: 30px;
 }
 
 .cards-scroll {
