@@ -8,7 +8,8 @@
     $: imready = false;
     onMount(() => {
         youser.useLocalStorage();
-        openPack()
+        openPack();
+        callUser();
     })
 
     function openPack(){
@@ -27,6 +28,17 @@
             return d;
         }).then(() => { imready = true })
     }
+
+    function callUser() {
+        let url = "http://127.0.0.1:5005/list?uid=" + $youser.uid
+        fetch(url)
+        .then(d => d.json())
+            .then(d => {
+                youser.set(d)
+                return d;
+            })
+    }
+
 
     let astroPicPath = 'images/signs/';
     let mbtiPicPath = 'images/mbti_pics/';
@@ -134,11 +146,6 @@
     }
 
 
-    let showme = true;
-    function dontShowMe() {
-        showme = false;
-    }
-
     import { tweened } from 'svelte/motion';
     let original = 0; // TYPE NUMBER OF SECONDS HERE
     let timer = tweened(original)
@@ -158,28 +165,28 @@
     crossorigin="anonymous">
 </head>
 <body>
-    {#if $timer >= 7 && showme && imready}
-    <div style="text-align:center; margin-top: 20%;">
-    <button  
 
-            on:click={dontShowMe}
-        class="btn btn-outline-dark"
-        id="openPackButton" 
-        >Reveal Cards!</button>
-    </div>
-    {/if}
     
     <div style="padding: 30px">
-    {#if $timer > 1 && $timer < 7}
+    {#if $timer > 1 && !imready}
     <img {src} alt="Open a pack here!"/>
     {/if}
-    {#if $timer > 2.5 && $timer < 7}
+    {#if $timer > 2.5 && !imready}
     <img {src} alt="Open a pack here!"/>
     {/if}
-    {#if $timer > 4 && $timer < 7}
+    {#if $timer > 4 && !imready}
     <img {src} alt="Open a pack here!"/>
     {/if}
-    {#if $timer > 5.5 && $timer < 7}
+    {#if $timer > 5.5 && !imready}
+    <img {src} alt="Open a pack here!"/>
+    {/if}
+    {#if $timer > 7 && !imready}
+    <img {src} alt="Open a pack here!"/>
+    {/if}
+    {#if $timer > 8.5 && !imready}
+    <img {src} alt="Open a pack here!"/>
+    {/if}
+    {#if $timer > 10 && !imready}
     <img {src} alt="Open a pack here!"/>
     {/if}
     </div>
