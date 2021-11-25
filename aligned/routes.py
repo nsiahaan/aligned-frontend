@@ -152,7 +152,7 @@ def delete(request):
 @app.route('/horoscope', methods=['POST'])
 def horoscope():
     try:
-        uid = request.form['uid']
+        uid = request.json['uid']
         user = User(uid)
         return jsonify(user.getHoroscope()), 200
     except Exception as e:
@@ -161,7 +161,7 @@ def horoscope():
 @app.route('/openPack', methods=['POST'])
 def openPack():
     try:
-        uid = request.form['uid']
+        uid = request.json['uid']
         user = User(uid)
         return jsonify(user.openPack()), 200
     except Exception as e:
@@ -170,7 +170,7 @@ def openPack():
 @app.route('/buyPack', methods=['POST'])
 def buyPack():
     try:
-        uid = request.form['uid']
+        uid = request.json['uid']
         user = User(uid)
         user.buyPack()
         return "", 200
@@ -180,8 +180,8 @@ def buyPack():
 @app.route('/sendLike', methods=['POST'])
 def sendLike():
     try:
-        uid1 = request.form['uid1']
-        uid2 = request.form['uid2']
+        uid1 = request.json['uid1']
+        uid2 = request.json['uid2']
         user1 = User(uid1)
         user2 = User(uid2)
         return jsonify(user1.sendLike(user2)), 200
