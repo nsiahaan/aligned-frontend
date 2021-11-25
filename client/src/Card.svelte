@@ -34,8 +34,7 @@
 </div>
 
 
-
-  <style>
+<style>
     .card{
         border:10px solid;
         border-color: #c9d7f8;
@@ -98,4 +97,4 @@
         vertical-align: middle;
         height: 100%;
     }
-  </style>
+</style>

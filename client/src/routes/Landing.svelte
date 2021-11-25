@@ -5,12 +5,12 @@
 </script>
 
 
-<!-- <Background> -->
 <div class="image">
 <section>
     <div class="nav-area">
         <button type="button" class="btn btn-outline-light" id="login-button"
         on:click={()=> page_tracker = "Login"}>Log In</button>
+
     </div>
 
     <div class="container1">
@@ -26,7 +26,6 @@
     </div>
 </section>
 </div>
-<!-- </Background> -->
 
 <style>
     .image {
@@ -34,6 +33,7 @@
         top: 0;
         height: 100%;
         width: 100%;
+
         background-color: white;
         background-image: url("https://i.imgur.com/VsIoeOJ.png");
         background-repeat: no-repeat;
@@ -65,5 +65,13 @@
     #signup-button {
         background-color: #39398e;
         color: white;
+    }
+
+    h3 {
+        font-weight: bold;
+        font-size: 200%;
+    }
+    p {
+        font-size: large;
     }
 </style>
