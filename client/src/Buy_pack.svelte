@@ -4,7 +4,7 @@
     import { youser } from './store.js'
     import {onMount} from 'svelte';
     onMount(() => {
-        youser.useLocalStorage();  
+        youser.useLocalStorage();
     })
     
     function buyPackHandler(){
