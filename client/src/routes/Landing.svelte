@@ -48,4 +48,11 @@
         background-color: #39398e;
         color: white;
     }
+    h3 {
+        font-weight: bold;
+        font-size: 200%;
+    }
+    p {
+        font-size: large;
+    }
 </style>
