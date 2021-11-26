@@ -1,3 +1,10 @@
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+    rel="stylesheet" 
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
+    crossorigin="anonymous">
+</head>
+
 <script>
     import {page} from '$app/stores';
     export let page_tracker = "Landing"
@@ -61,6 +68,7 @@
     #login-button {
         background-color: white;
         color: black;
+        margin-top: 25px;
     }
     #signup-button {
         background-color: #39398e;
