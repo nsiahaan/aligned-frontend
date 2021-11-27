@@ -28,8 +28,9 @@
     export let profileDescription = "This is my cute profile description.";
     export let gender = "Male";
     
-    async function logout () {
+    function logout () {
         isAuthenticated.set(false)
+        window.localStorage.clear()
 	}
 </script>
 

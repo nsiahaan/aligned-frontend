@@ -81,7 +81,7 @@ def create():
     except Exception as e:
         return f"An Error Occured: {e}"
 
-@app.route('/getuid',methods=['GET'])
+@app.route('/getuid', methods=['GET'])
 def getuid():
     try:
         email = request.args.get('email')
@@ -149,10 +149,10 @@ def delete(request):
 
 '''Actions for a specific user'''
 
-@app.route('/horoscope', methods=['POST'])
+@app.route('/horoscope', methods=['GET'])
 def horoscope():
     try:
-        uid = request.json['uid']
+        uid = request.args.get('uid')
         user = User(uid)
         return jsonify(user.getHoroscope()), 200
     except Exception as e:
