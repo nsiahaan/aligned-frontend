@@ -7,14 +7,15 @@
 
 
 <script>
-	import { youser,isAuthenticated, profilePic } from '../store.js'
+	import { youser,isAuthenticated, profilePic,horodict } from '../store.js'
 	export let page_tracker = "Home"
 	import {page} from '$app/stores';
 	import {onMount} from 'svelte';
 	onMount(() => {
 		youser.useLocalStorage();
 		isAuthenticated.useLocalStorage();
-		profilePic.useLocalStorage();	
+		profilePic.useLocalStorage();
+		horodict.useLocalStorage();
 	})
 	
 	let email = "";
@@ -45,8 +46,24 @@
 		        .then(d => {
 		        	console.log(d[uid])
 		            profilePic.set(d[uid])
-		            return d[uid]
+		            return uid
 		        })
+		        
+		        let url2 = "http://127.0.0.1:5005/horoscope";
+		        console.log(uid)
+		        fetch(url2, {
+		            method: 'POST',
+		            headers: { 'Content-Type': 'application/json' },
+		            body: JSON.stringify({
+		                uid: uid
+		            })
+		        }).then(d => d.json)
+		        .then(d => {
+		        	console.log(d)
+		        	horodict.set(d)
+		        })
+
+
 	        })
         })
 
