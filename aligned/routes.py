@@ -21,12 +21,15 @@ def home(path):
     return send_from_directory('client/public', path)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 @app.route("/rand")
 def rand():
     return str(random.randint(0, 100))
 
 >>>>>>> 2aedc4eca5b0821cc3dde04f45bc4da20d05f6e7
+=======
+>>>>>>> 0721c2a1758cbf44913d1d36dedb970c31e457c7
 @app.route('/login', methods=['POST'])
 def login():
     try:
@@ -145,13 +148,8 @@ def delete():
         userDB.deleteUser(uid)
         return jsonify({"success": True}), 200
     except Exception as e:
-<<<<<<< HEAD
+
         return f"An Error Occured: {e}", 400
-    
-=======
-        return f"An Error Occured: {e}"
-
-
 
 '''Actions for a specific user'''
 
@@ -194,6 +192,7 @@ def sendLike():
     except Exception as e:
         return f"An Error Occurred: {e}", 400
 
+<<<<<<< HEAD
 
 
 
@@ -203,6 +202,8 @@ firebase = pyrebase.initialize_app(userDB.firebaseConfig)
 storage = firebase.storage()
 
 >>>>>>> 2aedc4eca5b0821cc3dde04f45bc4da20d05f6e7
+=======
+>>>>>>> 0721c2a1758cbf44913d1d36dedb970c31e457c7
 @app.route('/addPic', methods=['POST','PUT'])
 def addPic():
     """
