@@ -110,21 +110,32 @@ class User:
 
         Example usage: 
         horoscope = getHoroscope('aries')
-        >> object
-        horoscope.mood
+        >> dictionary
+        horoscope['mood']
         >> 'Relaxed'
-        horoscope.lucky_time
+        horoscope['lucky_time']
         >> '2pm'
-        horoscope.description
+        horoscope['description']
         >> 'If you don't have big plans, you can rest assured that you will soon. A surprise missive is waiting. Enjoy. It's spontaneity, not variety, that's the spice of life.'
-        horoscope.color
+        horoscope['color']
         >> 'Spring Green'
-        horoscope.compatibility
+        horoscope['compatibility']
         >> 'Aquarius'
-        horoscope.lucky_number
+        horoscope['lucky_number']
         >> 85
         """
-        return pyaztro.Aztro(sign=self.astro)
+
+        horoscopeObject = pyaztro.Aztro(sign=self.astro)
+        horoscopeDict = {}
+
+        horoscopeDict["mood"] = horoscopeObject.mood
+        horoscopeDict["lucky_time"] = horoscopeObject.lucky_time
+        horoscopeDict["description"] = horoscopeObject.description
+        horoscopeDict["color"] = horoscopeObject.color
+        horoscopeDict["compatibility"] = horoscopeObject.compatibility
+        horoscopeDict["lucky_number"] = horoscopeObject.lucky_number
+
+        return horoscopeDict
 
     def compatibilityScore(self,user2):
         """
@@ -141,8 +152,8 @@ class User:
         mbtiScore = mbtiCompatibilityChart[mbtiIndex[self.mbti]][mbtiIndex[user2.mbti]]
         staticAstroScore = astroCompatibilityChart[astroIndex[self.astro]][astroIndex[user2.astro]]
 
-        if self.getHoroscope().compatibility.lower() == user2.astro or \
-        user2.getHoroscope().compatibility.lower() == self.astro:
+        if self.getHoroscope()['compatibility'].lower() == user2.astro or \
+        user2.getHoroscope()['compatibility'].lower() == self.astro:
             dailyAstroScore = 1
         else:
             dailyAstroScore = 0
@@ -221,13 +232,16 @@ class User:
         """
 
         currentNumPacks = int(userDB.getUser(self.uid, parameter='numPacks'))
-        currentNumPacks -= 1
-        openPack = {
-            'numPacks': currentNumPacks
-        }
-        userDB.updateUser(self.uid, openPack)
+        if (currentNumPacks < 1):
+            raise Exception("You don't have any packs left")
+        else:
+            currentNumPacks -= 1
+            openPack = {
+                'numPacks': currentNumPacks
+            }
+            userDB.updateUser(self.uid, openPack)
 
-        return self.generatePack()
+            return self.generatePack()
 
     def buyPack(self):
         """
@@ -237,15 +251,18 @@ class User:
         Output: none
         """
 
-        currentNumPacks = int(userDB.getUser(self.uid, parameter='numPacks'))
-        currentNumPacks += 1
         currentCredits = int(userDB.getUser(self.uid, parameter='credits'))
-        currentCredits -= PRICE_PER_PACK
-        buyPack = {
-            'numPacks': currentNumPacks,
-            'credits': currentCredits,
-        }
-        userDB.updateUser(self.uid, buyPack)
+        if (currentCredits < PRICE_PER_PACK):
+            raise Exception("You don't have enough credits")
+        else:
+            currentCredits -= PRICE_PER_PACK
+            currentNumPacks = int(userDB.getUser(self.uid, parameter='numPacks'))
+            currentNumPacks += 1
+            buyPack = {
+                'numPacks': currentNumPacks,
+                'credits': currentCredits,
+            }
+            userDB.updateUser(self.uid, buyPack)
 
     def sendLike(self,user2):
         """

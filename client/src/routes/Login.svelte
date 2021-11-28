@@ -8,6 +8,8 @@
 
 <script>
 	import { youser,isAuthenticated, profilePic } from '../store.js'
+	export let page_tracker = "Home"
+	import {page} from '$app/stores';
 	import {onMount} from 'svelte';
 	onMount(() => {
 		youser.useLocalStorage();
@@ -74,10 +76,10 @@
 				return data;
 			} else {
 				invalidCreds = false;
-				// youser.set(data);
+				page_tracker = "Home";
 				isAuthenticated.set(true)
 				getUser(data['email'])
-				return data;
+				window.location.replace('/Home')
 			}
 		}).then(d=>console.log(d))
 	}

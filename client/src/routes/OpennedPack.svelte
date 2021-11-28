@@ -2,12 +2,54 @@
 <script>
     import Card from '../Card.svelte';
     import Cardback from '../Cardback.svelte';
-    //import Info from './information.js';
-    
-    //async function loadComponent(name) {
-	//		console.log(`./${name}.svelte`);
-    //    return await import(`./${name}.svelte`);
-    //}
+    import { youser } from '../store.js'
+    import {onMount} from 'svelte';
+
+    $: imready = false;
+    onMount(() => {
+        youser.useLocalStorage();
+        openPack();
+        callUser();
+    })
+
+    function openPack(){
+        let url = "http://127.0.0.1:5005/openPack"
+        fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                uid: $youser.uid
+            })
+        }).then(d => d.json())
+        .then(d => {
+
+            getList(d);
+            getPics(d);
+            return d;
+        }).then(() => { imready = true })
+    }
+
+    function callUser() {
+        let url = "http://127.0.0.1:5005/list?uid=" + $youser.uid
+        fetch(url)
+        .then(d => d.json())
+            .then(d => {
+                youser.set(d)
+                return d;
+            })
+    }
+
+    function sendLike(uid2){
+        let url = "http://127.0.0.1:5005/sendLike"
+        fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                uid1: $youser.uid,
+                uid2: uid2
+            })
+        })
+    }
 
     let astroPicPath = 'images/signs/';
     let mbtiPicPath = 'images/mbti_pics/';
@@ -19,7 +61,6 @@
     let list =[];
     let dictpics = {};
     let pics =[];
-
     let defaultTestUIDs = ['17465e7f-35d0-4a4f-931a-b4185e507b04', '217e2e1b-e242-4081-8678-44277014f940', '5cd73c82-94ac-4163-95b1-1ae5be851ea9', '39018b26-8c19-4279-ba0a-271f10a7b8df', '2e30119b-fe18-4ad2-a91d-a7aa88b8a3e8', '3acbc757-6d94-44ec-aee5-d7f0278e992b', '3b5a34c7-d906-477d-b66c-88100495f43f']
 
     const toggleBackFront = (e) => {
@@ -116,11 +157,6 @@
     }
 
 
-    let showme = true;
-    function dontShowMe() {
-        showme = false;
-    }
-
     import { tweened } from 'svelte/motion';
     let original = 0; // TYPE NUMBER OF SECONDS HERE
     let timer = tweened(original)
@@ -140,28 +176,31 @@
     crossorigin="anonymous">
 </head>
 <body>
-    {#if $timer >= 5 && showme}
-    <button 
-            on:click={() => getList(defaultTestUIDs)} 
-            on:click={() => getPics(defaultTestUIDs)}
-            on:click={dontShowMe}
-        class="btn btn-outline-dark"
-        id="openPackButton" 
-        >Reveal Cards!</button>
-    {/if}
 
-    {#if $timer > 5.0/7 && $timer < 35/7}
+    
+    <div style="padding: 30px">
+    {#if $timer > 1 && !imready}
     <img {src} alt="Open a pack here!"/>
     {/if}
-    {#if $timer > 10.0/7 && $timer < 35/7}
+    {#if $timer > 2.5 && !imready}
     <img {src} alt="Open a pack here!"/>
     {/if}
-    {#if $timer > 15.0/7 && $timer < 35/7}
+    {#if $timer > 4 && !imready}
     <img {src} alt="Open a pack here!"/>
     {/if}
-    {#if $timer > 20.0/7 && $timer < 35/7}
+    {#if $timer > 5.5 && !imready}
     <img {src} alt="Open a pack here!"/>
     {/if}
+    {#if $timer > 7 && !imready}
+    <img {src} alt="Open a pack here!"/>
+    {/if}
+    {#if $timer > 8.5 && !imready}
+    <img {src} alt="Open a pack here!"/>
+    {/if}
+    {#if $timer > 10 && !imready}
+    <img {src} alt="Open a pack here!"/>
+    {/if}
+    </div>
     <!-- {#if $timer > 25/7 && $timer < 35/7}
     <img {src} alt="Open a pack here!"/>
     {/if}
@@ -176,6 +215,7 @@
     <center>
         <div class="container-fluid">
             <div class="cards-scroll">
+                {#if imready}
                 {#each list as person, i}
                 <div class="card-butt">
                     <!--<div class="flip-box">-->
@@ -195,10 +235,12 @@
                             <!--<Cardback/> -->
                         </div>
                     <!--<footer on:click={toggleBackFront} data-card-id={i}>Hi</footer>-->
-                    <div><button type="button" class="btn btn-outline-dark">Match!</button></div>
+                    <div><button type="button" class="btn btn-outline-dark" 
+                        on:click={() => sendLike(person.uid)}>Send Like!</button></div>
                     <!--</div>-->
                 </div>
                 {/each}
+                {/if}
             </div>    
         </div>  
     </center>
@@ -214,7 +256,7 @@
 	}
 
 .btn {
-    margin-bottom: 5px;
+    margin-bottom: 30px;
 }
 
 .cards-scroll {

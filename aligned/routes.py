@@ -7,6 +7,7 @@ from flask import request, jsonify, send_from_directory
 import json
 import pyrebase
 from aligned import app, userDB
+from aligned.user import User
 
 firebase = pyrebase.initialize_app(userDB.firebaseConfig)
 storage = firebase.storage()
@@ -19,6 +20,13 @@ def base():
 def home(path):
     return send_from_directory('client/public', path)
 
+<<<<<<< HEAD
+=======
+@app.route("/rand")
+def rand():
+    return str(random.randint(0, 100))
+
+>>>>>>> 2aedc4eca5b0821cc3dde04f45bc4da20d05f6e7
 @app.route('/login', methods=['POST'])
 def login():
     try:
@@ -137,8 +145,64 @@ def delete():
         userDB.deleteUser(uid)
         return jsonify({"success": True}), 200
     except Exception as e:
+<<<<<<< HEAD
         return f"An Error Occured: {e}", 400
     
+=======
+        return f"An Error Occured: {e}"
+
+
+
+'''Actions for a specific user'''
+
+@app.route('/horoscope', methods=['POST'])
+def horoscope():
+    try:
+        uid = request.json['uid']
+        user = User(uid)
+        return jsonify(user.getHoroscope()), 200
+    except Exception as e:
+        return f"An Error Occurred: {e}", 400
+
+@app.route('/openPack', methods=['POST'])
+def openPack():
+    try:
+        uid = request.json['uid']
+        user = User(uid)
+        return jsonify(user.openPack()), 200
+    except Exception as e:
+        return f"An Error Occurred: {e}", 400
+
+@app.route('/buyPack', methods=['POST'])
+def buyPack():
+    try:
+        uid = request.json['uid']
+        user = User(uid)
+        user.buyPack()
+        return "", 200
+    except Exception as e:
+        return f"An Error Occurred: {e}", 400
+
+@app.route('/sendLike', methods=['POST'])
+def sendLike():
+    try:
+        uid1 = request.json['uid1']
+        uid2 = request.json['uid2']
+        user1 = User(uid1)
+        user2 = User(uid2)
+        return jsonify(user1.sendLike(user2)), 200
+    except Exception as e:
+        return f"An Error Occurred: {e}", 400
+
+
+
+
+import pyrebase
+
+firebase = pyrebase.initialize_app(userDB.firebaseConfig)
+storage = firebase.storage()
+
+>>>>>>> 2aedc4eca5b0821cc3dde04f45bc4da20d05f6e7
 @app.route('/addPic', methods=['POST','PUT'])
 def addPic():
     """
