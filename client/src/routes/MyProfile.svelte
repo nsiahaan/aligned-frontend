@@ -8,7 +8,7 @@
 
 <script> 
     import {astroPicPath, mbtiPicPath} from '../constants.js';
-    import {youser, profilePic} from '../store.js';
+    import {youser, profilePic, horodict} from '../store.js';
 //     import {onMount} from 'svelte';
 //     let pic
 //     onMount(async () => {
@@ -55,8 +55,8 @@
         Age = {$youser.dob}
         Gender = {$youser.gender}
         Bio = {$youser.bio}
-    />
-    {/if} 
+        />
+        {/if} 
     </div>
     <div class="big-box">
         <div class="container">           
@@ -65,23 +65,32 @@
                 <p> Daily Horoscope </p>
             </div>
             <div class="row horoscope-text horoscope">
-                <p>{horoscope}</p>
+                <p>{$horodict.description}</p>
             </div>
             <div class="row horoscope horoscope-bottom">
                 <div class="col">
-                Daily Love Compatibility
+                Daily Love Compatibility:
                     <div>
-                        Taurus
+                        {$horodict.compatibility}
                     </div>
                 </div>
                 <div class="col">
-                Mood of the Day
+                Mood of the Day:
+                    <div>
+                        {$horodict.mood}
+                    </div>
                 </div>
                 <div class="col">
-                Lucky Number
+                Lucky Number:
+                    <div>
+                        {$horodict.lucky_number}
+                    </div>
                 </div>
                 <div class="col">
-                Lucky Color
+                Lucky Color:
+                    <div>
+                        {$horodict.color}
+                    </div>
                 </div>
             </div>
         </div> 

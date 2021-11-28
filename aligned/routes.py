@@ -75,7 +75,7 @@ def create():
     except Exception as e:
         return f"An Error Occured: {e}", 400
 
-@app.route('/getuid',methods=['GET'])
+@app.route('/getuid', methods=['GET'])
 def getuid():
     """
         getuid(): Gets UID from Firestore user based on email
@@ -142,10 +142,10 @@ def delete():
 
 '''Actions for a specific user'''
 
-@app.route('/horoscope', methods=['POST'])
+@app.route('/horoscope', methods=['GET'])
 def horoscope():
     try:
-        uid = request.json['uid']
+        uid = request.args.get('uid')
         user = User(uid)
         return jsonify(user.getHoroscope()), 200
     except Exception as e:
