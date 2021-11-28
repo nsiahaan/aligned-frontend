@@ -8,7 +8,7 @@
 
 <script> 
     import {astroPicPath, mbtiPicPath} from '../constants.js';
-    import { youser,isAuthenticated, profilePic } from '../store.js'
+    import { youser, isAuthenticated, profilePic, horodict } from '../store.js'
     import {onMount} from 'svelte';
     let pic;
     onMount(() => {
@@ -29,8 +29,10 @@
     export let gender = "Male";
     
     function logout () {
+        youser.set({})
+        profilePic.set("images/default_profile_pics/no-user.png")
+        horodict.set({})
         isAuthenticated.set(false)
-        window.localStorage.clear()
 	}
 </script>
 

@@ -15,15 +15,22 @@
             body: JSON.stringify({
                 uid: uid
             })
+        }).then(response => {
+            if (response.status != 200) {
+                window.alert("todo: response.message or something")
+            }
+            else {
+                callUser()
+            }
         })
     }
+
     function callUser() {
         let url = "http://127.0.0.1:5005/list?uid=" + uid
         fetch(url)
         .then(d => d.json())
             .then(d => {
                 youser.set(d)
-                return d;
             })
     }
 </script>
@@ -31,7 +38,7 @@
 <img {src} class="resize" alt="Buy a pack here!"/>
 <br>
 <br>
-<button class="btn btn-outline-dark" on:click={buyPackHandler} on:click={callUser}>
+<button class="btn btn-outline-dark" on:click={buyPackHandler}>
     Buy Pack!
 </button>
 
