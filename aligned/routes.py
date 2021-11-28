@@ -50,7 +50,9 @@ def signup():
                 "mbti":data['mbti'],
                 "sPref":data['sexPref'],
                 "email":data['email'],
-                "bio":data['bio']
+                "bio":data['bio'],
+                "instagram":data['instagram'],
+                "snapchat":data["snapchat"]
             }
             userDB.addUser(addData, uid)
         return jsonify(addedUser), 200

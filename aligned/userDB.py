@@ -2,10 +2,8 @@
 This module provides functions for managing the user database.
 """
 
-from flask import request, jsonify
-from aligned import app
-import uuid
-
+from flask import jsonify
+from datetime import date
 import firebase_admin, firebase
 from firebase import Firebase
 from flask import jsonify
@@ -43,7 +41,7 @@ def addUser(json, id):
     data = {
         "name":json['name'],
         "uid" : id,
-        #"age":json['age'],
+        "age": calculateAge(json['dob']),
         "dob":json['dob'],
         #"astro":json['astro'],
         "gender":json['gender'],
@@ -59,6 +57,14 @@ def addUser(json, id):
         "bio":json["bio"]
     }
     users_ref.document(id).set(data, merge=True )
+ 
+def calculateAge(birthDate):
+    today = date.today()
+    age = today.year - birthDate.year - ((today.month, today.day) < (birthDate.month, birthDate.day))
+    return age
+     
+# Driver code
+print(calculateAge(date(1997, 2, 3)), "years")
 
 def getUsers(uids=[]):
     docs = [users_ref.document(uid) for uid in uids]
