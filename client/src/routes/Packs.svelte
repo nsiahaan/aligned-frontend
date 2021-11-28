@@ -1,6 +1,7 @@
 <script>
     import Buy_pack from '../Buy_pack.svelte'
     import Open_pack from '../Open_pack.svelte'
+    import {youser} from '../store.js';
 
     export let packCount = 15;
     export let page_tracker = "Packs";
@@ -9,7 +10,9 @@
 
 <section>
     <div class="pack-remains">
-        Packs remaining: {packCount}
+        <p>Packs remaining: {$youser.numPacks}</p>
+
+        <p>Credits: {$youser.credits}</p>
     </div>
     <br>
     <br>
@@ -25,7 +28,7 @@
             </div>
             <div class="col">
                 <div class="buy-pack">
-                    <Buy_pack bind:packCount={packCount}/>
+                    <Buy_pack bind:uid={$youser.uid}/>
                 </div>
             </div>
         </div>

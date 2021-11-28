@@ -15,12 +15,14 @@
     export let Age = 0;
     export let Gender = "None";
     export let Bio = "No info!!"
+    let fallback = 'images/default_profile_pics/no-user.png';
+    const handleError = ev => ev.target.src = fallback
 
 </script>
 <div class="card" style="width: 25rem;">
     <div class='pics'>
         <img src={AstroPic} id="card-img-top1" alt="...">
-        <img src={Picture} id="card-img-top2"  alt="...">
+        <img src={Picture} id="card-img-top2"  alt="..." on:error={handleError}>
         <img src={PersonalityPic} id="card-img-top3" alt="...">
     </div>
     <div class="card-body">

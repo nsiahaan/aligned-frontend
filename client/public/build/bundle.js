@@ -339,7 +339,7 @@ var app = (function () {
     }
 
     function dispatch_dev(type, detail) {
-        document.dispatchEvent(custom_event(type, Object.assign({ version: '3.44.2' }, detail), true));
+        document.dispatchEvent(custom_event(type, Object.assign({ version: '3.44.1' }, detail), true));
     }
     function append_dev(target, node) {
         dispatch_dev('SvelteDOMInsert', { target, node });
@@ -871,8 +871,10 @@ var app = (function () {
     	let img;
     	let img_src_value;
     	let t0;
-    	let br;
+    	let br0;
     	let t1;
+    	let br1;
+    	let t2;
     	let button;
     	let mounted;
     	let dispose;
@@ -881,17 +883,20 @@ var app = (function () {
     		c: function create() {
     			img = element("img");
     			t0 = space();
-    			br = element("br");
+    			br0 = element("br");
     			t1 = space();
+    			br1 = element("br");
+    			t2 = space();
     			button = element("button");
     			button.textContent = "Buy Pack!";
     			if (!src_url_equal(img.src, img_src_value = /*src*/ ctx[0])) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "class", "resize svelte-ws1sp3");
     			attr_dev(img, "alt", "Buy a pack here!");
-    			add_location(img, file$7, 9, 0, 156);
-    			add_location(br, file$7, 10, 0, 207);
-    			attr_dev(button, "class", "button svelte-ws1sp3");
-    			add_location(button, file$7, 11, 0, 212);
+    			add_location(img, file$7, 9, 0, 149);
+    			add_location(br0, file$7, 10, 0, 200);
+    			add_location(br1, file$7, 11, 0, 205);
+    			attr_dev(button, "class", "btn btn-outline-dark");
+    			add_location(button, file$7, 12, 0, 210);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -899,8 +904,10 @@ var app = (function () {
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
     			insert_dev(target, t0, anchor);
-    			insert_dev(target, br, anchor);
+    			insert_dev(target, br0, anchor);
     			insert_dev(target, t1, anchor);
+    			insert_dev(target, br1, anchor);
+    			insert_dev(target, t2, anchor);
     			insert_dev(target, button, anchor);
 
     			if (!mounted) {
@@ -914,8 +921,10 @@ var app = (function () {
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(img);
     			if (detaching) detach_dev(t0);
-    			if (detaching) detach_dev(br);
+    			if (detaching) detach_dev(br0);
     			if (detaching) detach_dev(t1);
+    			if (detaching) detach_dev(br1);
+    			if (detaching) detach_dev(t2);
     			if (detaching) detach_dev(button);
     			mounted = false;
     			dispose();
@@ -1004,25 +1013,30 @@ var app = (function () {
     	let img;
     	let img_src_value;
     	let t0;
-    	let br;
+    	let br0;
     	let t1;
-    	let button;
-    	let mounted;
-    	let dispose;
+    	let br1;
+    	let t2;
+    	let a;
 
     	const block = {
     		c: function create() {
     			img = element("img");
     			t0 = space();
-    			br = element("br");
+    			br0 = element("br");
     			t1 = space();
-    			button = element("button");
-    			button.textContent = "Open Pack!";
+    			br1 = element("br");
+    			t2 = space();
+    			a = element("a");
+    			a.textContent = "Open Pack";
     			if (!src_url_equal(img.src, img_src_value = /*src*/ ctx[0])) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "alt", "Open a pack here!");
-    			add_location(img, file$6, 11, 0, 257);
-    			add_location(br, file$6, 12, 0, 294);
-    			add_location(button, file$6, 13, 0, 299);
+    			add_location(img, file$6, 12, 0, 267);
+    			add_location(br0, file$6, 13, 0, 304);
+    			add_location(br1, file$6, 14, 0, 309);
+    			attr_dev(a, "href", "/OpennedPack");
+    			attr_dev(a, "class", "btn btn-outline-dark");
+    			add_location(a, file$6, 15, 0, 314);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1030,14 +1044,11 @@ var app = (function () {
     		m: function mount(target, anchor) {
     			insert_dev(target, img, anchor);
     			insert_dev(target, t0, anchor);
-    			insert_dev(target, br, anchor);
+    			insert_dev(target, br0, anchor);
     			insert_dev(target, t1, anchor);
-    			insert_dev(target, button, anchor);
-
-    			if (!mounted) {
-    				dispose = listen_dev(button, "click", /*openPackHandler*/ ctx[1], false, false, false);
-    				mounted = true;
-    			}
+    			insert_dev(target, br1, anchor);
+    			insert_dev(target, t2, anchor);
+    			insert_dev(target, a, anchor);
     		},
     		p: noop,
     		i: noop,
@@ -1045,11 +1056,11 @@ var app = (function () {
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(img);
     			if (detaching) detach_dev(t0);
-    			if (detaching) detach_dev(br);
+    			if (detaching) detach_dev(br0);
     			if (detaching) detach_dev(t1);
-    			if (detaching) detach_dev(button);
-    			mounted = false;
-    			dispose();
+    			if (detaching) detach_dev(br1);
+    			if (detaching) detach_dev(t2);
+    			if (detaching) detach_dev(a);
     		}
     	};
 
@@ -1068,41 +1079,41 @@ var app = (function () {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('Open_pack', slots, []);
     	let src = "images/astro-card.webp";
-    	let { page = "Packs" } = $$props;
+    	let { page_tracker = "Packs" } = $$props;
 
     	//Need to call backend function to create a pack
     	function openPackHandler() {
-    		$$invalidate(2, page = "OpenPacks");
+    		$$invalidate(1, page_tracker = "OpenPacks");
     	} //console.log("Open pack.");
 
-    	const writable_props = ['page'];
+    	const writable_props = ['page_tracker'];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Open_pack> was created with unknown prop '${key}'`);
     	});
 
     	$$self.$$set = $$props => {
-    		if ('page' in $$props) $$invalidate(2, page = $$props.page);
+    		if ('page_tracker' in $$props) $$invalidate(1, page_tracker = $$props.page_tracker);
     	};
 
-    	$$self.$capture_state = () => ({ src, page, openPackHandler });
+    	$$self.$capture_state = () => ({ src, page_tracker, openPackHandler });
 
     	$$self.$inject_state = $$props => {
     		if ('src' in $$props) $$invalidate(0, src = $$props.src);
-    		if ('page' in $$props) $$invalidate(2, page = $$props.page);
+    		if ('page_tracker' in $$props) $$invalidate(1, page_tracker = $$props.page_tracker);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [src, openPackHandler, page];
+    	return [src, page_tracker];
     }
 
     class Open_pack extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$6, create_fragment$6, safe_not_equal, { page: 2 });
+    		init(this, options, instance$6, create_fragment$6, safe_not_equal, { page_tracker: 1 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -1112,17 +1123,17 @@ var app = (function () {
     		});
     	}
 
-    	get page() {
+    	get page_tracker() {
     		throw new Error("<Open_pack>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	set page(value) {
+    	set page_tracker(value) {
     		throw new Error("<Open_pack>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
 
-    /* src/Packs.svelte generated by Svelte v3.44.1 */
-    const file$5 = "src/Packs.svelte";
+    /* src/routes/Packs.svelte generated by Svelte v3.44.1 */
+    const file$5 = "src/routes/Packs.svelte";
 
     function create_fragment$5(ctx) {
     	let section0;
@@ -1135,28 +1146,31 @@ var app = (function () {
     	let br1;
     	let t4;
     	let section1;
-    	let div3;
+    	let div6;
+    	let div5;
+    	let div2;
     	let div1;
     	let open_pack;
-    	let updating_page;
+    	let updating_page_tracker;
     	let t5;
-    	let div2;
+    	let div4;
+    	let div3;
     	let buy_pack;
     	let updating_packCount;
     	let current;
 
-    	function open_pack_page_binding(value) {
-    		/*open_pack_page_binding*/ ctx[2](value);
+    	function open_pack_page_tracker_binding(value) {
+    		/*open_pack_page_tracker_binding*/ ctx[2](value);
     	}
 
     	let open_pack_props = {};
 
-    	if (/*page*/ ctx[1] !== void 0) {
-    		open_pack_props.page = /*page*/ ctx[1];
+    	if (/*page_tracker*/ ctx[1] !== void 0) {
+    		open_pack_props.page_tracker = /*page_tracker*/ ctx[1];
     	}
 
     	open_pack = new Open_pack({ props: open_pack_props, $$inline: true });
-    	binding_callbacks.push(() => bind(open_pack, 'page', open_pack_page_binding));
+    	binding_callbacks.push(() => bind(open_pack, 'page_tracker', open_pack_page_tracker_binding));
 
     	function buy_pack_packCount_binding(value) {
     		/*buy_pack_packCount_binding*/ ctx[3](value);
@@ -1183,24 +1197,33 @@ var app = (function () {
     			br1 = element("br");
     			t4 = space();
     			section1 = element("section");
-    			div3 = element("div");
+    			div6 = element("div");
+    			div5 = element("div");
+    			div2 = element("div");
     			div1 = element("div");
     			create_component(open_pack.$$.fragment);
     			t5 = space();
-    			div2 = element("div");
+    			div4 = element("div");
+    			div3 = element("div");
     			create_component(buy_pack.$$.fragment);
     			attr_dev(div0, "class", "pack-remains svelte-oecmhk");
-    			add_location(div0, file$5, 10, 4, 268);
-    			add_location(br0, file$5, 13, 4, 347);
-    			add_location(br1, file$5, 14, 4, 356);
-    			add_location(section0, file$5, 9, 0, 254);
+    			add_location(div0, file$5, 10, 4, 278);
+    			add_location(br0, file$5, 13, 4, 357);
+    			add_location(br1, file$5, 14, 4, 366);
+    			add_location(section0, file$5, 9, 0, 264);
     			attr_dev(div1, "class", "open-pack");
-    			add_location(div1, file$5, 19, 8, 424);
-    			attr_dev(div2, "class", "buy-pack");
-    			add_location(div2, file$5, 23, 8, 514);
-    			attr_dev(div3, "class", "grid-container svelte-oecmhk");
-    			add_location(div3, file$5, 18, 4, 387);
-    			add_location(section1, file$5, 17, 0, 373);
+    			add_location(div1, file$5, 21, 16, 497);
+    			attr_dev(div2, "class", "col");
+    			add_location(div2, file$5, 20, 12, 461);
+    			attr_dev(div3, "class", "buy-pack");
+    			add_location(div3, file$5, 26, 16, 675);
+    			attr_dev(div4, "class", "col");
+    			add_location(div4, file$5, 25, 12, 641);
+    			attr_dev(div5, "class", "row");
+    			add_location(div5, file$5, 19, 8, 429);
+    			attr_dev(div6, "class", "container");
+    			add_location(div6, file$5, 18, 4, 397);
+    			add_location(section1, file$5, 17, 0, 383);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1216,22 +1239,25 @@ var app = (function () {
     			append_dev(section0, br1);
     			insert_dev(target, t4, anchor);
     			insert_dev(target, section1, anchor);
-    			append_dev(section1, div3);
-    			append_dev(div3, div1);
+    			append_dev(section1, div6);
+    			append_dev(div6, div5);
+    			append_dev(div5, div2);
+    			append_dev(div2, div1);
     			mount_component(open_pack, div1, null);
-    			append_dev(div3, t5);
-    			append_dev(div3, div2);
-    			mount_component(buy_pack, div2, null);
+    			append_dev(div5, t5);
+    			append_dev(div5, div4);
+    			append_dev(div4, div3);
+    			mount_component(buy_pack, div3, null);
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
     			if (!current || dirty & /*packCount*/ 1) set_data_dev(t1, /*packCount*/ ctx[0]);
     			const open_pack_changes = {};
 
-    			if (!updating_page && dirty & /*page*/ 2) {
-    				updating_page = true;
-    				open_pack_changes.page = /*page*/ ctx[1];
-    				add_flush_callback(() => updating_page = false);
+    			if (!updating_page_tracker && dirty & /*page_tracker*/ 2) {
+    				updating_page_tracker = true;
+    				open_pack_changes.page_tracker = /*page_tracker*/ ctx[1];
+    				add_flush_callback(() => updating_page_tracker = false);
     			}
 
     			open_pack.$set(open_pack_changes);
@@ -1280,16 +1306,16 @@ var app = (function () {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('Packs', slots, []);
     	let { packCount = 15 } = $$props;
-    	let { page = "Packs" } = $$props;
-    	const writable_props = ['packCount', 'page'];
+    	let { page_tracker = "Packs" } = $$props;
+    	const writable_props = ['packCount', 'page_tracker'];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Packs> was created with unknown prop '${key}'`);
     	});
 
-    	function open_pack_page_binding(value) {
-    		page = value;
-    		$$invalidate(1, page);
+    	function open_pack_page_tracker_binding(value) {
+    		page_tracker = value;
+    		$$invalidate(1, page_tracker);
     	}
 
     	function buy_pack_packCount_binding(value) {
@@ -1299,27 +1325,37 @@ var app = (function () {
 
     	$$self.$$set = $$props => {
     		if ('packCount' in $$props) $$invalidate(0, packCount = $$props.packCount);
-    		if ('page' in $$props) $$invalidate(1, page = $$props.page);
+    		if ('page_tracker' in $$props) $$invalidate(1, page_tracker = $$props.page_tracker);
     	};
 
-    	$$self.$capture_state = () => ({ Buy_pack, Open_pack, packCount, page });
+    	$$self.$capture_state = () => ({
+    		Buy_pack,
+    		Open_pack,
+    		packCount,
+    		page_tracker
+    	});
 
     	$$self.$inject_state = $$props => {
     		if ('packCount' in $$props) $$invalidate(0, packCount = $$props.packCount);
-    		if ('page' in $$props) $$invalidate(1, page = $$props.page);
+    		if ('page_tracker' in $$props) $$invalidate(1, page_tracker = $$props.page_tracker);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [packCount, page, open_pack_page_binding, buy_pack_packCount_binding];
+    	return [
+    		packCount,
+    		page_tracker,
+    		open_pack_page_tracker_binding,
+    		buy_pack_packCount_binding
+    	];
     }
 
     class Packs extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$5, create_fragment$5, safe_not_equal, { packCount: 0, page: 1 });
+    		init(this, options, instance$5, create_fragment$5, safe_not_equal, { packCount: 0, page_tracker: 1 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -1337,11 +1373,11 @@ var app = (function () {
     		throw new Error("<Packs>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	get page() {
+    	get page_tracker() {
     		throw new Error("<Packs>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	set page(value) {
+    	set page_tracker(value) {
     		throw new Error("<Packs>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
@@ -1350,15 +1386,15 @@ var app = (function () {
 
     const file$4 = "src/Nav.svelte";
 
-    // (28:10) {#if page == "Home"}
+    // (28:10) {#if page_tracker == "Home"}
     function create_if_block_3$1(ctx) {
     	let div;
 
     	const block = {
     		c: function create() {
     			div = element("div");
-    			attr_dev(div, "class", "underline svelte-j79nbm");
-    			add_location(div, file$4, 28, 12, 686);
+    			attr_dev(div, "class", "underline svelte-v6v5v7");
+    			add_location(div, file$4, 28, 12, 774);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -1372,22 +1408,22 @@ var app = (function () {
     		block,
     		id: create_if_block_3$1.name,
     		type: "if",
-    		source: "(28:10) {#if page == \\\"Home\\\"}",
+    		source: "(28:10) {#if page_tracker == \\\"Home\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (34:10) {#if page == "Packs"}
+    // (34:10) {#if page_tracker == "Packs"}
     function create_if_block_2$1(ctx) {
     	let div;
 
     	const block = {
     		c: function create() {
     			div = element("div");
-    			attr_dev(div, "class", "underline svelte-j79nbm");
-    			add_location(div, file$4, 34, 12, 899);
+    			attr_dev(div, "class", "underline svelte-v6v5v7");
+    			add_location(div, file$4, 34, 12, 1003);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -1401,22 +1437,22 @@ var app = (function () {
     		block,
     		id: create_if_block_2$1.name,
     		type: "if",
-    		source: "(34:10) {#if page == \\\"Packs\\\"}",
+    		source: "(34:10) {#if page_tracker == \\\"Packs\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (40:10) {#if page == "MyProfile"}
+    // (40:10) {#if page_tracker == "MyProfile"}
     function create_if_block_1$1(ctx) {
     	let div;
 
     	const block = {
     		c: function create() {
     			div = element("div");
-    			attr_dev(div, "class", "underline svelte-j79nbm");
-    			add_location(div, file$4, 40, 12, 1122);
+    			attr_dev(div, "class", "underline svelte-v6v5v7");
+    			add_location(div, file$4, 40, 12, 1242);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -1430,22 +1466,22 @@ var app = (function () {
     		block,
     		id: create_if_block_1$1.name,
     		type: "if",
-    		source: "(40:10) {#if page == \\\"MyProfile\\\"}",
+    		source: "(40:10) {#if page_tracker == \\\"MyProfile\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (46:10) {#if page == "Account"}
+    // (46:10) {#if page_tracker == "Account"}
     function create_if_block$1(ctx) {
     	let div;
 
     	const block = {
     		c: function create() {
     			div = element("div");
-    			attr_dev(div, "class", "underline svelte-j79nbm");
-    			add_location(div, file$4, 46, 12, 1343);
+    			attr_dev(div, "class", "underline svelte-v6v5v7");
+    			add_location(div, file$4, 46, 12, 1479);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -1459,7 +1495,7 @@ var app = (function () {
     		block,
     		id: create_if_block$1.name,
     		type: "if",
-    		source: "(46:10) {#if page == \\\"Account\\\"}",
+    		source: "(46:10) {#if page_tracker == \\\"Account\\\"}",
     		ctx
     	});
 
@@ -1489,10 +1525,10 @@ var app = (function () {
     	let t11;
     	let mounted;
     	let dispose;
-    	let if_block0 = /*page*/ ctx[0] == "Home" && create_if_block_3$1(ctx);
-    	let if_block1 = /*page*/ ctx[0] == "Packs" && create_if_block_2$1(ctx);
-    	let if_block2 = /*page*/ ctx[0] == "MyProfile" && create_if_block_1$1(ctx);
-    	let if_block3 = /*page*/ ctx[0] == "Account" && create_if_block$1(ctx);
+    	let if_block0 = /*page_tracker*/ ctx[0] == "Home" && create_if_block_3$1(ctx);
+    	let if_block1 = /*page_tracker*/ ctx[0] == "Packs" && create_if_block_2$1(ctx);
+    	let if_block2 = /*page_tracker*/ ctx[0] == "MyProfile" && create_if_block_1$1(ctx);
+    	let if_block3 = /*page_tracker*/ ctx[0] == "Account" && create_if_block$1(ctx);
 
     	const block = {
     		c: function create() {
@@ -1530,29 +1566,29 @@ var app = (function () {
     			attr_dev(link, "crossorigin", "anonymous");
     			add_location(link, file$4, 1, 4, 11);
     			add_location(head, file$4, 0, 0, 0);
-    			attr_dev(a0, "class", "nav-link svelte-j79nbm");
+    			attr_dev(a0, "class", "nav-link svelte-v6v5v7");
     			attr_dev(a0, "id", "homelink");
-    			add_location(a0, file$4, 26, 10, 577);
+    			add_location(a0, file$4, 26, 10, 649);
     			attr_dev(li0, "class", "nav-item");
-    			add_location(li0, file$4, 25, 8, 545);
-    			attr_dev(a1, "class", "nav-link svelte-j79nbm");
+    			add_location(li0, file$4, 25, 8, 617);
+    			attr_dev(a1, "class", "nav-link svelte-v6v5v7");
     			attr_dev(a1, "id", "packslink");
-    			add_location(a1, file$4, 32, 10, 786);
+    			add_location(a1, file$4, 32, 10, 874);
     			attr_dev(li1, "class", "nav-item");
-    			add_location(li1, file$4, 31, 8, 754);
-    			attr_dev(a2, "class", "nav-link svelte-j79nbm");
+    			add_location(li1, file$4, 31, 8, 842);
+    			attr_dev(a2, "class", "nav-link svelte-v6v5v7");
     			attr_dev(a2, "id", "profilelink");
-    			add_location(a2, file$4, 38, 10, 999);
+    			add_location(a2, file$4, 38, 10, 1103);
     			attr_dev(li2, "class", "nav-item");
-    			add_location(li2, file$4, 37, 8, 967);
-    			attr_dev(a3, "class", "nav-link svelte-j79nbm");
+    			add_location(li2, file$4, 37, 8, 1071);
+    			attr_dev(a3, "class", "nav-link svelte-v6v5v7");
     			attr_dev(a3, "id", "accountlink");
-    			add_location(a3, file$4, 44, 10, 1222);
+    			add_location(a3, file$4, 44, 10, 1342);
     			attr_dev(li3, "class", "nav-item");
-    			add_location(li3, file$4, 43, 8, 1190);
-    			attr_dev(ul, "class", "nav svelte-j79nbm");
-    			add_location(ul, file$4, 24, 4, 520);
-    			add_location(section, file$4, 23, 0, 506);
+    			add_location(li3, file$4, 43, 8, 1310);
+    			attr_dev(ul, "class", "nav svelte-v6v5v7");
+    			add_location(ul, file$4, 24, 4, 592);
+    			add_location(section, file$4, 23, 0, 578);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1585,17 +1621,17 @@ var app = (function () {
 
     			if (!mounted) {
     				dispose = [
-    					listen_dev(a0, "click", /*setPageHome*/ ctx[1], false, false, false),
-    					listen_dev(a1, "click", /*setPagePacks*/ ctx[2], false, false, false),
-    					listen_dev(a2, "click", /*setPageProfile*/ ctx[3], false, false, false),
-    					listen_dev(a3, "click", /*setPageAccount*/ ctx[4], false, false, false)
+    					listen_dev(a0, "click", /*setpage_trackerHome*/ ctx[1], false, false, false),
+    					listen_dev(a1, "click", /*setpage_trackerPacks*/ ctx[2], false, false, false),
+    					listen_dev(a2, "click", /*setpage_trackerProfile*/ ctx[3], false, false, false),
+    					listen_dev(a3, "click", /*setpage_trackerAccount*/ ctx[4], false, false, false)
     				];
 
     				mounted = true;
     			}
     		},
     		p: function update(ctx, [dirty]) {
-    			if (/*page*/ ctx[0] == "Home") {
+    			if (/*page_tracker*/ ctx[0] == "Home") {
     				if (if_block0) ; else {
     					if_block0 = create_if_block_3$1(ctx);
     					if_block0.c();
@@ -1606,7 +1642,7 @@ var app = (function () {
     				if_block0 = null;
     			}
 
-    			if (/*page*/ ctx[0] == "Packs") {
+    			if (/*page_tracker*/ ctx[0] == "Packs") {
     				if (if_block1) ; else {
     					if_block1 = create_if_block_2$1(ctx);
     					if_block1.c();
@@ -1617,7 +1653,7 @@ var app = (function () {
     				if_block1 = null;
     			}
 
-    			if (/*page*/ ctx[0] == "MyProfile") {
+    			if (/*page_tracker*/ ctx[0] == "MyProfile") {
     				if (if_block2) ; else {
     					if_block2 = create_if_block_1$1(ctx);
     					if_block2.c();
@@ -1628,7 +1664,7 @@ var app = (function () {
     				if_block2 = null;
     			}
 
-    			if (/*page*/ ctx[0] == "Account") {
+    			if (/*page_tracker*/ ctx[0] == "Account") {
     				if (if_block3) ; else {
     					if_block3 = create_if_block$1(ctx);
     					if_block3.c();
@@ -1668,57 +1704,63 @@ var app = (function () {
     function instance$4($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('Nav', slots, []);
-    	let { page = "Home" } = $$props;
+    	let { page_tracker = "Home" } = $$props;
 
-    	function setPageHome() {
-    		$$invalidate(0, page = "Home");
+    	function setpage_trackerHome() {
+    		$$invalidate(0, page_tracker = "Home");
     	}
 
-    	function setPagePacks() {
-    		$$invalidate(0, page = "Packs");
+    	function setpage_trackerPacks() {
+    		$$invalidate(0, page_tracker = "Packs");
     	}
 
-    	function setPageProfile() {
-    		$$invalidate(0, page = "MyProfile");
+    	function setpage_trackerProfile() {
+    		$$invalidate(0, page_tracker = "MyProfile");
     	}
 
-    	function setPageAccount() {
-    		$$invalidate(0, page = "Account");
+    	function setpage_trackerAccount() {
+    		$$invalidate(0, page_tracker = "Account");
     	}
 
-    	const writable_props = ['page'];
+    	const writable_props = ['page_tracker'];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<Nav> was created with unknown prop '${key}'`);
     	});
 
     	$$self.$$set = $$props => {
-    		if ('page' in $$props) $$invalidate(0, page = $$props.page);
+    		if ('page_tracker' in $$props) $$invalidate(0, page_tracker = $$props.page_tracker);
     	};
 
     	$$self.$capture_state = () => ({
-    		page,
-    		setPageHome,
-    		setPagePacks,
-    		setPageProfile,
-    		setPageAccount
+    		page_tracker,
+    		setpage_trackerHome,
+    		setpage_trackerPacks,
+    		setpage_trackerProfile,
+    		setpage_trackerAccount
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ('page' in $$props) $$invalidate(0, page = $$props.page);
+    		if ('page_tracker' in $$props) $$invalidate(0, page_tracker = $$props.page_tracker);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [page, setPageHome, setPagePacks, setPageProfile, setPageAccount];
+    	return [
+    		page_tracker,
+    		setpage_trackerHome,
+    		setpage_trackerPacks,
+    		setpage_trackerProfile,
+    		setpage_trackerAccount
+    	];
     }
 
     class Nav extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance$4, create_fragment$4, safe_not_equal, { page: 0 });
+    		init(this, options, instance$4, create_fragment$4, safe_not_equal, { page_tracker: 0 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -1728,17 +1770,17 @@ var app = (function () {
     		});
     	}
 
-    	get page() {
+    	get page_tracker() {
     		throw new Error("<Nav>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	set page(value) {
+    	set page_tracker(value) {
     		throw new Error("<Nav>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }
 
-    /* src/Home.svelte generated by Svelte v3.44.1 */
-    const file$3 = "src/Home.svelte";
+    /* src/routes/Home.svelte generated by Svelte v3.44.1 */
+    const file$3 = "src/routes/Home.svelte";
 
     function create_fragment$3(ctx) {
     	let head;
@@ -1847,64 +1889,64 @@ var app = (function () {
     			attr_dev(link, "rel", "stylesheet");
     			attr_dev(link, "integrity", "sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC");
     			attr_dev(link, "crossorigin", "anonymous");
-    			add_location(link, file$3, 15, 4, 408);
-    			add_location(head, file$3, 14, 0, 397);
+    			add_location(link, file$3, 14, 4, 371);
+    			add_location(head, file$3, 13, 0, 360);
     			attr_dev(h30, "class", "option svelte-14ba8b1");
-    			add_location(h30, file$3, 23, 8, 705);
+    			add_location(h30, file$3, 22, 8, 668);
     			attr_dev(img0, "class", "profile-picture");
     			if (!src_url_equal(img0.src, img0_src_value = /*src*/ ctx[0])) attr_dev(img0, "src", img0_src_value);
-    			add_location(img0, file$3, 26, 12, 860);
+    			add_location(img0, file$3, 25, 12, 823);
     			attr_dev(h50, "class", "profile-name");
-    			add_location(h50, file$3, 28, 16, 948);
+    			add_location(h50, file$3, 27, 16, 911);
     			attr_dev(h60, "class", "profile-type");
-    			add_location(h60, file$3, 29, 16, 1001);
+    			add_location(h60, file$3, 28, 16, 964);
     			attr_dev(p0, "class", "profile-bio");
-    			add_location(p0, file$3, 30, 16, 1070);
+    			add_location(p0, file$3, 29, 16, 1033);
     			attr_dev(div0, "class", "card-body svelte-14ba8b1");
-    			add_location(div0, file$3, 27, 12, 908);
+    			add_location(div0, file$3, 26, 12, 871);
     			attr_dev(div1, "class", "card");
     			set_style(div1, "width", "20rem");
-    			add_location(div1, file$3, 24, 8, 747);
+    			add_location(div1, file$3, 23, 8, 710);
     			attr_dev(div2, "class", "card-holder svelte-14ba8b1");
-    			add_location(div2, file$3, 22, 4, 671);
+    			add_location(div2, file$3, 21, 4, 634);
     			attr_dev(h31, "class", "option svelte-14ba8b1");
-    			add_location(h31, file$3, 36, 8, 1188);
+    			add_location(h31, file$3, 35, 8, 1151);
     			attr_dev(img1, "class", "profile-picture");
     			if (!src_url_equal(img1.src, img1_src_value = /*src*/ ctx[0])) attr_dev(img1, "src", img1_src_value);
-    			add_location(img1, file$3, 39, 12, 1345);
+    			add_location(img1, file$3, 38, 12, 1308);
     			attr_dev(h51, "class", "profile-name");
-    			add_location(h51, file$3, 41, 16, 1433);
+    			add_location(h51, file$3, 40, 16, 1396);
     			attr_dev(h61, "class", "profile-type");
-    			add_location(h61, file$3, 42, 16, 1486);
+    			add_location(h61, file$3, 41, 16, 1449);
     			attr_dev(p1, "class", "profile-bio");
-    			add_location(p1, file$3, 43, 16, 1550);
+    			add_location(p1, file$3, 42, 16, 1513);
     			attr_dev(div3, "class", "card-body svelte-14ba8b1");
-    			add_location(div3, file$3, 40, 12, 1393);
+    			add_location(div3, file$3, 39, 12, 1356);
     			attr_dev(div4, "class", "card");
     			set_style(div4, "width", "20rem");
-    			add_location(div4, file$3, 37, 8, 1230);
+    			add_location(div4, file$3, 36, 8, 1193);
     			attr_dev(div5, "class", "card-holder svelte-14ba8b1");
-    			add_location(div5, file$3, 35, 4, 1154);
+    			add_location(div5, file$3, 34, 4, 1117);
     			attr_dev(h32, "class", "option svelte-14ba8b1");
-    			add_location(h32, file$3, 49, 8, 1667);
+    			add_location(h32, file$3, 48, 8, 1630);
     			attr_dev(img2, "class", "profile-picture");
     			if (!src_url_equal(img2.src, img2_src_value = /*src*/ ctx[0])) attr_dev(img2, "src", img2_src_value);
-    			add_location(img2, file$3, 52, 12, 1827);
+    			add_location(img2, file$3, 51, 12, 1790);
     			attr_dev(h52, "class", "profile-name");
-    			add_location(h52, file$3, 54, 16, 1915);
+    			add_location(h52, file$3, 53, 16, 1878);
     			attr_dev(h62, "class", "profile-type");
-    			add_location(h62, file$3, 55, 16, 1968);
+    			add_location(h62, file$3, 54, 16, 1931);
     			attr_dev(p2, "class", "profile-bio");
-    			add_location(p2, file$3, 56, 16, 2029);
+    			add_location(p2, file$3, 55, 16, 1992);
     			attr_dev(div6, "class", "card-body svelte-14ba8b1");
-    			add_location(div6, file$3, 53, 12, 1875);
+    			add_location(div6, file$3, 52, 12, 1838);
     			attr_dev(div7, "class", "card");
     			set_style(div7, "width", "20rem");
-    			add_location(div7, file$3, 50, 8, 1712);
+    			add_location(div7, file$3, 49, 8, 1675);
     			attr_dev(div8, "class", "card-holder svelte-14ba8b1");
-    			add_location(div8, file$3, 48, 4, 1633);
+    			add_location(div8, file$3, 47, 4, 1596);
     			attr_dev(div9, "class", "container");
-    			add_location(div9, file$3, 21, 0, 643);
+    			add_location(div9, file$3, 20, 0, 606);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1990,7 +2032,6 @@ var app = (function () {
 
     	$$self.$capture_state = () => ({
     		dataset_dev,
-    		App,
     		BuyPack: Buy_pack,
     		Nav,
     		src,
@@ -2029,9 +2070,9 @@ var app = (function () {
     	}
     }
 
-    /* src/MyProfile.svelte generated by Svelte v3.44.1 */
+    /* src/routes/MyProfile.svelte generated by Svelte v3.44.1 */
 
-    const file$2 = "src/MyProfile.svelte";
+    const file$2 = "src/routes/MyProfile.svelte";
 
     function create_fragment$2(ctx) {
     	let head;
@@ -2178,79 +2219,79 @@ var app = (function () {
     			if (!src_url_equal(img.src, img_src_value = /*src*/ ctx[5])) attr_dev(img, "src", img_src_value);
     			attr_dev(img, "class", "resize svelte-tzrhri");
     			attr_dev(img, "alt", "Profile Picture is displayed here");
-    			add_location(img, file$2, 24, 24, 935);
+    			add_location(img, file$2, 24, 24, 928);
     			attr_dev(div0, "class", "center svelte-tzrhri");
-    			add_location(div0, file$2, 23, 20, 889);
+    			add_location(div0, file$2, 23, 20, 882);
     			attr_dev(div1, "class", "col svelte-tzrhri");
-    			add_location(div1, file$2, 21, 16, 785);
-    			add_location(br0, file$2, 28, 20, 1109);
+    			add_location(div1, file$2, 21, 16, 778);
+    			add_location(br0, file$2, 28, 20, 1102);
     			attr_dev(path, "d", "M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z");
-    			add_location(path, file$2, 32, 32, 1552);
+    			add_location(path, file$2, 32, 32, 1545);
     			attr_dev(svg, "xmlns", "http://www.w3.org/2000/svg");
     			attr_dev(svg, "width", "16");
     			attr_dev(svg, "height", "16");
     			attr_dev(svg, "fill", "currentColor");
     			attr_dev(svg, "class", "bi bi-three-dots-vertical");
     			attr_dev(svg, "viewBox", "0 0 16 16");
-    			add_location(svg, file$2, 31, 28, 1382);
+    			add_location(svg, file$2, 31, 28, 1375);
     			attr_dev(button, "class", "btn btn-secondary rounded svelte-tzrhri");
     			attr_dev(button, "type", "button");
     			attr_dev(button, "id", "dropdownMenuButton1");
     			attr_dev(button, "data-bs-toggle", "dropdown");
     			attr_dev(button, "aria-expanded", "false");
-    			add_location(button, file$2, 30, 24, 1224);
+    			add_location(button, file$2, 30, 24, 1217);
     			attr_dev(a0, "class", "dropdown-item");
-    			attr_dev(a0, "href", "#");
-    			add_location(a0, file$2, 36, 28, 1877);
-    			add_location(li0, file$2, 36, 24, 1873);
+    			attr_dev(a0, "href", "https://google.com");
+    			add_location(a0, file$2, 36, 28, 1870);
+    			add_location(li0, file$2, 36, 24, 1866);
     			attr_dev(a1, "class", "dropdown-item");
-    			attr_dev(a1, "href", "#");
-    			add_location(a1, file$2, 37, 28, 1961);
-    			add_location(li1, file$2, 37, 24, 1957);
+    			attr_dev(a1, "href", "https://www.16personalities.com/free-personality-test");
+    			add_location(a1, file$2, 37, 28, 1971);
+    			add_location(li1, file$2, 37, 24, 1967);
     			attr_dev(ul, "class", "dropdown-menu");
     			attr_dev(ul, "aria-labelledby", "dropdownMenuButton1");
-    			add_location(ul, file$2, 35, 24, 1784);
+    			add_location(ul, file$2, 35, 24, 1777);
     			attr_dev(div2, "class", "dropdown d-flex align-items-end justify-content-end");
-    			add_location(div2, file$2, 29, 20, 1134);
+    			add_location(div2, file$2, 29, 20, 1127);
     			attr_dev(p0, "class", "svelte-tzrhri");
-    			add_location(p0, file$2, 40, 20, 2103);
+    			add_location(p0, file$2, 40, 20, 2165);
     			attr_dev(p1, "class", "svelte-tzrhri");
-    			add_location(p1, file$2, 41, 20, 2145);
+    			add_location(p1, file$2, 41, 20, 2207);
     			attr_dev(p2, "class", "svelte-tzrhri");
-    			add_location(p2, file$2, 42, 20, 2187);
+    			add_location(p2, file$2, 42, 20, 2249);
     			attr_dev(p3, "class", "svelte-tzrhri");
-    			add_location(p3, file$2, 43, 20, 2238);
+    			add_location(p3, file$2, 43, 20, 2300);
     			attr_dev(div3, "class", "col-8");
-    			add_location(div3, file$2, 27, 16, 1069);
+    			add_location(div3, file$2, 27, 16, 1062);
     			attr_dev(div4, "class", "row svelte-tzrhri");
-    			add_location(div4, file$2, 20, 12, 751);
-    			add_location(br1, file$2, 48, 16, 2394);
+    			add_location(div4, file$2, 20, 12, 744);
+    			add_location(br1, file$2, 48, 16, 2456);
     			attr_dev(p4, "class", "svelte-tzrhri");
-    			add_location(p4, file$2, 49, 16, 2415);
+    			add_location(p4, file$2, 49, 16, 2477);
     			attr_dev(div5, "class", "container");
-    			add_location(div5, file$2, 50, 16, 2456);
+    			add_location(div5, file$2, 50, 16, 2518);
     			attr_dev(div6, "class", "row horoscope-wrapper svelte-tzrhri");
-    			add_location(div6, file$2, 47, 12, 2342);
+    			add_location(div6, file$2, 47, 12, 2404);
     			attr_dev(p5, "class", "svelte-tzrhri");
-    			add_location(p5, file$2, 55, 16, 2614);
+    			add_location(p5, file$2, 55, 16, 2676);
     			attr_dev(div7, "class", "row horoscope-text horoscope svelte-tzrhri");
-    			add_location(div7, file$2, 54, 12, 2555);
-    			add_location(div8, file$2, 60, 20, 2804);
+    			add_location(div7, file$2, 54, 12, 2617);
+    			add_location(div8, file$2, 60, 20, 2866);
     			attr_dev(div9, "class", "col svelte-tzrhri");
-    			add_location(div9, file$2, 58, 16, 2725);
+    			add_location(div9, file$2, 58, 16, 2787);
     			attr_dev(div10, "class", "col svelte-tzrhri");
-    			add_location(div10, file$2, 64, 16, 2907);
+    			add_location(div10, file$2, 64, 16, 2969);
     			attr_dev(div11, "class", "col svelte-tzrhri");
-    			add_location(div11, file$2, 67, 16, 2996);
+    			add_location(div11, file$2, 67, 16, 3058);
     			attr_dev(div12, "class", "col svelte-tzrhri");
-    			add_location(div12, file$2, 70, 16, 3082);
+    			add_location(div12, file$2, 70, 16, 3144);
     			attr_dev(div13, "class", "row horoscope horoscope-bottom svelte-tzrhri");
-    			add_location(div13, file$2, 57, 12, 2664);
+    			add_location(div13, file$2, 57, 12, 2726);
     			attr_dev(div14, "class", "container");
-    			add_location(div14, file$2, 19, 8, 715);
+    			add_location(div14, file$2, 19, 8, 708);
     			attr_dev(div15, "class", "big-box svelte-tzrhri");
-    			add_location(div15, file$2, 18, 4, 685);
-    			add_location(section, file$2, 17, 0, 671);
+    			add_location(div15, file$2, 18, 4, 678);
+    			add_location(section, file$2, 17, 0, 664);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2455,19 +2496,19 @@ var app = (function () {
     	}
     }
 
-    /* src/OpennedPackPage.svelte generated by Svelte v3.44.1 */
+    /* src/routes/OpennedPack.svelte generated by Svelte v3.44.1 */
 
-    const { console: console_1$1 } = globals;
-    const file$1 = "src/OpennedPackPage.svelte";
+    const { Object: Object_1, console: console_1$1 } = globals;
+    const file$1 = "src/routes/OpennedPack.svelte";
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[20] = list[i];
-    	child_ctx[22] = i;
+    	child_ctx[26] = list[i];
+    	child_ctx[28] = i;
     	return child_ctx;
     }
 
-    // (191:16) {#each list as person, i}
+    // (247:16) {#each list as person, i}
     function create_each_block(ctx) {
     	let div2;
     	let div0;
@@ -2480,15 +2521,15 @@ var app = (function () {
 
     	card = new Card({
     			props: {
-    				AstroPic: /*person*/ ctx[20].astropic,
-    				Picture: /*person*/ ctx[20].picture,
-    				PersonalityPic: /*person*/ ctx[20].personalitypic,
-    				Name: /*person*/ ctx[20].name,
-    				Astro: /*person*/ ctx[20].astro,
-    				Personality: /*person*/ ctx[20].mbti,
-    				Age: /*person*/ ctx[20].age,
-    				Gender: /*person*/ ctx[20].gender,
-    				Bio: /*person*/ ctx[20].bio
+    				AstroPic: /*person*/ ctx[26].astropic,
+    				Picture: /*dictpics*/ ctx[1][/*person*/ ctx[26].uid],
+    				PersonalityPic: /*person*/ ctx[26].personalitypic,
+    				Name: /*person*/ ctx[26].name,
+    				Astro: /*person*/ ctx[26].astro,
+    				Personality: /*person*/ ctx[26].mbti,
+    				Age: /*person*/ ctx[26].age,
+    				Gender: /*person*/ ctx[26].gender,
+    				Bio: /*person*/ ctx[26].bio
     			},
     			$$inline: true
     		});
@@ -2504,13 +2545,13 @@ var app = (function () {
     			button.textContent = "Match!";
     			t2 = space();
     			attr_dev(div0, "class", "card svelte-q74les");
-    			add_location(div0, file$1, 193, 24, 10051);
+    			add_location(div0, file$1, 249, 24, 11815);
     			attr_dev(button, "type", "button");
     			attr_dev(button, "class", "btn btn-outline-dark svelte-q74les");
-    			add_location(button, file$1, 209, 25, 10940);
-    			add_location(div1, file$1, 209, 20, 10935);
+    			add_location(button, file$1, 265, 25, 12708);
+    			add_location(div1, file$1, 265, 20, 12703);
     			attr_dev(div2, "class", "card-butt svelte-q74les");
-    			add_location(div2, file$1, 191, 16, 9953);
+    			add_location(div2, file$1, 247, 16, 11717);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div2, anchor);
@@ -2524,15 +2565,15 @@ var app = (function () {
     		},
     		p: function update(ctx, dirty) {
     			const card_changes = {};
-    			if (dirty & /*list*/ 1) card_changes.AstroPic = /*person*/ ctx[20].astropic;
-    			if (dirty & /*list*/ 1) card_changes.Picture = /*person*/ ctx[20].picture;
-    			if (dirty & /*list*/ 1) card_changes.PersonalityPic = /*person*/ ctx[20].personalitypic;
-    			if (dirty & /*list*/ 1) card_changes.Name = /*person*/ ctx[20].name;
-    			if (dirty & /*list*/ 1) card_changes.Astro = /*person*/ ctx[20].astro;
-    			if (dirty & /*list*/ 1) card_changes.Personality = /*person*/ ctx[20].mbti;
-    			if (dirty & /*list*/ 1) card_changes.Age = /*person*/ ctx[20].age;
-    			if (dirty & /*list*/ 1) card_changes.Gender = /*person*/ ctx[20].gender;
-    			if (dirty & /*list*/ 1) card_changes.Bio = /*person*/ ctx[20].bio;
+    			if (dirty & /*list*/ 1) card_changes.AstroPic = /*person*/ ctx[26].astropic;
+    			if (dirty & /*dictpics, list*/ 3) card_changes.Picture = /*dictpics*/ ctx[1][/*person*/ ctx[26].uid];
+    			if (dirty & /*list*/ 1) card_changes.PersonalityPic = /*person*/ ctx[26].personalitypic;
+    			if (dirty & /*list*/ 1) card_changes.Name = /*person*/ ctx[26].name;
+    			if (dirty & /*list*/ 1) card_changes.Astro = /*person*/ ctx[26].astro;
+    			if (dirty & /*list*/ 1) card_changes.Personality = /*person*/ ctx[26].mbti;
+    			if (dirty & /*list*/ 1) card_changes.Age = /*person*/ ctx[26].age;
+    			if (dirty & /*list*/ 1) card_changes.Gender = /*person*/ ctx[26].gender;
+    			if (dirty & /*list*/ 1) card_changes.Bio = /*person*/ ctx[26].bio;
     			card.$set(card_changes);
     		},
     		i: function intro(local) {
@@ -2554,7 +2595,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(191:16) {#each list as person, i}",
+    		source: "(247:16) {#each list as person, i}",
     		ctx
     	});
 
@@ -2605,15 +2646,15 @@ var app = (function () {
     			attr_dev(link, "rel", "stylesheet");
     			attr_dev(link, "integrity", "sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC");
     			attr_dev(link, "crossorigin", "anonymous");
-    			add_location(link, file$1, 181, 4, 9488);
-    			add_location(head, file$1, 180, 0, 9477);
+    			add_location(link, file$1, 235, 4, 11166);
+    			add_location(head, file$1, 234, 0, 11155);
     			attr_dev(button, "class", "btn btn-outline-dark svelte-q74les");
-    			add_location(button, file$1, 186, 4, 9726);
+    			add_location(button, file$1, 240, 4, 11404);
     			attr_dev(div0, "class", "cards-scroll svelte-q74les");
-    			add_location(div0, file$1, 189, 12, 9868);
+    			add_location(div0, file$1, 245, 12, 11632);
     			attr_dev(div1, "class", "container-fluid");
-    			add_location(div1, file$1, 188, 8, 9826);
-    			add_location(center, file$1, 187, 4, 9809);
+    			add_location(div1, file$1, 244, 8, 11590);
+    			add_location(center, file$1, 243, 4, 11573);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -2635,12 +2676,16 @@ var app = (function () {
     			current = true;
 
     			if (!mounted) {
-    				dispose = listen_dev(button, "click", /*getList*/ ctx[1], false, false, false);
+    				dispose = [
+    					listen_dev(button, "click", /*click_handler*/ ctx[5], false, false, false),
+    					listen_dev(button, "click", /*click_handler_1*/ ctx[6], false, false, false)
+    				];
+
     				mounted = true;
     			}
     		},
     		p: function update(ctx, [dirty]) {
-    			if (dirty & /*list*/ 1) {
+    			if (dirty & /*list, dictpics*/ 3) {
     				each_value = /*list*/ ctx[0];
     				validate_each_argument(each_value);
     				let i;
@@ -2694,7 +2739,7 @@ var app = (function () {
     			if (detaching) detach_dev(center);
     			destroy_each(each_blocks, detaching);
     			mounted = false;
-    			dispose();
+    			run_all(dispose);
     		}
     	};
 
@@ -2711,7 +2756,7 @@ var app = (function () {
 
     function instance$1($$self, $$props, $$invalidate) {
     	let { $$slots: slots = {}, $$scope } = $$props;
-    	validate_slots('OpennedPackPage', slots, []);
+    	validate_slots('OpennedPack', slots, []);
     	let aquariusLink = 'images/signs/aquarius.png';
     	let ariesLink = 'images/signs/aries.png';
     	let cancerLink = 'images/signs/cancer.png';
@@ -2727,7 +2772,18 @@ var app = (function () {
     	let cardBackShowing = false;
     	let selected;
     	let list = [];
+    	let dictpics = {};
     	let pics = [];
+
+    	let defaultTestUIDs = [
+    		'd5f36d98-84df-4b12-b739-075b4c1aad0b',
+    		'd340a698-2e8a-4649-96ee-e3bf359e8ff4',
+    		'e45ffc64-1b95-4784-a610-742a017a7138',
+    		'b052485c-7f4a-49b4-8a63-98bdcc0d6cb5',
+    		'a826ce6c-f443-43fe-a0b1-c90aff03468e',
+    		'f94b9c5d-9ceb-462c-a015-acbb15281cd1',
+    		'4286ee06-9a54-474c-bd07-d1cd9f6f64ee'
+    	];
 
     	const toggleBackFront = e => {
     		// if same card clicked twice to toggle front and back
@@ -2740,8 +2796,59 @@ var app = (function () {
     		}
     	};
 
-    	function getList() {
-    		fetch("http://127.0.0.1:5005/list").then(d => d.json()).then(d => {
+    	function getListUIDs(uids) {
+    		let params = "?uid=" + uids.join("&uid=");
+    		let url = "http://127.0.0.1:5005/list" + params;
+
+    		fetch(url).then(d => d.json()).then(d => {
+    			$$invalidate(0, list = Object.values(d));
+
+    			for (let person in list) {
+    				if (person['astro'] == 'gemini') {
+    					console.log("HI");
+    					person['astropic'] = geminiLink;
+    				}
+
+    				if (person['astro'] == 'virgo') {
+    					person['astropic'] = virgoLink;
+    				}
+    			}
+
+    			return list;
+    		});
+    	}
+
+    	function getListUID(uid) {
+    		let params = "?uid=" + uid;
+    		let url = "http://127.0.0.1:5005/list" + params;
+
+    		fetch(url).then(d => d.json()).then(d => {
+    			$$invalidate(0, list = [d]);
+    			let person = list[0];
+
+    			if (person['astro'] == 'gemini') {
+    				console.log("HI");
+    				person['astropic'] = geminiLink;
+    			}
+
+    			if (person['astro'] == 'virgo') {
+    				person['astropic'] = virgoLink;
+    			}
+
+    			return list;
+    		});
+    	}
+
+    	function getList(uids) {
+    		if (typeof uids == "string" || typeof uids == "number") {
+    			return getListUID(uids);
+    		} else if (uids.constructor === Array) {
+    			return getListUIDs(uids);
+    		}
+
+    		let url = "http://127.0.0.1:5005/list";
+
+    		fetch(url).then(d => d.json()).then(d => {
     			$$invalidate(0, list = d);
     			$$invalidate(0, list = list.slice(0, 7));
 
@@ -2757,14 +2864,23 @@ var app = (function () {
     			}
 
     			return list;
-    		}).then(d => console.log(d));
+    		});
     	}
 
-    	function getPics() {
-    		fetch("http://127.0.0.1:5005/getPic").then(d => d.json()).then(d => {
-    			$$invalidate(0, list = d);
-    			$$invalidate(0, list = list.slice(0, 7));
-    			return list;
+    	function getPics(uids = []) {
+    		let params = "?uid=";
+
+    		if (typeof uids == "string" || typeof uids == "number") {
+    			params += uids;
+    		} else {
+    			params += uids.join("&uid=");
+    		}
+
+    		let url = "http://127.0.0.1:5005/getPic" + params;
+
+    		fetch(url).then(d => d.json()).then(d => {
+    			$$invalidate(1, dictpics = d);
+    			return dictpics;
     		}).then(d => console.log(d));
     	}
 
@@ -2850,9 +2966,12 @@ var app = (function () {
 
     	const writable_props = [];
 
-    	Object.keys($$props).forEach(key => {
-    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console_1$1.warn(`<OpennedPackPage> was created with unknown prop '${key}'`);
+    	Object_1.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console_1$1.warn(`<OpennedPack> was created with unknown prop '${key}'`);
     	});
+
+    	const click_handler = () => getList(defaultTestUIDs);
+    	const click_handler_1 = () => getPics(defaultTestUIDs);
 
     	$$self.$capture_state = () => ({
     		Card,
@@ -2872,8 +2991,12 @@ var app = (function () {
     		cardBackShowing,
     		selected,
     		list,
+    		dictpics,
     		pics,
+    		defaultTestUIDs,
     		toggleBackFront,
+    		getListUIDs,
+    		getListUID,
     		getList,
     		getPics,
     		People
@@ -2895,24 +3018,34 @@ var app = (function () {
     		if ('cardBackShowing' in $$props) cardBackShowing = $$props.cardBackShowing;
     		if ('selected' in $$props) selected = $$props.selected;
     		if ('list' in $$props) $$invalidate(0, list = $$props.list);
+    		if ('dictpics' in $$props) $$invalidate(1, dictpics = $$props.dictpics);
     		if ('pics' in $$props) pics = $$props.pics;
+    		if ('defaultTestUIDs' in $$props) $$invalidate(2, defaultTestUIDs = $$props.defaultTestUIDs);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [list, getList];
+    	return [
+    		list,
+    		dictpics,
+    		defaultTestUIDs,
+    		getList,
+    		getPics,
+    		click_handler,
+    		click_handler_1
+    	];
     }
 
-    class OpennedPackPage extends SvelteComponentDev {
+    class OpennedPack$1 extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
     		init(this, options, instance$1, create_fragment$1, safe_not_equal, {});
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
-    			tagName: "OpennedPackPage",
+    			tagName: "OpennedPack",
     			options,
     			id: create_fragment$1.name
     		});
@@ -2924,15 +3057,15 @@ var app = (function () {
     const { console: console_1 } = globals;
     const file = "src/routes/App.svelte";
 
-    // (49:0) {:else}
+    // (47:0) {:else}
     function create_else_block(ctx) {
     	let section;
 
     	const block = {
     		c: function create() {
     			section = element("section");
-    			section.textContent = "404: Oops! This page doesn't exist.";
-    			add_location(section, file, 49, 0, 1054);
+    			section.textContent = "404: Oops! This page_tracker doesn't exist.";
+    			add_location(section, file, 47, 0, 1069);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, section, anchor);
@@ -2949,44 +3082,44 @@ var app = (function () {
     		block,
     		id: create_else_block.name,
     		type: "else",
-    		source: "(49:0) {:else}",
+    		source: "(47:0) {:else}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (45:28) 
+    // (43:36) 
     function create_if_block_3(ctx) {
     	let section;
-    	let opennedpackpage;
+    	let opennedpack;
     	let current;
-    	opennedpackpage = new OpennedPackPage({ $$inline: true });
+    	opennedpack = new OpennedPack({ $$inline: true });
 
     	const block = {
     		c: function create() {
     			section = element("section");
-    			create_component(opennedpackpage.$$.fragment);
-    			add_location(section, file, 45, 0, 1005);
+    			create_component(opennedpack.$$.fragment);
+    			add_location(section, file, 43, 0, 1024);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, section, anchor);
-    			mount_component(opennedpackpage, section, null);
+    			mount_component(opennedpack, section, null);
     			current = true;
     		},
     		p: noop,
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(opennedpackpage.$$.fragment, local);
+    			transition_in(opennedpack.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(opennedpackpage.$$.fragment, local);
+    			transition_out(opennedpack.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(section);
-    			destroy_component(opennedpackpage);
+    			destroy_component(opennedpack);
     		}
     	};
 
@@ -2994,14 +3127,14 @@ var app = (function () {
     		block,
     		id: create_if_block_3.name,
     		type: "if",
-    		source: "(45:28) ",
+    		source: "(43:36) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (41:28) 
+    // (39:36) 
     function create_if_block_2(ctx) {
     	let section;
     	let myprofile;
@@ -3012,7 +3145,7 @@ var app = (function () {
     		c: function create() {
     			section = element("section");
     			create_component(myprofile.$$.fragment);
-    			add_location(section, file, 41, 0, 941);
+    			add_location(section, file, 39, 0, 952);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, section, anchor);
@@ -3039,38 +3172,38 @@ var app = (function () {
     		block,
     		id: create_if_block_2.name,
     		type: "if",
-    		source: "(41:28) ",
+    		source: "(39:36) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (37:24) 
+    // (35:32) 
     function create_if_block_1(ctx) {
     	let section;
     	let packs;
-    	let updating_page;
+    	let updating_page_tracker;
     	let current;
 
-    	function packs_page_binding(value) {
-    		/*packs_page_binding*/ ctx[2](value);
+    	function packs_page_tracker_binding(value) {
+    		/*packs_page_tracker_binding*/ ctx[1](value);
     	}
 
     	let packs_props = {};
 
-    	if (/*page*/ ctx[0] !== void 0) {
-    		packs_props.page = /*page*/ ctx[0];
+    	if (/*page_tracker*/ ctx[0] !== void 0) {
+    		packs_props.page_tracker = /*page_tracker*/ ctx[0];
     	}
 
     	packs = new Packs({ props: packs_props, $$inline: true });
-    	binding_callbacks.push(() => bind(packs, 'page', packs_page_binding));
+    	binding_callbacks.push(() => bind(packs, 'page_tracker', packs_page_tracker_binding));
 
     	const block = {
     		c: function create() {
     			section = element("section");
     			create_component(packs.$$.fragment);
-    			add_location(section, file, 37, 0, 864);
+    			add_location(section, file, 35, 0, 851);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, section, anchor);
@@ -3080,10 +3213,10 @@ var app = (function () {
     		p: function update(ctx, dirty) {
     			const packs_changes = {};
 
-    			if (!updating_page && dirty & /*page*/ 1) {
-    				updating_page = true;
-    				packs_changes.page = /*page*/ ctx[0];
-    				add_flush_callback(() => updating_page = false);
+    			if (!updating_page_tracker && dirty & /*page_tracker*/ 1) {
+    				updating_page_tracker = true;
+    				packs_changes.page_tracker = /*page_tracker*/ ctx[0];
+    				add_flush_callback(() => updating_page_tracker = false);
     			}
 
     			packs.$set(packs_changes);
@@ -3107,14 +3240,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1.name,
     		type: "if",
-    		source: "(37:24) ",
+    		source: "(35:32) ",
     		ctx
     	});
 
     	return block;
     }
 
-    // (33:0) {#if page=="Home"}
+    // (31:0) {#if page_tracker=="Home"}
     function create_if_block(ctx) {
     	let section;
     	let home;
@@ -3125,7 +3258,7 @@ var app = (function () {
     		c: function create() {
     			section = element("section");
     			create_component(home.$$.fragment);
-    			add_location(section, file, 33, 0, 808);
+    			add_location(section, file, 31, 0, 787);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, section, anchor);
@@ -3152,7 +3285,7 @@ var app = (function () {
     		block,
     		id: create_if_block.name,
     		type: "if",
-    		source: "(33:0) {#if page==\\\"Home\\\"}",
+    		source: "(31:0) {#if page_tracker==\\\"Home\\\"}",
     		ctx
     	});
 
@@ -3162,27 +3295,11 @@ var app = (function () {
     function create_fragment(ctx) {
     	let head;
     	let link;
-    	let t0;
-    	let nav;
-    	let updating_page;
-    	let t1;
+    	let t;
     	let current_block_type_index;
     	let if_block;
     	let if_block_anchor;
     	let current;
-
-    	function nav_page_binding(value) {
-    		/*nav_page_binding*/ ctx[1](value);
-    	}
-
-    	let nav_props = {};
-
-    	if (/*page*/ ctx[0] !== void 0) {
-    		nav_props.page = /*page*/ ctx[0];
-    	}
-
-    	nav = new Nav({ props: nav_props, $$inline: true });
-    	binding_callbacks.push(() => bind(nav, 'page', nav_page_binding));
 
     	const if_block_creators = [
     		create_if_block,
@@ -3195,10 +3312,10 @@ var app = (function () {
     	const if_blocks = [];
 
     	function select_block_type(ctx, dirty) {
-    		if (/*page*/ ctx[0] == "Home") return 0;
-    		if (/*page*/ ctx[0] == "Packs") return 1;
-    		if (/*page*/ ctx[0] == "MyProfile") return 2;
-    		if (/*page*/ ctx[0] == "OpenPacks") return 3;
+    		if (/*page_tracker*/ ctx[0] == "Home") return 0;
+    		if (/*page_tracker*/ ctx[0] == "Packs") return 1;
+    		if (/*page_tracker*/ ctx[0] == "MyProfile") return 2;
+    		if (/*page_tracker*/ ctx[0] == "OpenPacks") return 3;
     		return 4;
     	}
 
@@ -3209,9 +3326,7 @@ var app = (function () {
     		c: function create() {
     			head = element("head");
     			link = element("link");
-    			t0 = space();
-    			create_component(nav.$$.fragment);
-    			t1 = space();
+    			t = space();
     			if_block.c();
     			if_block_anchor = empty();
     			attr_dev(link, "href", "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css");
@@ -3227,23 +3342,12 @@ var app = (function () {
     		m: function mount(target, anchor) {
     			insert_dev(target, head, anchor);
     			append_dev(head, link);
-    			insert_dev(target, t0, anchor);
-    			mount_component(nav, target, anchor);
-    			insert_dev(target, t1, anchor);
+    			insert_dev(target, t, anchor);
     			if_blocks[current_block_type_index].m(target, anchor);
     			insert_dev(target, if_block_anchor, anchor);
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
-    			const nav_changes = {};
-
-    			if (!updating_page && dirty & /*page*/ 1) {
-    				updating_page = true;
-    				nav_changes.page = /*page*/ ctx[0];
-    				add_flush_callback(() => updating_page = false);
-    			}
-
-    			nav.$set(nav_changes);
     			let previous_block_index = current_block_type_index;
     			current_block_type_index = select_block_type(ctx);
 
@@ -3272,20 +3376,16 @@ var app = (function () {
     		},
     		i: function intro(local) {
     			if (current) return;
-    			transition_in(nav.$$.fragment, local);
     			transition_in(if_block);
     			current = true;
     		},
     		o: function outro(local) {
-    			transition_out(nav.$$.fragment, local);
     			transition_out(if_block);
     			current = false;
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(head);
-    			if (detaching) detach_dev(t0);
-    			destroy_component(nav, detaching);
-    			if (detaching) detach_dev(t1);
+    			if (detaching) detach_dev(t);
     			if_blocks[current_block_type_index].d(detaching);
     			if (detaching) detach_dev(if_block_anchor);
     		}
@@ -3312,25 +3412,20 @@ var app = (function () {
     	validate_slots('App', slots, []);
     	let rand = -1;
     	let list;
-    	let { page = "Home" } = $$props;
-    	const writable_props = ['page'];
+    	let { page_tracker = "Home" } = $$props;
+    	const writable_props = ['page_tracker'];
 
     	Object.keys($$props).forEach(key => {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console_1.warn(`<App> was created with unknown prop '${key}'`);
     	});
 
-    	function nav_page_binding(value) {
-    		page = value;
-    		$$invalidate(0, page);
-    	}
-
-    	function packs_page_binding(value) {
-    		page = value;
-    		$$invalidate(0, page);
+    	function packs_page_tracker_binding(value) {
+    		page_tracker = value;
+    		$$invalidate(0, page_tracker);
     	}
 
     	$$self.$$set = $$props => {
-    		if ('page' in $$props) $$invalidate(0, page = $$props.page);
+    		if ('page_tracker' in $$props) $$invalidate(0, page_tracker = $$props.page_tracker);
     	};
 
     	$$self.$capture_state = () => ({
@@ -3340,30 +3435,30 @@ var app = (function () {
     		Nav,
     		Home,
     		MyProfile,
-    		OpennedPackPage,
+    		OppenedPack: OpennedPack$1,
     		rand,
     		list,
-    		page,
+    		page_tracker,
     		getList
     	});
 
     	$$self.$inject_state = $$props => {
     		if ('rand' in $$props) rand = $$props.rand;
     		if ('list' in $$props) list = $$props.list;
-    		if ('page' in $$props) $$invalidate(0, page = $$props.page);
+    		if ('page_tracker' in $$props) $$invalidate(0, page_tracker = $$props.page_tracker);
     	};
 
     	if ($$props && "$$inject" in $$props) {
     		$$self.$inject_state($$props.$$inject);
     	}
 
-    	return [page, nav_page_binding, packs_page_binding];
+    	return [page_tracker, packs_page_tracker_binding];
     }
 
     class App extends SvelteComponentDev {
     	constructor(options) {
     		super(options);
-    		init(this, options, instance, create_fragment, safe_not_equal, { page: 0 });
+    		init(this, options, instance, create_fragment, safe_not_equal, { page_tracker: 0 });
 
     		dispatch_dev("SvelteRegisterComponent", {
     			component: this,
@@ -3373,11 +3468,11 @@ var app = (function () {
     		});
     	}
 
-    	get page() {
+    	get page_tracker() {
     		throw new Error("<App>: Props cannot be read directly from the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
 
-    	set page(value) {
+    	set page_tracker(value) {
     		throw new Error("<App>: Props cannot be set directly on the component instance unless compiling with 'accessors: true' or '<svelte:options accessors/>'");
     	}
     }

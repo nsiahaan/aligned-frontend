@@ -8,10 +8,10 @@
 
 <script> 
     import {astroPicPath, mbtiPicPath} from '../constants.js';
-    import {youser, profilePic} from '../store.js';
+    import { youser,isAuthenticated, profilePic } from '../store.js'
     import {onMount} from 'svelte';
     let pic;
-    onMount(async () => {
+    onMount(() => {
         pic = $profilePic;
         console.log(pic);
     })
@@ -28,7 +28,9 @@
     export let profileDescription = "This is my cute profile description.";
     export let gender = "Male";
     
-
+    async function logout () {
+        isAuthenticated.set(false)
+	}
 </script>
 
 <section>
@@ -55,6 +57,7 @@
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <li><a class="dropdown-item" href="https://google.com">Edit Profile</a></li>
                         <li><a class="dropdown-item" href="https://www.16personalities.com/free-personality-test">Take Personality Test</a></li>
+                        <li><button type="button" class="dropdown-item" on:click={logout} >Logout</button></li>
                         </ul>
                     </div>
                     <p> Name: {$youser.name} </p>
