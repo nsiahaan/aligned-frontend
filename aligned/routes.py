@@ -23,12 +23,10 @@ def home(path):
 @app.route('/login', methods=['POST'])
 def login():
     try:
-        data = request.data
-        data = data.decode('utf-8')
-        data = json.loads(data)
-        email = data["email"]
-        password = data["password"] 
-        return userDB.loginUser(email, password), 200
+        json = request.json
+        email = json["email"]
+        password = json["password"] 
+        return userDB.loginUser(email, password)
     except Exception as e:
         return f"An Error Occured: {e}", 400
     
