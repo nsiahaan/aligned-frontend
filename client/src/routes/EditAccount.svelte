@@ -20,6 +20,13 @@
     let result = null;
 
     async function doPost () {
+
+        if (mbti == "") {
+            mbti = null;
+        }
+        if (gender == "") {
+            gender = null;
+        }
 		const res = await fetch('http://127.0.0.1:5005/update', {
 			method: 'POST',
 			body: JSON.stringify({

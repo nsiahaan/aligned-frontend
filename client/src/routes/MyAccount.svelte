@@ -18,7 +18,6 @@
     
     
     let src = "https://firebasestorage.googleapis.com/v0/b/aligned-5a855.appspot.com/o/KmQOWT6ShjdiAXKAgcQYyM3rpCo1?alt=media";
-    import Card from '../Card.svelte';
     export let horoscope = "This is where my horoscope will be. Today, a surprise will befall you. \n Try and accept it, rather than reject.";
     export let name = "Kanye";
     export let MBTI = "ENTP";
