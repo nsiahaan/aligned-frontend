@@ -6,9 +6,8 @@
 </head>
 
 <script>
-
+    import { youser,isAuthenticated, profilePic } from '../store.js'
     let name;
-    let dob;
     let gender;
     let mbti;
     let sexPref = [];
@@ -16,17 +15,15 @@
     let bio;
     let instagram;
     let snapchat;
-    let email;
     let password;
     let picture;
     let result = null;
 
     async function doPost () {
-		const res = await fetch('http://127.0.0.1:5005/signup', {
+		const res = await fetch('http://127.0.0.1:5005/update', {
 			method: 'POST',
 			body: JSON.stringify({
 				name,
-                dob, 
                 gender,
                 mbti,
                 sexPref,
@@ -34,7 +31,6 @@
                 bio,
                 instagram,
                 snapchat,
-                email,
                 password,
                 picture
 			})
@@ -51,12 +47,6 @@
       <label for="name">Name</label>
       <input type="text" class="form-control" id="nameInput" placeholder="Enter name" bind:value={name} required> 
     </div>
-    <br>
-    <div class="form-group col-md-6 col-centered">
-        <label for="birthday">Date of Birth</label>
-        <br>
-        <input type="date" id="birthday" name="dateofbirth" bind:value={dob}>
-    </div>
     <br> 
     <div class="form-group col-md-6 col-centered">
         <label for="gender">Gender</label>
@@ -68,7 +58,7 @@
         </select>
     </div>
     <br>
-    <div class="form-group col-md-6 col-centered" >
+    <div class="form-group col-md-6 col-centered">
         <label for="MBTI">MBTI</label>
         <select class="form-control" id="mbtiInput" bind:value={mbti} required>
           <option></option>
@@ -138,11 +128,6 @@
     <br>
     <div class="form-row">
         <div class="form-group col-md-6 col-centered">
-          <label for="inputEmail4">Email</label>
-          <input type="email" class="form-control" id="inputEmail4" placeholder="Email" bind:value={email}>
-        </div>
-        <br>
-        <div class="form-group col-md-6 col-centered">
           <label for="inputPassword4">Password</label>
           <input type="password" class="form-control" id="inputPassword4" placeholder="Password" bind:value={password}>
         </div>
@@ -159,6 +144,7 @@
     <br>
 
 <pre> {result} </pre>
+{youser.gender}
 
 
 <style>

@@ -40,7 +40,7 @@
     .card{
         border:10px solid;
         border-color: #c9d7f8;
-        height: 75vh;
+        height: 700px;
         border-radius: 25px;
     }
     .card-title {
@@ -53,7 +53,7 @@
     .card-text {
         text-align: center;
         margin:5px;
-        height:35vh;
+        /*height:100px;*/
         white-space: normal;
         overflow-wrap: break-word;
         overflow-y:auto;
@@ -68,7 +68,7 @@
     .bottom-text {
         background-color: #c1b8ed;
         width:100%;
-        height:35vh;
+        height:350px;
     }
     .card-body {
         padding: 0rem 0rem;
