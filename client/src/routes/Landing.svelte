@@ -8,7 +8,7 @@
         <!-- svelte-ignore a11y-missing-attribute -->
         <img src="/logo.png" class="logo"/>
         <h3>Calculated connections.</h3>
-        <p>It's like dating, but better. See what the skies may bring you as the stars align...</p>
+        <p>It's like dating, but better. See what the heavens may bring you as the stars align...</p>
         <div class="buttons">
             <button type="button" class="btn btn-outline-dark" id="signup-button">Sign Up</button>
         </div>
