@@ -134,5 +134,5 @@ def signupUser(email, password):
         user["status"] = "success"
         return user
     except: 
-        return {"status":"error"}
+        return {"status":"error"}, 400
     

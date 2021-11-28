@@ -5,37 +5,40 @@ Testing script for unit tests
 
 import unittest
 import pyaztro
-from aligned import api,userDB
-from aligned.routes import update
+from aligned import user,userDB
 from aligned.user import User
 
 user = User("heqmT1mWyWYNe7pI8sRYfdXFZSh1")
 
 class TestHoroscope(unittest.TestCase):
+    def setUp(self):
+        self.user = User("heqmT1mWyWYNe7pI8sRYfdXFZSh1")
+        self.user1 = User("3be0f9fe-e5e2-4b45-b6de-0c46a6a3a662")
+        self.user2 = User("3c634bf8-dfaf-4a6e-b9e6-32709c67e408")
+
     def testLuckyNumber(self):
-        result = user.getHoroscope()
-        self.assertEqual(result.lucky_number, pyaztro.Aztro(user.astro).lucky_number)
+        result = self.user.getHoroscope()
+        self.assertEqual(result.lucky_number, pyaztro.Aztro(self.user.astro).lucky_number)
 
     def testLuckyColor(self):
-        result = self.getHoroscope()
-        self.assertEqual(result.color, pyaztro.Aztro(user.astro).color)
+        result = self.user.getHoroscope()
+        self.assertEqual(result.color, pyaztro.Aztro(self.user.astro).color)
 
 class TestCompScore(unittest.TestCase):
+    def setUp(self):
+        self.user1 = User("3be0f9fe-e5e2-4b45-b6de-0c46a6a3a662")
+        self.user2 = User("3c634bf8-dfaf-4a6e-b9e6-32709c67e408")
+        self.user3 = User("heqmT1mWyWYNe7pI8sRYfdXFZSh1")
     def testCompatibilityScore(self):
-        user2 = User("65530a2c-1677-4115-a5ef-3646aa65eafd")
-        self.assertEqual(user.compatibilityScore(user2), 0.225)
-    def testWrongSign(self):
-        user1UID = "51150a87-8d4d-45fa-b206-025602b02c82"
-        user2UID = "54a6a0b8-a4f1-41ae-9080-856bbc0e785f"
-        user1 = User(user1UID)
-        user2 = User(user2UID)
-        with self.assertRaises(KeyError):
-            api.compatibilityScore(user1, user2)
+        self.assertEqual(self.user1.compatibilityScore(self.user2), 0.225)
+        self.assertEqual(self.user3.compatibilityScore(self.user2), 0.5)
+        self.assertEqual(self.user1.compatibilityScore(self.user2), 0.5)
 
 class TestWriteDatabase(unittest.TestCase):
+    def setUp(self):
+        self.user1 = User("408ef6a8-1244-43df-9909-336b924e102e")
+    
     def testBuyPack(self):
-        user1UID = "41e3e4d7-41f3-452f-8e0d-657a196c2a45"
-        user1 = User(user1UID)
         currentPacks = user1.numPacks
         currentCredits = user1.credits
         user1.buyPack()
@@ -43,12 +46,11 @@ class TestWriteDatabase(unittest.TestCase):
         self.assertEqual(currentCredits - 50, userDB.getUser(user1UID, parameter='credits'))
 
     def testUpdateUser(self):
-        user1UID = "41e3e4d7-41f3-452f-8e0d-657a196c2a45"
         update = {
             'age' : 150
         }
-        userDB.updateUser(user1UID, update)
-        self.assertEqual(update['age'], userDB.getUser(user1UID, parameter='age'))
+        userDB.updateUser(self.user1.uid, update)
+        self.assertEqual(update['age'], userDB.getUser(self.user1.uid, parameter='age'))
 
     def testAddUser(self):
         user = {
@@ -88,5 +90,8 @@ class TestReadDatabase(unittest.TestCase):
         user1UID = "41e3e4d7-41f3-452f-8e0d-657a196c2a45"
         self.assertEqual(userDB.getUser(user1UID, "email"),"cvBtubV@gmail.com" )
 
+'''
+Add test for generate pack, open pack, send like, 
+'''
 if __name__=="__main__":
     unittest.main()
