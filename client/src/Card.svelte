@@ -40,7 +40,7 @@
     .card{
         border:10px solid;
         border-color: #c9d7f8;
-        height: 700px;
+        height: 650px;
         border-radius: 25px;
     }
     .card-title {
@@ -81,7 +81,7 @@
     }
     #card-img-top2{
         width:48%;
-        margin:17px;
+        margin:50px;
         margin-top:10px;
         margin-bottom: 5px;
         vertical-align: middle;
@@ -92,7 +92,7 @@
         width: 12%;
         float:right;
         margin-top:22.5%;
-        margin-right:10px;
+        /*/margin-right:5px;*/
     }
     .pics{
         display: inline-block;
