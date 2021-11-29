@@ -8,7 +8,7 @@
 
 <script> 
     import {astroPicPath, mbtiPicPath} from '../constants.js';
-    import { youser,isAuthenticated, profilePic } from '../store.js'
+    import { youser, isAuthenticated, profilePic, horodict } from '../store.js'
     import {onMount} from 'svelte';
     let pic;
     onMount(() => {
@@ -18,7 +18,6 @@
     
     
     let src = "https://firebasestorage.googleapis.com/v0/b/aligned-5a855.appspot.com/o/KmQOWT6ShjdiAXKAgcQYyM3rpCo1?alt=media";
-    import Card from '../Card.svelte';
     export let horoscope = "This is where my horoscope will be. Today, a surprise will befall you. \n Try and accept it, rather than reject.";
     export let name = "Kanye";
     export let MBTI = "ENTP";
@@ -28,7 +27,10 @@
     export let profileDescription = "This is my cute profile description.";
     export let gender = "Male";
     
-    async function logout () {
+    function logout () {
+        youser.set({})
+        profilePic.set("images/default_profile_pics/no-user.png")
+        horodict.set({})
         isAuthenticated.set(false)
 	}
 </script>
@@ -55,7 +57,7 @@
                             </svg>
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="https://google.com">Edit Profile</a></li>
+                        <li><a class="dropdown-item" href="http://localhost:3000/EditAccount">Edit Profile</a></li>
                         <li><a class="dropdown-item" href="https://www.16personalities.com/free-personality-test">Take Personality Test</a></li>
                         <li><button type="button" class="dropdown-item" on:click={logout} >Logout</button></li>
                         </ul>

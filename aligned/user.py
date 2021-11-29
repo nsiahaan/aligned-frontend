@@ -76,22 +76,23 @@ class User:
         self.uid = uid
         js = userDB.getUser(uid)
         self.name = js["name"]
-        #self.age = js["age"]
-        #self.dob = js["dob"]
+        self.age = js["age"]
+        self.dob = js["dob"]
         self.astro = js["astro"]
         self.mbti = js["mbti"]
         self.gender = js["gender"]
         self.sPref = js["sPref"]
-        #self.phoneNum = js["phoneNum"]
-        #self.email = js["email"]
-        #self.credits = js["credits"]
-        #self.numViews = js["numViews"]
-        #self.numLikes = js["numLikes"]
-        #self.numPacks = js["numPacks"]
-        #self.likes = js["likes"]
-        #self.matches = js["matches"]
-        #self.crushes = js["crushes"]
-    
+        self.phoneNum = js["phoneNum"]
+        self.email = js["email"]
+        self.credits = js["credits"]
+        self.numPacks = js["numPacks"]
+        self.likes = js["likes"]
+        self.matches = js["matches"]
+        self.crushes = js["crushes"]
+        self.bio = js["bio"]
+        # self.snapchat = js["snapchat"]
+        # self.instagram = js["instagram"]
+     
     def getJSON(self):
         """
         Get the user's information in a JSON (Python dictionary) format.

@@ -23,12 +23,10 @@ def home(path):
 @app.route('/login', methods=['POST'])
 def login():
     try:
-        data = request.data
-        data = data.decode('utf-8')
-        data = json.loads(data)
-        email = data["email"]
-        password = data["password"] 
-        return userDB.loginUser(email, password), 200
+        json = request.json
+        email = json["email"]
+        password = json["password"] 
+        return userDB.loginUser(email, password)
     except Exception as e:
         return f"An Error Occured: {e}", 400
     
@@ -41,7 +39,7 @@ def signup():
         email = data["email"]
         password = data["password"]
         addedUser = userDB.signupUser(email, password)
-
+        print(addedUser)
         if addedUser["status"] == "success":
             uid = addedUser["localId"]
             addData = {
@@ -53,7 +51,8 @@ def signup():
                 "email":data['email'],
                 "bio":data['bio'],
                 "instagram":data['instagram'],
-                "snapchat":data["snapchat"]
+                "snapchat":data["snapchat"],
+                "phoneNum":data["phoneNum"]
             }
             userDB.addUser(addData, uid)
         return jsonify(addedUser), 200
@@ -75,7 +74,7 @@ def create():
     except Exception as e:
         return f"An Error Occured: {e}", 400
 
-@app.route('/getuid',methods=['GET'])
+@app.route('/getuid', methods=['GET'])
 def getuid():
     """
         getuid(): Gets UID from Firestore user based on email
@@ -105,7 +104,6 @@ def read():
             return jsonify(user), 200
         elif uid:
             users = userDB.getUsers(uid)
-            print(users[0])
             return {user['uid']: user for user in users}, 200
         else:
             user = userDB.getUser()
@@ -142,10 +140,10 @@ def delete():
 
 '''Actions for a specific user'''
 
-@app.route('/horoscope', methods=['POST'])
+@app.route('/horoscope', methods=['GET'])
 def horoscope():
     try:
-        uid = request.json['uid']
+        uid = request.args.get('uid')
         user = User(uid)
         return jsonify(user.getHoroscope()), 200
     except Exception as e:

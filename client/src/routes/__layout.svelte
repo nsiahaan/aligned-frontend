@@ -4,7 +4,7 @@
     import Signup from './Signup.svelte'
     import Landing from './Landing.svelte'
     import {page} from '$app/stores';
-    import { youser, isAuthenticated, profilePic } from '../store.js'
+    import { youser, isAuthenticated, profilePic, horodict } from '../store.js'
     export let page_tracker = $page.path.replace(/[^\w\s]/gi, '');
 
 
@@ -12,15 +12,16 @@
     onMount(() => {
         youser.useLocalStorage();
         isAuthenticated.useLocalStorage();
-        profilePic.useLocalStorage();   
+        profilePic.useLocalStorage();
+        horodict.useLocalStorage();  
     })
 </script>
 
-
+<div class='centered'> 
 {#if $isAuthenticated}
 <Nav bind:page_tracker={page_tracker} />
 {/if}
-
+</div>
 
 
 {#if !$isAuthenticated && page_tracker == "Login"}
@@ -35,3 +36,12 @@
     <slot />
 </main>
 {/if}
+
+<style>
+.centered {
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+}
+
+</style>
