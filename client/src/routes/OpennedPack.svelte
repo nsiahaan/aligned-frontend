@@ -9,10 +9,9 @@
     onMount(() => {
         youser.useLocalStorage();
         openPack();
-        callUser();
     })
 
-    function openPack(){
+    function openPack() {
         let url = "http://127.0.0.1:5005/openPack"
         fetch(url, {
             method: 'POST',
@@ -20,13 +19,19 @@
             body: JSON.stringify({
                 uid: $youser.uid
             })
-        }).then(d => d.json())
-        .then(d => {
-
-            getList(d);
-            getPics(d);
-            return d;
-        }).then(() => { imready = true })
+        }).then(response => {
+            if (response.status != 200) { // user doesn't have any packs
+                response.text()
+                .then(text => {window.alert(text); window.location.replace('/Packs')})
+            }
+            else {
+                response.json()
+                .then(d => {
+                    getList(d);
+                    getPics(d);
+                }).then(() => { imready = true; callUser(); })
+            }
+        })
     }
 
     function callUser() {
@@ -35,11 +40,10 @@
         .then(d => d.json())
             .then(d => {
                 youser.set(d)
-                return d;
             })
     }
 
-    function sendLike(uid2){
+    function sendLike(uid2) {
         let url = "http://127.0.0.1:5005/sendLike"
         fetch(url, {
             method: 'POST',
@@ -178,8 +182,8 @@
 <body>
 
     
-    <div style="padding: 30px">
-    {#if $timer > 1 && !imready}
+    <div class="cards-scroll" style="padding: 30px">
+    {#if $timer >= 1 && !imready}
     <img {src} alt="Open a pack here!"/>
     {/if}
     {#if $timer > 2.5 && !imready}
@@ -235,14 +239,16 @@
                             <!--<Cardback/> -->
                         </div>
                     <!--<footer on:click={toggleBackFront} data-card-id={i}>Hi</footer>-->
-                    <div><button type="button" class="btn btn-outline-dark" 
-                        on:click={() => sendLike(person.uid)}>Send Like!</button></div>
-                    <!--</div>-->
+                    <div><button type="button" class="btn btn-outline-dark"
+                        on:click={() => {sendLike(person.uid)}}>Send Like!</button>
+                    </div>
                 </div>
                 {/each}
                 {/if}
-            </div>    
-        </div>  
+            </div>
+            <button type="button" class="btn btn-outline-dark" 
+                on:click={() => {window.location.replace('/Packs')}}>Done</button>
+        </div>
     </center>
 </body>
 <style>
