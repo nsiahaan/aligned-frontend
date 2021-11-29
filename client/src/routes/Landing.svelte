@@ -10,6 +10,15 @@
     export let page_tracker = "Landing"
     // import Background from '../Background.svelte';
 
+    function signup(){
+        page_tracker = "/Signup";
+        window.location.href="/Signup";
+    }
+
+    function login(){
+        page_tracker = "/Login";
+        window.location.href="/Login";
+    }
 
 </script>
 
@@ -18,7 +27,7 @@
 <section>
     <div class="nav-area">
         <button type="button" class="btn btn-outline-light" id="login-button"
-        on:click={()=> window.location.href="/Login"}>Log In</button>
+        on:click={login}>Log In</button>
 
     </div>
 
@@ -30,7 +39,7 @@
         <p>It's like dating, but better. See what the skies may bring you as the stars align...</p>
         <div class="buttons">
             <button type="button" class="btn btn-outline-dark" id="signup-button"
-            on:click={()=> window.location.href="/Signup"}>Sign Up</button>
+            on:click={signup}>Sign Up</button>
         </div>
     </div>
 </section>

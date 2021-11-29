@@ -7,15 +7,16 @@
 
     let cardBackShowing = false;
     let selected;
-    let list =[];
+    $: list =[];
     let dictpics = {};
     let pics =[];
 
     function removePerson() {
-        People.pop();
+        list.pop();
         console.log("Remove");
-        console.log(People);
-        $: People = People;
+        console.log(list);
+        //TODO: add logic for matching a person
+        list = list;
     }
     function getPics(uids=[]) {
         let params = "?uid="
