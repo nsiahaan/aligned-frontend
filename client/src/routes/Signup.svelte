@@ -81,18 +81,16 @@ import {onMount} from 'svelte';
         
         var formData  = new FormData();
         formData.append('uid',uid);
-        // formData.append('file',fileInput.files[0]);
-        formData.append('file', picture);
+        formData.append('file', picture[0]);
 
         fetch(url, {
             method: 'POST',
             body: formData
         }).then((response) => response.json()).then((result) => {
             console.log('Success:', result);
-        })
-                .catch((error) => {
-                    console.error('Error:', error);
-                });
+        }).catch((error) => {
+                console.error('Error:', error);
+            });
     }
 
     function phonevalidation() {
