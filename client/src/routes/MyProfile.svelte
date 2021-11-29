@@ -26,13 +26,21 @@
 //     })
 
     
+    let src = "images/default_profile_pics/kanye-west.png";
     import Card from '../Card.svelte';
-    let horoscope = "This is where my horoscope will be. Today, a surprise will befall you. \n Try and accept it, rather than reject. This is where my horoscope will be. Today, a surprise will befall you. \n Try and accept it, rather than reject.This is where my horoscope will be. Today, a surprise will befall you. \n Try and accept it, rather than reject.This is where my horoscope will be. Today, a surprise will befall you. \n Try and accept it, rather than reject.This is where my horoscope will be. Today, a surprise will befall you. \n Try and accept it, rather than reject.";
+    export let name = "Kanye";
+    export let MBTI = "ENTP";
+    export let starSign = "Taurus";
+    export let age = "88";
+    let taurusLink = 'images/signs/taurus.png';
+
+    export let profileDescription = "This is my cute profile description.";
+    export let gender = "Male";
+    
 
 </script>
 
 <section>
-<div class='whole-thing'>
 <div>
     <div class="card">
         {#if $youser.uid}
@@ -87,7 +95,6 @@
         </div> 
     </div>
 </div>
-</div>
     
 </section>
 
@@ -95,22 +102,29 @@
 
 
 <style>
-    .whole-thing{
-        margin: auto;
-        width: 70%;
-        padding: 10px; 
-    }
+
     .card{
         float: left;
         height: auto;
-        margin-top: 20px;
-        /*margin-left: 40px;
+        display:inline-block;
+        margin-top: 10vh;
+        margin-left: 40px;
         margin-right: 20px;
-        margin-bottom: 15px;*/
+        margin-bottom: 15px;
     }
     p{
         font-size: larger;
 
+    }
+    .rounded{
+        border-radius: 100% !important;
+        background-color: white;
+        color: black;
+    }
+    .center{
+        text-align: center;
+        margin-top: 50px;
+        margin-bottom: 50px;
     }
 
     .horoscope-text{
@@ -123,17 +137,26 @@
         padding-bottom: 1em;
     }
 
+    .resize {
+        height: 300px;
+        width: auto;
+        margin: auto;
+    }
     .big-box{
-        width: 60%;
-        /*margin-right: 10%;*/
+        width: 50%;
+        margin-right: 10%;
         background-color: #c1b8ed;
         height: auto;
         margin-top: 10%;
-        /*margin-bottom: 50px;*/
+        margin-bottom: 50px;
         padding-bottom: 3em;
-        display:inline-block;
-        float:right;
+        float: right;
         outline-style: solid;
+    }
+
+    .row-box{
+        background-color: #c1b8ed;
+        /* outline-style: solid; */
     }
 
     .horoscope {

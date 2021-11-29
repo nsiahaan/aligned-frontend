@@ -9,6 +9,8 @@
     import {page} from '$app/stores';
     export let page_tracker = "Landing"
     // import Background from '../Background.svelte';
+
+
 </script>
 
 
@@ -16,7 +18,7 @@
 <section>
     <div class="nav-area">
         <button type="button" class="btn btn-outline-light" id="login-button"
-        on:click={()=> page_tracker = "Login"}>Log In</button>
+        on:click={()=> window.location.href="/Login"}>Log In</button>
 
     </div>
 
@@ -28,7 +30,7 @@
         <p>It's like dating, but better. See what the skies may bring you as the stars align...</p>
         <div class="buttons">
             <button type="button" class="btn btn-outline-dark" id="signup-button"
-            on:click={()=> page_tracker = "Signup"}>Sign Up</button>
+            on:click={()=> window.location.href="/Signup"}>Sign Up</button>
         </div>
     </div>
 </section>

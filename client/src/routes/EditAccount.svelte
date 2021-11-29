@@ -50,7 +50,12 @@
                 picture
 			})
 		})
+<<<<<<< HEAD
 		callUser();
+=======
+        window.location.href="/MyAccount"
+		
+>>>>>>> 9a3117e62fef534c16c57e995e48f51e3313acc7
 		//const json = await res.json()
 		//result = JSON.stringify(json)
 	}
