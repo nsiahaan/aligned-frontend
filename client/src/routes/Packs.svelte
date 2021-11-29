@@ -10,15 +10,13 @@
 
 <section>
     <div class="pack-remains">
-        <p>Packs remaining: {$youser.numPacks}</p>
-
-        <p>Credits: {$youser.credits}</p>
+        <p class="top-text">Packs remaining: {$youser.numPacks}</p>
+        <p class="top-text">Credits: {$youser.credits}</p>
     </div>
-    <br>
-    <br>
 </section>
 
 <section>
+    <div class="whole">
     <div class="container">
         <div class = "row">
             <div class = "col">
@@ -33,6 +31,7 @@
             </div>
         </div>
     </div>
+    </div>
 </section>
 
 
@@ -40,6 +39,11 @@
     .pack-remains{
         text-align: center;
     }
+    .top-text{
+        font-size:22px;
+        font-weight: bold;
+    }
+
 </style>
 
 
