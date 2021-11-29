@@ -8,7 +8,6 @@
 
 <script> 
     import {astroPicPath, mbtiPicPath} from '../constants.js';
-    import { page } from '$app/stores';
     import { youser, isAuthenticated, profilePic, horodict } from '../store.js'
     import {onMount} from 'svelte';
 
