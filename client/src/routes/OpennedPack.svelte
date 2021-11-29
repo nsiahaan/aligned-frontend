@@ -106,6 +106,10 @@
         })
     }
     function getList(uids) {
+        if (uids.length == 0) {
+            window.alert("no uids were given");
+            return;
+        }
         if (typeof uids == "string" || typeof uids == "number") {
             return getListUID(uids)
         } else if (uids.constructor === Array){

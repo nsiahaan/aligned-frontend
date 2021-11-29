@@ -131,6 +131,12 @@ import {onMount} from 'svelte';
             console.log(sexPref);
             return;
         }
+        for (let i = 0; i < sexPref.length; i++) {
+            sexPref[i] = sexPref[i].toLowerCase();
+        }
+        gender = gender.toLowerCase();
+        email = email.toLowerCase();
+        
 		fetch('http://127.0.0.1:5005/signup', {
 			method: 'POST',
 			body: JSON.stringify({
