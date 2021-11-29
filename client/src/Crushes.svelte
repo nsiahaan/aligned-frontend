@@ -4,19 +4,51 @@
     import Cardback from './Cardback.svelte';
     import { youser, profilePic } from './store.js';
     import { astroPicPath, mbtiPicPath } from './constants.js';
+    import {onMount} from 'svelte'
+    onMount(()=> {
+        youser.useLocalStorage();
+        console.log($youser.crushes);
+        getPics($youser.crushes);
+        getListUIDs($youser.crushes);
+    })
 
     let cardBackShowing = false;
     let selected;
-    let list =[];
+    $: list =[];
     let dictpics = {};
     let pics =[];
 
-    function removePerson() {
-        People.pop();
-        console.log("Remove");
-        console.log(People);
-        $: People = People;
+    // function removePerson() {
+    //     People.pop();
+    //     console.log("Remove");
+    //     console.log(People);
+    //     $: People = People;
+    // }
+
+    function sendLike(uid2) {
+        let url = "http://127.0.0.1:5005/sendLike"
+        fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                uid1: $youser.uid,
+                uid2: uid2
+            })
+        }).then(() => {
+            callUser()
+        })
     }
+
+    function callUser() {
+        let url = "http://127.0.0.1:5005/list?uid=" + $youser.uid
+        fetch(url)
+        .then(d => d.json())
+            .then(d => {
+                youser.set(d);
+                window.location.reload();
+            })
+    }
+
     function getPics(uids=[]) {
         if (uids.length == 0) {
             return;
@@ -36,8 +68,10 @@
         })
         .then(d=>console.log(d))
     }
+
     function getListUIDs(uids) {
         if (uids.length == 0) {
+            list = [];
             return;
         }
         let params = "?uid=" + uids.join("&uid=")
@@ -45,20 +79,14 @@
         fetch(url)
         .then(d => d.json())
         .then(d => {
-
-            list = Object.values(d);
-
-            return list;
+            if (uids.length == 1) {
+                list = [d]
+            }
+            else {
+                list = Object.values(d);
+            }
         })
     }
-
-
-    import {onMount} from 'svelte'
-    onMount(()=> {
-        console.log($youser.crushes);
-        getPics($youser.crushes);
-        getListUIDs($youser.crushes);
-    })
 
 
 </script>
@@ -94,7 +122,7 @@
                     </div>
                 <!--<footer on:click={toggleBackFront} data-card-id={i}>Hi</footer>-->
                 <div>
-                    <button class="btn btn-outline-dark" on:click={removePerson}> Match! </button>
+                    <button class="btn btn-outline-dark" on:click={() => {sendLike(person.uid)}}> Match! </button>
                 </div>
                 <!--</div>-->
             </div>

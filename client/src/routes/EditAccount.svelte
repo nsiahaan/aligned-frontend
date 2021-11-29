@@ -40,6 +40,10 @@
         if(mbti == "") {
             mbti = $youser.mbti;
         }
+        for (let i = 0; i < sexPref.length; i++) {
+            sexPref[i] = sexPref[i].toLowerCase();
+        }
+        gender = gender.toLowerCase();
 		fetch('http://127.0.0.1:5005/update', {
 			method: 'POST',
 			body: JSON.stringify({
