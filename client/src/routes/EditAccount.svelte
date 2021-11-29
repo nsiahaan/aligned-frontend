@@ -6,67 +6,31 @@
 </head>
 
 <script>
-import { subscribe } from "svelte/internal";
-
-
+    import { youser,isAuthenticated, profilePic } from '../store.js'
     let name;
-    let dob;
-    let gender = null;
-    let mbti = null;
+    let gender;
+    let mbti;
     let sexPref = [];
     let phone;
     let bio;
     let instagram;
     let snapchat;
-    let email;
     let password;
     let picture;
     let result = null;
-    let passwordReminder;
-    let phoneReminder;
-    let sexReminder;
-
-    function phonevalidation() {
-        if (/[0-9]{3}-[0-9]{3}-[0-9]{4}/.test(phone)) {
-            return true;
-        }
-        phoneReminder = true;
-        return false;
-    }
-    function passvalidation() {
-        if (password.length >= 6) {
-            return true;
-        }
-        passwordReminder = true;
-        return false;
-    }
-
-    function sexprevalidation() {
-        if (sexPref.length > 0) {
-            return true;
-        }
-        sexReminder = true;
-        return false;
-    }
 
     async function doPost () {
-        if (!phonevalidation()) {
-            console.log(phone);
-            return;
+
+        if (mbti == "") {
+            mbti = null;
         }
-        if (!passvalidation()) {
-            console.log(password);
-            return;
+        if (gender == "") {
+            gender = null;
         }
-        if (!sexprevalidation()) {
-            console.log(sexPref);
-            return;
-        }
-		const res = await fetch('http://127.0.0.1:5005/signup', {
+		const res = await fetch('http://127.0.0.1:5005/update', {
 			method: 'POST',
 			body: JSON.stringify({
 				name,
-                dob, 
                 gender,
                 mbti,
                 sexPref,
@@ -74,7 +38,6 @@ import { subscribe } from "svelte/internal";
                 bio,
                 instagram,
                 snapchat,
-                email,
                 password,
                 picture
 			})
@@ -86,32 +49,26 @@ import { subscribe } from "svelte/internal";
 
 </script>
 
-<form on:submit|preventDefault={doPost}>
+<form>
     <div class="form-group col-md-6 col-centered"> 
       <label for="name">Name</label>
       <input type="text" class="form-control" id="nameInput" placeholder="Enter name" bind:value={name} required> 
-    </div>
-    <br>
-    <div class="form-group col-md-6 col-centered">
-        <label for="birthday">Date of Birth</label>
-        <br>
-        <input type="date" id="birthday" name="dateofbirth" bind:value={dob} required>
     </div>
     <br> 
     <div class="form-group col-md-6 col-centered">
         <label for="gender">Gender</label>
         <select class="form-control" id="genderInput" bind:value={gender} required>
-          <option disabled selected value> -- select an option -- </option>         
+          <option></option>
           <option>Male</option>
           <option>Female</option>
           <option>Non-binary</option>
         </select>
     </div>
     <br>
-    <div class="form-group col-md-6 col-centered" >
+    <div class="form-group col-md-6 col-centered">
         <label for="MBTI">MBTI</label>
         <select class="form-control" id="mbtiInput" bind:value={mbti} required>
-          <option disabled selected value> -- select an option -- </option>
+          <option></option>
           <option>INFJ</option>
           <option>INFP</option>
           <option>INTJ</option>
@@ -128,6 +85,7 @@ import { subscribe } from "svelte/internal";
           <option>ESTJ</option>
           <option>ESFP</option>
           <option>ESTP</option>
+          <option></option>
         </select>
         <small>If you don't know your MBTI?, takes this quick quiz! https://www.16personalities.com/free-personality-test</small><br><br>
     </div>
@@ -138,29 +96,21 @@ import { subscribe } from "svelte/internal";
             <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="male" bind:group={sexPref}>
             <label class="form-check-label" for="inlineCheckbox1">Male</label>
         </div>
-        <div class="form-check form-check-inline" required>
+        <div class="form-check form-check-inline">
             <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="female" bind:group={sexPref}>
             <label class="form-check-label" for="inlineCheckbox2">Female</label>
         </div>
-        <div class="form-check form-check-inline" required>
+        <div class="form-check form-check-inline">
             <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="non-binary" bind:group={sexPref}>
             <label class="form-check-label" for="inlineCheckbox3">Non-binary</label>
         </div>
-        {#if sexReminder}
-        <p class="error-message">You must check at least one preference</p>
-        {/if}
     </div>
     <br>
     
     <div class="form-group col-md-6 col-centered">
         <label for="phone">Phone Number</label><br>
-        <!--<input type="tel" id="phone" placeholder="123-457-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required bind:value={phone}><br>-->
-        <input type="text" id="phone" placeholder="123-457-7890" required bind:value={phone}><br>
-        <small>Format: 123-456-7890</small>
-        {#if phoneReminder}
-        <p class="error-message">The format of the phone number is incorrect</p>
-        {/if}
-        <br><br>
+        <input type="tel" id="phone" placeholder="123-457-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required bind:value={phone}><br>
+        <small>Format: 123-456-7890</small><br><br>
     </div>
     <div class="form-group col-md-6 col-centered">
         <label for="bio">Write your Bio!!</label>
@@ -185,22 +135,13 @@ import { subscribe } from "svelte/internal";
     <br>
     <div class="form-row">
         <div class="form-group col-md-6 col-centered">
-          <label for="inputEmail4">Email</label>
-          <input type="email" class="form-control" id="inputEmail4" placeholder="Email" bind:value={email}>
-        </div>
-        <br>
-        <div class="form-group col-md-6 col-centered">
           <label for="inputPassword4">Password</label>
           <input type="password" class="form-control" id="inputPassword4" placeholder="Password" bind:value={password}>
-          {#if passwordReminder}
-            <p class="error-message">Password has to be more than six characters long</p>
-          {/if}
         </div>
         <br>
     </div>
     <div style="text-align:center;">
-        <!--<button type="button" class="btn btn-outline-secondary" on:click={doPost} disabled>Submit</button>-->
-        <button type="submit" class="btn btn-outline-secondary">Submit</button>
+        <button type="button" class="btn btn-outline-secondary" on:click={doPost}>Submit</button>
     </div>    
 </form>
     <br>
@@ -210,16 +151,10 @@ import { subscribe } from "svelte/internal";
     <br>
 
 <pre> {result} </pre>
+{youser.gender}
 
 
 <style>
-
-.error-message {
-    color: tomato;
-    flex: 0 0 100%;
-    margin: 0 2px;
-    font-size: 0.8em;
-  }
 textarea {
   width: 100%;
   height: 150px;

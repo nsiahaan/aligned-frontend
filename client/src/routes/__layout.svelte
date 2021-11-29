@@ -17,11 +17,11 @@
     })
 </script>
 
-
+<div class='centered'> 
 {#if $isAuthenticated}
 <Nav bind:page_tracker={page_tracker} />
 {/if}
-
+</div>
 
 
 {#if !$isAuthenticated && page_tracker == "Login"}
@@ -36,3 +36,12 @@
     <slot />
 </main>
 {/if}
+
+<style>
+.centered {
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+}
+
+</style>
