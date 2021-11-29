@@ -8,17 +8,31 @@
 
 <script> 
     import {astroPicPath, mbtiPicPath} from '../constants.js';
+    import { page } from '$app/stores';
     import { youser, isAuthenticated, profilePic, horodict } from '../store.js'
     import {onMount} from 'svelte';
-    let pic;
+
+    $: src = {};
+
     onMount(() => {
-        //profilePic.useLocalStorage();
-        pic = $profilePic;
-        console.log(pic);
+
+        // src = getPic();
+
     })
     
+    function getPic() {
+        let params = "?uid=" + $youser.uid
+        let url = "http://127.0.0.1:5005/getPic" + params
+        fetch(url)
+        .then(d => d.json())
+        .then(d => {
+            src = d[$youser.uid];
+            console.log(src[$youser.uid])
+            return src[$youser.uid];
+        })
+    }
     
-    let src = "https://firebasestorage.googleapis.com/v0/b/aligned-5a855.appspot.com/o/KmQOWT6ShjdiAXKAgcQYyM3rpCo1?alt=media";
+    // let src = "https://firebasestorage.googleapis.com/v0/b/aligned-5a855.appspot.com/o/KmQOWT6ShjdiAXKAgcQYyM3rpCo1?alt=media";
     export let horoscope = "This is where my horoscope will be. Today, a surprise will befall you. \n Try and accept it, rather than reject.";
     export let name = "Kanye";
     export let MBTI = "ENTP";
@@ -38,6 +52,8 @@
 	}
 </script>
 
+<svelte:window on:load={getPic()}/>
+
 <section>
     <div class="big-box">
         <div class="container">
@@ -45,8 +61,7 @@
                 <div class="col">
                     <!-- svelte-ignore a11y-img-redundant-alt -->
                     <div class="center"> 
-
-                        <img {profilePic} class="resize" alt="Profile Picture is displayed here"/>
+                        <img src={src} class="resize" alt="Profile Picture is displayed here"/>
 
                         }
                     </div>
