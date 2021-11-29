@@ -83,6 +83,7 @@
 			} else {
 				invalidCreds = false;
 				page_tracker = "Home";
+				//window.location.href = "https://localhost:3000/Home";
 				isAuthenticated.set(true);
 				getUser(data['email']);
 			}
