@@ -23,10 +23,28 @@
     let instagram = $youser.instagram;
     let snapchat = $youser.snapchat;
     let password = $youser.password;
-    let picture = $youser.picture;
+    let picture = false;
     let result = null;
     let uid = $youser.uid;
 
+    function addProfilePic(uid) {
+        if (!picture) { return; }
+        console.log("trying to add pic")
+        let url="http://localhost:5005/addPic";
+        
+        var formData  = new FormData();
+        formData.append('uid',uid);
+        formData.append('file', picture[0]);
+
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        }).then((response) => response.json()).then((result) => {
+            console.log('Success:', result);
+        }).catch((error) => {
+                console.error('Error:', error);
+            });
+    }
     function doPost () {
 
         if(sexPref.length == 0) {
@@ -60,6 +78,9 @@
                 picture
 			})
 		}).then(() => {
+            addProfilePic($youser.uid)
+        })
+        .then(() => {
             console.log("about to call callUsser()")
             callUser();
         })
@@ -147,7 +168,7 @@
     <br>
     <div class="form-group col-md-6 col-centered">
         <label for="exampleFormControlFile1">Find a Profile Picture!</label> <br>
-        <input type="file" class="form-control-file" id="inputPicture" accept="image/png, image/gif, image/jpeg" bind:value={picture}>
+        <input type="file" class="form-control-file" id="inputPicture" accept="image/png, image/gif, image/jpeg" bind:files={picture}>
     </div>
     <br>
     <div class="form-row">

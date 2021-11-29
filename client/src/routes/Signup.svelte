@@ -74,7 +74,7 @@ import {onMount} from 'svelte';
 		})
     }
     function addProfilePic(uid) {
-        let fileInput = document.querySelector('#inputPicture') ;
+
         console.log(picture[0])
         console.log("trying to add pic")
         let url="http://localhost:5005/addPic";
