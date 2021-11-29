@@ -66,7 +66,6 @@ def calculateAge(birthDate):
     day = int(birthDate[8:])
     today = date.today()
     age = today.year - year - ((today.month, today.day) < (month, day))
-    print(age)
     return age
      
 def calculateAstro(birthDate):
