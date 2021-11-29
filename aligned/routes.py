@@ -128,6 +128,7 @@ def update():
     try:
         id = request.json['uid']
         userDB.updateUser(id, request.json)
+        print(request.json)
         return jsonify({"success": True}), 200
     except Exception as e:
         return f"An Error Occured: {e}"
