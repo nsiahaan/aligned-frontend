@@ -50,6 +50,7 @@
                 picture
 			})
 		})
+        window.location.href="/MyAccount"
 		
 		//const json = await res.json()
 		//result = JSON.stringify(json)
