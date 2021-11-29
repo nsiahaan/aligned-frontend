@@ -141,6 +141,7 @@
     }
     img {
         display: block;
+        right: 100%;
     }
     .column {
         display: block;
