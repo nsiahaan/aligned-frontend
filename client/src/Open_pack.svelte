@@ -9,9 +9,18 @@
     }   
 </script>
 
-
-<img {src} alt="Open a pack here!"/>
+<div>
+<img {src} id="button" alt="Open a pack here!"/>
 <br>
 <br>
+<div class="button">
 <a href="/OpennedPack" class="btn btn-outline-dark">Open Pack</a>
+</div>
+</div>
 
+
+<style>
+    .button{
+        margin-left:20%;
+}
+</style>
