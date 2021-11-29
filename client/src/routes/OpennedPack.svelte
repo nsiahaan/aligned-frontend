@@ -43,7 +43,7 @@
             })
     }
 
-    function sendLike(uid2) {
+    function sendLike(uid2, i){
         let url = "http://127.0.0.1:5005/sendLike"
         fetch(url, {
             method: 'POST',
@@ -53,6 +53,9 @@
                 uid2: uid2
             })
         })
+        showList[i] = false;
+        totalLikesLeft -= 1;
+        if (totalLikesLeft <= 0) {window.location.replace('/Packs');}
     }
 
     let astroPicPath = 'images/signs/';
@@ -63,8 +66,10 @@
     let cardBackShowing = false;
     let selected;
     let list =[];
+    let showList = [];
     let dictpics = {};
     let pics =[];
+    let totalLikesLeft = 3;
     let defaultTestUIDs = ['17465e7f-35d0-4a4f-931a-b4185e507b04', '217e2e1b-e242-4081-8678-44277014f940', '5cd73c82-94ac-4163-95b1-1ae5be851ea9', '39018b26-8c19-4279-ba0a-271f10a7b8df', '2e30119b-fe18-4ad2-a91d-a7aa88b8a3e8', '3acbc757-6d94-44ec-aee5-d7f0278e992b', '3b5a34c7-d906-477d-b66c-88100495f43f']
 
     const toggleBackFront = (e) => {
@@ -86,16 +91,7 @@
         .then(d => {
 
             list = Object.values(d);
-            for (let person in list) {
-                if (person['astro'] == 'gemini') {
-                    console.log("HI");
-                    person['astropic'] = geminiLink;
-                }
-                if (person['astro'] == 'virgo') {
-                    person['astropic'] = virgoLink;
-                } 
-            }
-
+            showList = Array.from({length: Object.values(d).length}, i => true)
             return list;
         })
     }
@@ -105,16 +101,7 @@
         fetch(url)
         .then(d => d.json())
         .then(d => {
-            list = [d]; 
-            let person = list[0]
-            if (person['astro'] == 'gemini') {
-                console.log("HI");
-                person['astropic'] = geminiLink;
-            }
-            if (person['astro'] == 'virgo') {
-                person['astropic'] = virgoLink;
-            } 
-            
+            list = [d];  
             return list;
         })
     }
@@ -130,15 +117,7 @@
 		.then(d => {
             list = d; 
             list = list.slice(0, 7);
-            for (let person in list) {
-                if (person['astro'] == 'gemini') {
-                    console.log("HI");
-                    person['astropic'] = geminiLink;
-                }
-                if (person['astro'] == 'virgo') {
-                    person['astropic'] = virgoLink;
-                } 
-            }
+            
             return list;
         })
     }
@@ -215,7 +194,7 @@
     <img {src} alt="Open a pack here!"/>
     {/if} -->
 
-
+    <h2>Total Likes Left: {totalLikesLeft}</h2>
     <center>
         <div class="container-fluid">
             <div class="cards-scroll">
@@ -223,6 +202,7 @@
                 {#each list as person, i}
                 <div class="card-butt">
                     <!--<div class="flip-box">-->
+                        {#if showList[i]}
                         <div class="card"> <!--class:show-back={selected===i} data-card-id={i}>-->
                             <Card 
                                 AstroPic={astroPicPath + person.astro + '.png'}
@@ -239,9 +219,11 @@
                             <!--<Cardback/> -->
                         </div>
                     <!--<footer on:click={toggleBackFront} data-card-id={i}>Hi</footer>-->
-                    <div><button type="button" class="btn btn-outline-dark"
-                        on:click={() => {sendLike(person.uid)}}>Send Like!</button>
+
+                    <div><button type="button" class="btn btn-outline-dark" 
+                        on:click={() => sendLike(person.uid, i)}>Send Like!</button>
                     </div>
+                    {/if}
                 </div>
                 {/each}
                 {/if}
@@ -280,6 +262,7 @@
     margin-left: 40px;
     margin-right: 40px;
     margin-bottom: 15px;
+    border-color: white;
     /*transition: transform 0.8s;
     transform-style: preserve-3d;
     backface-visibility: hidden;
