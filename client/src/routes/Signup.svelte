@@ -75,15 +75,24 @@ import {onMount} from 'svelte';
     }
     function addProfilePic(uid) {
         let fileInput = document.querySelector('#inputPicture') ;
+        console.log(picture[0])
         console.log("trying to add pic")
         let url="http://localhost:5005/addPic";
-        const formData  = new FormData();
+        
+        var formData  = new FormData();
         formData.append('uid',uid);
-        formData.append('file',fileInput.files[0],uid);
+        // formData.append('file',fileInput.files[0]);
+        formData.append('file', picture);
+
         fetch(url, {
             method: 'POST',
             body: formData
+        }).then((response) => response.json()).then((result) => {
+            console.log('Success:', result);
         })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
     }
 
     function phonevalidation() {
@@ -237,7 +246,7 @@ import {onMount} from 'svelte';
     <br>
     <div class="form-group col-md-6 col-centered">
         <label for="exampleFormControlFile1">Find a Profile Picture!</label> <br>
-        <input type="file" class="form-control-file" id="inputPicture" accept="image/png, image/gif, image/jpeg" bind:value={picture} required name="file">
+        <input type="file" class="form-control-file" id="inputPicture" accept="image/png, image/gif, image/jpeg, image/jpg" bind:files={picture} required name="file">
     </div>
     <br>
     <div class="form-row">
