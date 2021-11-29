@@ -14,6 +14,9 @@
 
     
     function getPics(uids=[]) {
+        if (uids.length == 0) {
+            return;
+        }
         let params = "?uid="
         if (typeof uids == "string" || typeof uids == "number") {
             params += uids
@@ -30,6 +33,9 @@
         .then(d=>console.log(d))
     }
     function getListUIDs(uids) {
+        if (uids.length == 0) {
+            return;
+        }
         let params = "?uid=" + uids.join("&uid=")
         let url = "http://127.0.0.1:5005/list" + params
         fetch(url)

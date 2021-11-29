@@ -51,7 +51,7 @@
 					.then(d => {
 						profilePic.set(d[uid])
 					}).then(() => {
-						window.location.href('/Home')
+						window.location.replace('/Home')
 					})
 				})
         	})
@@ -83,7 +83,6 @@
 			} else {
 				invalidCreds = false;
 				page_tracker = "Home";
-				window.location.href = "/Home";
 				isAuthenticated.set(true);
 				getUser(data['email']);
 			}
