@@ -19,7 +19,7 @@
     const handleError = ev => ev.target.src = fallback
 
 </script>
-<div class="coverShit">
+
 <div class="card" style="width: 25rem;">
     <div class='pics'>
         <img src={AstroPic} id="card-img-top1" alt="...">
@@ -35,7 +35,7 @@
         </div>
     </div>
 </div>
-</div>
+
 
 <style>
     .coverShit{
