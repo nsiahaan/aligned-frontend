@@ -12,7 +12,7 @@
     import {onMount} from 'svelte';
     let pic;
     onMount(() => {
-        pic = $profilePic;
+        pic = $youser.picture;
         console.log(pic);
     })
     

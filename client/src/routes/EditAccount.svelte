@@ -17,7 +17,7 @@
     let instagram = $youser.instagram;
     let snapchat = $youser.snapchat;
     let password = $youser.password;
-    let picture = $profilePic;
+    let picture = $youser.picture;
     let result = null;
     let uid = $youser.uid;
 
@@ -50,10 +50,19 @@
                 picture
 			})
 		})
-		
+		callUser();
 		//const json = await res.json()
 		//result = JSON.stringify(json)
 	}
+
+    function callUser() {
+        let url = "http://127.0.0.1:5005/list?uid=" + uid
+        fetch(url)
+        .then(d => d.json())
+            .then(d => {
+                youser.set(d)
+            })
+    }
 
 </script>
 

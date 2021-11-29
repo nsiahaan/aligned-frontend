@@ -14,7 +14,7 @@ import { youser,isAuthenticated, profilePic } from '../store.js'
     let gender = null;
     let mbti = null;
     let sexPref = [];
-    let phone;
+    let phoneNum;
     let bio;
     let instagram;
     let snapchat;
@@ -26,8 +26,43 @@ import { youser,isAuthenticated, profilePic } from '../store.js'
     let phoneReminder;
     let sexReminder;
 
+    function getUser(email) {
+        let params = "?email=" + email
+        let url = "http://127.0.0.1:5005/getuid" + params
+        fetch(url)
+        .then(d => d.json())
+        .then(d => {
+            let params = "?uid=" + d
+            let url = "http://127.0.0.1:5005/list" + params
+            fetch(url)
+	        .then(d => d.json())
+	        .then(d => {
+	            youser.set(d)
+	            return d;
+	        }).then(d => {
+	        	let uid = d.uid
+		        let params = "?uid=" + uid
+				let url = "http://127.0.0.1:5005/horoscope" + params
+				fetch(url)
+				.then(d => d.json())
+				.then(d => {
+					horodict.set(d)
+				}).then(() => {
+					let url = "http://127.0.0.1:5005/getPic" + params
+					fetch(url)
+					.then(d => d.json())
+					.then(d => {
+						profilePic.set(d[uid])
+					}).then(() => {
+						window.location.replace('/Home')
+					})
+				})
+        	})
+		})
+    }
+
     function phonevalidation() {
-        if (/[0-9]{3}-[0-9]{3}-[0-9]{4}/.test(phone)) {
+        if (/[0-9]{3}-[0-9]{3}-[0-9]{4}/.test(phoneNum)) {
             return true;
         }
         phoneReminder = true;
@@ -51,7 +86,7 @@ import { youser,isAuthenticated, profilePic } from '../store.js'
 
     async function doPost () {
         if (!phonevalidation()) {
-            console.log(phone);
+            console.log(phoneNum);
             return;
         }
         if (!passvalidation()) {
@@ -70,7 +105,7 @@ import { youser,isAuthenticated, profilePic } from '../store.js'
                 gender,
                 mbti,
                 sexPref,
-                phone,
+                phoneNum,
                 bio,
                 instagram,
                 snapchat,
@@ -82,7 +117,6 @@ import { youser,isAuthenticated, profilePic } from '../store.js'
 		
 		const json = await res.json()
 		result = JSON.stringify(json)
-        page_tracker = "Home";
 		isAuthenticated.set(true)
 		getUser(data['email'])
 		window.location.replace('/Home')
@@ -159,7 +193,7 @@ import { youser,isAuthenticated, profilePic } from '../store.js'
     <div class="form-group col-md-6 col-centered">
         <label for="phone">Phone Number</label><br>
         <!--<input type="tel" id="phone" placeholder="123-457-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required bind:value={phone}><br>-->
-        <input type="text" id="phone" placeholder="123-457-7890" required bind:value={phone}><br>
+        <input type="text" id="phone" placeholder="123-457-7890" required bind:value={phoneNum}><br>
         <small>Format: 123-456-7890</small>
         {#if phoneReminder}
         <p class="error-message">The format of the phone number is incorrect</p>
