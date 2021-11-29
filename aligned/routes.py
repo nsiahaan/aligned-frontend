@@ -39,7 +39,7 @@ def signup():
         email = data["email"]
         password = data["password"]
         addedUser = userDB.signupUser(email, password)
-
+        print(addedUser)
         if addedUser["status"] == "success":
             uid = addedUser["localId"]
             addData = {
@@ -51,7 +51,8 @@ def signup():
                 "email":data['email'],
                 "bio":data['bio'],
                 "instagram":data['instagram'],
-                "snapchat":data["snapchat"]
+                "snapchat":data["snapchat"],
+                "phoneNum":data["phoneNum"]
             }
             userDB.addUser(addData, uid)
         return jsonify(addedUser), 200
@@ -103,7 +104,6 @@ def read():
             return jsonify(user), 200
         elif uid:
             users = userDB.getUsers(uid)
-            print(users[0])
             return {user['uid']: user for user in users}, 200
         else:
             user = userDB.getUser()
