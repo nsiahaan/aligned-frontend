@@ -6,7 +6,13 @@
 </head>
 
 <script>
-    import { youser,isAuthenticated, profilePic } from '../store.js'
+    import { youser, isAuthenticated, profilePic } from '../store.js'
+    import {onMount} from 'svelte';
+	onMount(() => {
+		youser.useLocalStorage();
+		isAuthenticated.useLocalStorage();
+		profilePic.useLocalStorage();
+	})
     let name = $youser.name;
     let gender = $youser.gender;
     let mbti = $youser.mbti;
@@ -21,7 +27,7 @@
     let result = null;
     let uid = $youser.uid;
 
-    async function doPost () {
+    function doPost () {
 
         if(sexPref.length == 0) {
             sexPref = $youser.sPref;
@@ -34,7 +40,7 @@
         if(mbti == "") {
             mbti = $youser.mbti;
         }
-		const res = await fetch('http://127.0.0.1:5005/update', {
+		fetch('http://127.0.0.1:5005/update', {
 			method: 'POST',
 			body: JSON.stringify({
                 uid,
@@ -49,19 +55,20 @@
                 password,
                 picture
 			})
-		})
-
-        window.location.href="/MyAccount"
-		//const json = await res.json()
-		//result = JSON.stringify(json)
+		}).then(() => {
+            console.log("about to call callUsser()")
+            callUser();
+        })
 	}
 
     function callUser() {
+        console.log("callUser called")
         let url = "http://127.0.0.1:5005/list?uid=" + uid
         fetch(url)
         .then(d => d.json())
             .then(d => {
                 youser.set(d)
+                window.location.replace("/MyAccount")
             })
     }
 
