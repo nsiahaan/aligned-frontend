@@ -6,9 +6,9 @@
 </head>
 
 <script>
-import { subscribe } from "svelte/internal";
+import { youser,isAuthenticated, profilePic } from '../store.js'
 
-
+    export let page_tracker = "Home"
     let name;
     let dob;
     let gender = null;
@@ -82,6 +82,10 @@ import { subscribe } from "svelte/internal";
 		
 		const json = await res.json()
 		result = JSON.stringify(json)
+        page_tracker = "Home";
+		isAuthenticated.set(true)
+		getUser(data['email'])
+		window.location.replace('/Home')
 	}
 
 </script>
