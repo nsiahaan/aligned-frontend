@@ -1,7 +1,7 @@
 import firebase_admin
 from firebase_admin import credentials, firestore, storage
+import userDB
 
-# from aligned import firebaseDB ## idk why I can't import this module.
 
 import random
 import names
@@ -12,8 +12,6 @@ import requests
 import time
 
 
-cred = credentials.Certificate("/Users/nkumar/CSCode/aligned/key.json")
-default_app = firebase_admin.initialize_app(cred)
 db = firestore.client()
 users_ref = db.collection('users')
 astroList = ['aries', 'leo', 'sagittarius', 'taurus', 'virgo', 'capricorn', 'gemini', 'libra', 'aquarius', 'cancer', 'scorpio', 'pisces']
@@ -21,35 +19,15 @@ mbtiList = ['INFP', 'ENFP', 'INFJ', 'ENFJ', 'INTJ', "ENTJ", "INTP", "ENTP", "ISF
 sPrefList = [['male'],['female'],['non-binary'], ['male', 'female'], ["male", 'non-binary'], ['female', 'non-binary'], ['male', 'female', 'non-binary']]
 genderList = ['male', 'female', 'non-binary']
 
-def addUser(json):
-    """
-        create() : Add document to Firestore collection with request body
-        Ensure you pass a custom ID as part of json body in post request
-    """
-    id = str(uuid.uuid4())
-    data = {
-        "name":json['name'],
-        "uid" : id,
-        "age":json['age'],
-        "dob":json['dob'],
-        "astro":json['astro'],
-        "gender":json['gender'],
-        "mbti":json['mbti'],
-        "sPref":json['sPref'],
-        "phoneNum":json['phoneNum'],
-        "email":json['email'],
-        "credits":json['credits'],
-        "crushes":json['crushes'],
-        "numPacks":json['numPacks'],
-        "likes":json['likes'],
-        "matches":json['matches'],
-        "bio":json["bio"]
-    }
-    users_ref.document(id).set(data, merge=True )
-
 def randomNumber():
     ph_no = ""
-    for i in range(1, 10):
+    for i in range(3):
+        ph_no += str(random.randint(0, 9))
+    ph_no += "-"
+    for i in range(3):
+        ph_no += str(random.randint(0, 9))
+    ph_no += "-"
+    for i in range(4):
         ph_no += str(random.randint(0, 9))
     return ph_no
 
@@ -57,8 +35,8 @@ def randomChar(char_num):
        return ''.join(random.choice(string.ascii_letters) for _ in range(char_num))
 
 def randomDate():
-    start_date = datetime.date(2020, 1, 1)
-    end_date = datetime.date(2020, 2, 1)
+    start_date = datetime.date(1990, 1, 1)
+    end_date = datetime.date(2003, 11, 28)
     time_between_dates = end_date - start_date
     days_between_dates = time_between_dates.days
     random_number_of_days = random.randrange(days_between_dates)
@@ -70,10 +48,10 @@ def addProfilePic(gender, email):
     r = requests.get('https://randomuser.me/api/?gender='+gender)
     pic = r.json()['results'][0]['picture']['medium']
     response = requests.get(pic)
-    requests.post(url="http://localhost:5006/addPic", data={'uid':uid}, files={'file': response.content})
+    requests.post(url="http://localhost:5005/addPic", data={'uid':uid}, files={'file': response.content})
 
 def addProfilePics():
-    r = requests.get('http://localhost:5006/list') #get all users
+    r = requests.get('http://localhost:5005/list') #get all users
     users = r.json()
     for user in users:
         gender = user['gender']
@@ -88,7 +66,7 @@ def addProfilePics():
         response = requests.get(pic)
 
         # call addPic API to add picture to firebase
-        requests.post(url="http://localhost:5006/addPic", data={'uid':uid}, files={'file': response.content})
+        requests.post(url="http://localhost:5005/addPic", data={'uid':uid}, files={'file': response.content})
 
 def generateBio():
     whoIAm = [
@@ -119,7 +97,7 @@ def generateBio():
         my_reallyCoolThing.capitalize(), my_secondaryDescriptor])
 
 def generateBios4All():
-    r = requests.get('http://localhost:5006/list') #get all users
+    r = requests.get('http://localhost:5005/list') #get all users
     users = r.json()
     for user in users:
         uid = user['uid']
@@ -127,9 +105,7 @@ def generateBios4All():
 
 def createNUsers(n):
     for i in range(n):
-        age = random.randint(1, 100)
         randomdate = randomDate()
-        astro = random.choice(astroList)
         mbti = random.choice(mbtiList)
         sPref = random.choice(sPrefList)
         gender = random.choice(genderList)
@@ -139,36 +115,28 @@ def createNUsers(n):
             name = (names.get_full_name( gender=gender ))
         phoneNum = randomNumber()
         email = randomChar(7)+"@gmail.com"
-        credits = random.randint(500, 25000)
-        likes = []
-        matches = []
-        crushes = []
-        numPacks = random.randint(0, 10)
-
-        data = {
-            "name":name,
-            "age":age,
-            "bio":generateBio(),
-            "dob":randomdate,
-            "astro":astro,
-            "gender":gender,
-            "mbti":mbti,
-            "sPref":sPref,
-            "phoneNum":phoneNum,
-            "email":email,
-            "credits":credits,
-            "crushes":crushes,
-            "numPacks":numPacks,
-            "likes":likes,
-            "matches":matches,
-        }
-        addUser(data)
+        password = randomChar(7)
+        addedUser = userDB.signupUser(email, password)
+        if addedUser["status"] == "success":
+            uid = addedUser["localId"]
+            addData = {
+                "name":name,
+                "dob":randomdate,
+                "gender":gender,
+                "mbti":mbti,
+                "sPref":sPref,
+                "email":email,
+                "instagram":randomChar(10),
+                "snapchat":randomChar(10),
+                "phoneNum":phoneNum,
+                "bio":generateBio()
+            }
+            userDB.addUser(addData, uid)
         ###
         # time.sleep(.3)
         # addProfilePic(gender, email)
 
 if __name__=="__main__":
-    createNUsers(350)
+    #createNUsers(22)
     ##### ONLY UNCOMMENT THIS IF THERE ARE MORE USERS THAN PICS/BIOS #####
-    #addProfilePics()
-    #generateBios4All()
+    addProfilePics()

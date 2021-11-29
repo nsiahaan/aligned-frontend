@@ -72,27 +72,27 @@ def calculateAstro(birthDate):
     month = (birthDate[5:7])
     day = int(birthDate[8:])
     if month == '12':
-        astro_sign = 'Sagittarius' if (day < 22) else 'capricorn'
+        astro_sign = 'sagittarius' if (day < 22) else 'capricorn'
     elif month == '01':
-        astro_sign = 'Capricorn' if (day < 20) else 'aquarius'
+        astro_sign = 'capricorn' if (day < 20) else 'aquarius'
     elif month == '02':
-        astro_sign = 'Aquarius' if (day < 19) else 'pisces'
+        astro_sign = 'aquarius' if (day < 19) else 'pisces'
     elif month == '03':
-        astro_sign = 'Pisces' if (day < 21) else 'aries'
+        astro_sign = 'pisces' if (day < 21) else 'aries'
     elif month == '04':
-        astro_sign = 'Aries' if (day < 20) else 'taurus'
+        astro_sign = 'aries' if (day < 20) else 'taurus'
     elif month == '05':
-        astro_sign = 'Taurus' if (day < 21) else 'gemini'
+        astro_sign = 'taurus' if (day < 21) else 'gemini'
     elif month == '06':
-        astro_sign = 'Gemini' if (day < 21) else 'cancer'
+        astro_sign = 'gemini' if (day < 21) else 'cancer'
     elif month == '07':
-        astro_sign = 'Cancer' if (day < 23) else 'leo'
+        astro_sign = 'cancer' if (day < 23) else 'leo'
     elif month == '08':
-        astro_sign = 'Leo' if (day < 23) else 'virgo'
+        astro_sign = 'leo' if (day < 23) else 'virgo'
     elif month == '09':
-        astro_sign = 'Virgo' if (day < 23) else 'libra'
+        astro_sign = 'virgo' if (day < 23) else 'libra'
     elif month == '10':
-        astro_sign = 'Libra' if (day < 23) else 'scorpio'
+        astro_sign = 'libra' if (day < 23) else 'scorpio'
     elif month == '11':
         astro_sign = 'scorpio' if (day < 22) else 'sagittarius'
     return astro_sign
