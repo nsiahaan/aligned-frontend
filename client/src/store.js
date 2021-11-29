@@ -21,4 +21,5 @@ const createWritableStore = (key, startValue) => {
 
 export const isAuthenticated = createWritableStore('isAuthenticated',false);
 export const youser = createWritableStore('youser',{});
+export const horodict = createWritableStore('horodict',{});
 export const profilePic = createWritableStore('profilePic',"images/default_profile_pics/no-user.png");

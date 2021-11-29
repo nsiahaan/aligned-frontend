@@ -2,10 +2,8 @@
 This module provides functions for managing the user database.
 """
 
-from flask import request, jsonify
-from aligned import app
-import uuid
-
+from flask import jsonify
+from datetime import date
 import firebase_admin, firebase
 from firebase import Firebase
 from flask import jsonify
@@ -43,23 +41,61 @@ def addUser(json, id):
     data = {
         "name":json['name'],
         "uid" : id,
-        #"age":json['age'],
+        "age": calculateAge(json['dob']),
         "dob":json['dob'],
-        #"astro":json['astro'],
-        "gender":json['gender'],
+        "astro":calculateAstro(json['dob']),
+        "gender":json['gender'].lower(),
         "mbti":json['mbti'],
         "sPref":json['sPref'],
-        #"phoneNum":json['phoneNum'],
         "email":json['email'],
-        #"credits":json['credits'],
-        #"crushes":json['crushes'],
-        #"numPacks":json['numPacks'],
-        #"likes":json['likes'],
-        #"matches":json['matches'],
-        "bio":json["bio"]
+        "credits":500,
+        "crushes":[],
+        "numPacks":5,
+        "likes":[],
+        "matches":[],
+        "snapchat":json["snapchat"],
+        "instagram":json["instagram"],
+        "bio":json["bio"],
+        "phoneNum":json["phoneNum"]
     }
     users_ref.document(id).set(data, merge=True )
-
+  
+def calculateAge(birthDate):
+    year = int(birthDate[:4])
+    month = int(birthDate[5:7])
+    day = int(birthDate[8:])
+    today = date.today()
+    age = today.year - year - ((today.month, today.day) < (month, day))
+    return age
+     
+def calculateAstro(birthDate):
+    month = (birthDate[5:7])
+    day = int(birthDate[8:])
+    if month == '12':
+        astro_sign = 'Sagittarius' if (day < 22) else 'capricorn'
+    elif month == '01':
+        astro_sign = 'Capricorn' if (day < 20) else 'aquarius'
+    elif month == '02':
+        astro_sign = 'Aquarius' if (day < 19) else 'pisces'
+    elif month == '03':
+        astro_sign = 'Pisces' if (day < 21) else 'aries'
+    elif month == '04':
+        astro_sign = 'Aries' if (day < 20) else 'taurus'
+    elif month == '05':
+        astro_sign = 'Taurus' if (day < 21) else 'gemini'
+    elif month == '06':
+        astro_sign = 'Gemini' if (day < 21) else 'cancer'
+    elif month == '07':
+        astro_sign = 'Cancer' if (day < 23) else 'leo'
+    elif month == '08':
+        astro_sign = 'Leo' if (day < 23) else 'virgo'
+    elif month == '09':
+        astro_sign = 'Virgo' if (day < 23) else 'libra'
+    elif month == '10':
+        astro_sign = 'Libra' if (day < 23) else 'scorpio'
+    elif month == '11':
+        astro_sign = 'scorpio' if (day < 22) else 'sagittarius'
+    return astro_sign
 def getUsers(uids=[]):
     docs = [users_ref.document(uid) for uid in uids]
     # print(docs)
@@ -134,5 +170,5 @@ def signupUser(email, password):
         user["status"] = "success"
         return user
     except: 
-        return {"status":"error"}
+        return {"status":"error"}, 400
     

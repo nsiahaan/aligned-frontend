@@ -4,7 +4,7 @@
     import Signup from './Signup.svelte'
     import Landing from './Landing.svelte'
     import {page} from '$app/stores';
-    import { youser, isAuthenticated, profilePic } from '../store.js'
+    import { youser, isAuthenticated, profilePic, horodict } from '../store.js'
     export let page_tracker = $page.path.replace(/[^\w\s]/gi, '');
 
 
@@ -12,7 +12,8 @@
     onMount(() => {
         youser.useLocalStorage();
         isAuthenticated.useLocalStorage();
-        profilePic.useLocalStorage();   
+        profilePic.useLocalStorage();
+        horodict.useLocalStorage();  
     })
 </script>
 

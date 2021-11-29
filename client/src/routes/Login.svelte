@@ -7,14 +7,15 @@
 
 
 <script>
-	import { youser,isAuthenticated, profilePic } from '../store.js'
+	import { youser, isAuthenticated, profilePic, horodict } from '../store.js'
 	export let page_tracker = "Home"
 	import {page} from '$app/stores';
 	import {onMount} from 'svelte';
 	onMount(() => {
 		youser.useLocalStorage();
 		isAuthenticated.useLocalStorage();
-		profilePic.useLocalStorage();	
+		profilePic.useLocalStorage();
+		horodict.useLocalStorage();	
 	})
 	
 	let email = "";
@@ -38,18 +39,23 @@
 	        }).then(d => {
 	        	let uid = d.uid
 		        let params = "?uid=" + uid
-
-		        let url = "http://127.0.0.1:5005/getPic" + params
-		        fetch(url)
-		        .then(d => d.json())
-		        .then(d => {
-		        	console.log(d[uid])
-		            profilePic.set(d[uid])
-		            return d[uid]
-		        })
-	        })
-        })
-
+				let url = "http://127.0.0.1:5005/horoscope" + params
+				fetch(url)
+				.then(d => d.json())
+				.then(d => {
+					horodict.set(d)
+				}).then(() => {
+					let url = "http://127.0.0.1:5005/getPic" + params
+					fetch(url)
+					.then(d => d.json())
+					.then(d => {
+						profilePic.set(d[uid])
+					}).then(() => {
+						window.location.replace('/Home')
+					})
+				})
+        	})
+		})
     }
 
 	function submitCreds() {
@@ -77,11 +83,10 @@
 			} else {
 				invalidCreds = false;
 				page_tracker = "Home";
-				isAuthenticated.set(true)
-				getUser(data['email'])
-				window.location.replace('/Home')
+				isAuthenticated.set(true);
+				getUser(data['email']);
 			}
-		}).then(d=>console.log(d))
+		})
 	}
 </script>
 
