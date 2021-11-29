@@ -247,8 +247,6 @@ import { youser,isAuthenticated, profilePic } from '../store.js'
     <br>
     <br>
 
-<pre> {result} </pre>
-
 
 <style>
 

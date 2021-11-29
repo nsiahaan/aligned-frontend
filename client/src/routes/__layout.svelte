@@ -40,7 +40,7 @@
 <style>
 .centered {
     margin: auto;
-    width: 60%;
+    width: 80%;
     padding: 10px;
 }
 

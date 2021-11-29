@@ -9,6 +9,8 @@
     export let dob = "04/06/78"
     export let profileDescription = "This is my cute profile description.";
     export let gender = "Male";
+    export let instagram;
+    export let snapchat;
     let phoneNumber = '';
     let email = ''
     let src = {};
@@ -28,6 +30,8 @@
         email = list.email;
         phoneNumber = list.phoneNum;
         age = list.age;
+        instagram = list.instagram;
+        snapchat = list.instagram;
 
         return list;
     })
@@ -73,6 +77,8 @@
                     <p> Date of birth: {dob} </p>
                     <p> Phone Number: {phoneNumber} </p>
                     <p> Email: {email} </p>
+                    <p> Instagram: {instagram} </p>
+                    <p> Snapchat: {snapchat} </p>
                     <br>
                     <p> {profileDescription}
                     </p>

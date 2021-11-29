@@ -37,11 +37,12 @@
 
 
 <style>
-    .card{
-        border:10px solid;
+   
+    .card {
+        /* border-radius: 25px; */
+        border: 10px solid;
         border-color: #c9d7f8;
         height: 650px;
-        border-radius: 25px;
     }
     .card-title {
         text-align: center;
@@ -85,7 +86,7 @@
         margin-top:10px;
         margin-bottom: 5px;
         vertical-align: middle;
-        border: 5px solid black;
+        border: 5px solid white;
         border-radius: 50%;
     }
     #card-img-top3{

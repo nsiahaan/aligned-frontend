@@ -12,7 +12,8 @@
     import {onMount} from 'svelte';
     let pic;
     onMount(() => {
-        pic = $youser.picture;
+        //profilePic.useLocalStorage();
+        pic = $profilePic;
         console.log(pic);
     })
     
@@ -26,6 +27,8 @@
     export let dob = "04/06/78"
     export let profileDescription = "This is my cute profile description.";
     export let gender = "Male";
+    export let instagram;
+    export let snapchat;
     
     function logout () {
         youser.set({})
@@ -43,7 +46,7 @@
                     <!-- svelte-ignore a11y-img-redundant-alt -->
                     <div class="center"> 
 
-                        <img {pic} class="resize" alt="Profile Picture is displayed here"/>
+                        <img {profilePic} class="resize" alt="Profile Picture is displayed here"/>
 
                         }
                     </div>
@@ -66,6 +69,8 @@
                     <p> MBTI: {$youser.mbti} </p>
                     <p> Star Sign: {$youser.astro} </p>
                     <p> Date of birth: {$youser.dob} </p>
+                    <p> Instagram: {$youser.instagram} </p>
+                    <p> Snapchat: {$youser.snapchat} </p>
                     <p> {$youser.bio}
                     </p>
                     
