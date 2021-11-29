@@ -45,10 +45,10 @@ def signup():
             addData = {
                 "name":data['name'],
                 "dob":data['dob'],
-                "gender":data['gender'],
-                "mbti":data['mbti'],
+                "gender":data['gender'].lower(),
+                "mbti":data['mbti'].upper(),
                 "sPref":data['sexPref'],
-                "email":data['email'],
+                "email":data['email'].lower(),
                 "bio":data['bio'],
                 "instagram":data['instagram'],
                 "snapchat":data["snapchat"],
