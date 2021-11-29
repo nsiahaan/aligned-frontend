@@ -6,7 +6,14 @@
 </head>
 
 <script>
-import { youser,isAuthenticated, profilePic } from '../store.js'
+import { youser, isAuthenticated, profilePic, horodict } from '../store.js'
+import {onMount} from 'svelte';
+	onMount(() => {
+		youser.useLocalStorage();
+		isAuthenticated.useLocalStorage();
+		profilePic.useLocalStorage();
+        horodict.useLocalStorage();
+	})
 
     export let page_tracker = "Home"
     let name;
@@ -27,6 +34,7 @@ import { youser,isAuthenticated, profilePic } from '../store.js'
     let sexReminder;
 
     function getUser(email) {
+        console.log(email)
         let params = "?email=" + email
         let url = "http://127.0.0.1:5005/getuid" + params
         fetch(url)
@@ -84,7 +92,7 @@ import { youser,isAuthenticated, profilePic } from '../store.js'
         return false;
     }
 
-    async function doPost () {
+    function doPost () {
         if (!phonevalidation()) {
             console.log(phoneNum);
             return;
@@ -97,7 +105,7 @@ import { youser,isAuthenticated, profilePic } from '../store.js'
             console.log(sexPref);
             return;
         }
-		const res = await fetch('http://127.0.0.1:5005/signup', {
+		fetch('http://127.0.0.1:5005/signup', {
 			method: 'POST',
 			body: JSON.stringify({
 				name,
@@ -113,13 +121,12 @@ import { youser,isAuthenticated, profilePic } from '../store.js'
                 password,
                 picture
 			})
-		})
-		
-		const json = await res.json()
-		result = JSON.stringify(json)
-		isAuthenticated.set(true)
-		getUser(data['email'])
-		window.location.replace('/Home')
+		}).then((response) => response.json())
+        .then((json) => {
+            JSON.stringify(json);
+            isAuthenticated.set(true);
+            getUser(email);
+        })
 	}
 
 </script>
