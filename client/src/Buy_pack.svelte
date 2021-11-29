@@ -16,11 +16,12 @@
                 uid: uid
             })
         }).then(response => {
-            if (response.status != 200) {
-                window.alert("todo: response.message or something")
+            if (response.status != 200) { // not enough credits to buy a pack
+                response.text()
+                .then(text => {window.alert(text)})
             }
             else {
-                callUser()
+                callUser() // update youser so that "packs remaining" and "credits" reflect updated values
             }
         })
     }

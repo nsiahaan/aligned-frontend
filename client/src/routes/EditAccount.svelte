@@ -7,29 +7,37 @@
 
 <script>
     import { youser,isAuthenticated, profilePic } from '../store.js'
-    let name;
-    let gender;
-    let mbti;
-    let sexPref = [];
-    let phone;
-    let bio;
-    let instagram;
-    let snapchat;
-    let password;
-    let picture;
+    let name = $youser.name;
+    let gender = $youser.gender;
+    let mbti = $youser.mbti;
+    let sexPref = $youser.sPref;
+    gender = gender.charAt(0).toUpperCase() + gender.slice(1);
+    let phone = $youser.phoneNum;
+    let bio = $youser.bio;
+    let instagram = $youser.instagram;
+    let snapchat = $youser.snapchat;
+    let password = $youser.password;
+    let picture = $profilePic;
     let result = null;
+    let uid = $youser.uid;
 
     async function doPost () {
 
-        if (mbti == "") {
-            mbti = null;
+        if(sexPref.length == 0) {
+            sexPref = $youser.sPref;
         }
-        if (gender == "") {
-            gender = null;
+        if(gender == "") {
+            gender = $youser.gender;
+            gender = gender.charAt(0).toUpperCase() + gender.slice(1);
+            console.log(gender);
+        }
+        if(mbti == "") {
+            mbti = $youser.mbti;
         }
 		const res = await fetch('http://127.0.0.1:5005/update', {
 			method: 'POST',
 			body: JSON.stringify({
+                uid,
 				name,
                 gender,
                 mbti,
@@ -43,8 +51,8 @@
 			})
 		})
 		
-		const json = await res.json()
-		result = JSON.stringify(json)
+		//const json = await res.json()
+		//result = JSON.stringify(json)
 	}
 
 </script>
@@ -52,12 +60,12 @@
 <form>
     <div class="form-group col-md-6 col-centered"> 
       <label for="name">Name</label>
-      <input type="text" class="form-control" id="nameInput" placeholder="Enter name" bind:value={name} required> 
+      <input type="text" class="form-control" id="nameInput" placeholder="Enter name" bind:value={name}> 
     </div>
     <br> 
     <div class="form-group col-md-6 col-centered">
         <label for="gender">Gender</label>
-        <select class="form-control" id="genderInput" bind:value={gender} required>
+        <select class="form-control" id="genderInput" bind:value={gender}>
           <option></option>
           <option>Male</option>
           <option>Female</option>
@@ -67,7 +75,7 @@
     <br>
     <div class="form-group col-md-6 col-centered">
         <label for="MBTI">MBTI</label>
-        <select class="form-control" id="mbtiInput" bind:value={mbti} required>
+        <select class="form-control" id="mbtiInput" bind:value={mbti}>
           <option></option>
           <option>INFJ</option>
           <option>INFP</option>
@@ -85,14 +93,13 @@
           <option>ESTJ</option>
           <option>ESFP</option>
           <option>ESTP</option>
-          <option></option>
         </select>
         <small>If you don't know your MBTI?, takes this quick quiz! https://www.16personalities.com/free-personality-test</small><br><br>
     </div>
     <div class="form-group col-md-6 col-centered">
         <label for="sexual-preference" id="sexual-prefInput">Sexual Preference</label> 
         <br>
-        <div class="form-check form-check-inline" required>
+        <div class="form-check form-check-inline">
             <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="male" bind:group={sexPref}>
             <label class="form-check-label" for="inlineCheckbox1">Male</label>
         </div>
@@ -109,17 +116,17 @@
     
     <div class="form-group col-md-6 col-centered">
         <label for="phone">Phone Number</label><br>
-        <input type="tel" id="phone" placeholder="123-457-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required bind:value={phone}><br>
+        <input type="tel" id="phone" placeholder="123-457-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" bind:value={phone}><br>
         <small>Format: 123-456-7890</small><br><br>
     </div>
     <div class="form-group col-md-6 col-centered">
         <label for="bio">Write your Bio!!</label>
-        <textarea class="form-control" id="inputBio" rows="3" placeholder="Tell me about yourself!" required bind:value={bio}></textarea>
+        <textarea class="form-control" id="inputBio" rows="3" placeholder="Tell me about yourself!" bind:value={bio}></textarea>
     </div>
     <br>
     <div class="form-group col-md-6 col-centered">
         <label for="exampleFormControlFile1">Find a Profile Picture!</label> <br>
-        <input type="file" class="form-control-file" id="inputPicture" accept="image/png, image/gif, image/jpeg" bind:value={picture} required>
+        <input type="file" class="form-control-file" id="inputPicture" accept="image/png, image/gif, image/jpeg" bind:value={picture}>
     </div>
     <br>
     <div class="form-row">
@@ -149,10 +156,6 @@
     <br>
     <br>
     <br>
-
-<pre> {result} </pre>
-{youser.gender}
-
 
 <style>
 textarea {
