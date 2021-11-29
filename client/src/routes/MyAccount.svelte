@@ -62,7 +62,7 @@
                     <div class="center"> 
                         <img src={src} class="resize" alt="Profile Picture is displayed here"/>
 
-                        }
+                        
                     </div>
                 </div>
                 <div class="col-8">
