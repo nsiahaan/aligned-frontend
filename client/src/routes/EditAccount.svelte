@@ -7,17 +7,19 @@
 
 <script>
     import { youser,isAuthenticated, profilePic } from '../store.js'
-    let name;
-    let gender;
-    let mbti;
-    let sexPref = [];
-    let phone;
-    let bio;
-    let instagram;
-    let snapchat;
-    let password;
-    let picture;
+    let name = $youser.name;
+    let gender = $youser.gender;
+    let mbti = $youser.mbti;
+    let sexPref = $youser.sPref;
+    gender = gender.charAt(0).toUpperCase() + gender.slice(1);
+    let phone = $youser.phoneNum;
+    let bio = $youser.bio;
+    let instagram = $youser.instagram;
+    let snapchat = $youser.snapchat;
+    let password = $youser.password;
+    let picture = $profilePic;
     let result = null;
+    let uid = $youser.uid;
 
     async function doPost () {
 
@@ -26,6 +28,8 @@
         }
         if(gender == "") {
             gender = $youser.gender;
+            gender = gender.charAt(0).toUpperCase() + gender.slice(1);
+            console.log(gender);
         }
         if(mbti == "") {
             mbti = $youser.mbti;
@@ -33,6 +37,7 @@
 		const res = await fetch('http://127.0.0.1:5005/update', {
 			method: 'POST',
 			body: JSON.stringify({
+                uid,
 				name,
                 gender,
                 mbti,
