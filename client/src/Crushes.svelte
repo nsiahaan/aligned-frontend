@@ -134,6 +134,8 @@
 <style>
     .btn {
     margin-bottom: 5px;
+    color: white;
+    border-color: white;
     }
 
     .cards-scroll {
