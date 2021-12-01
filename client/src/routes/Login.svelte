@@ -81,14 +81,8 @@
 			} else {
 				invalidCreds = false;
 				page_tracker = "Home";
-<<<<<<< HEAD
 				isAuthenticated.set(true);
 				getUser(data['email']);
-=======
-				isAuthenticated.set(true)
-				getUser(data['email'])
-				window.location.replace('/Home')
->>>>>>> bacf984d0abc677fd800912ddd2f0b4fbcd7af3b
 			}
 		}).then(d=>console.log(d))
 	}
@@ -145,10 +139,7 @@
     }
     img {
         display: block;
-<<<<<<< HEAD
         right: 100%;
-=======
->>>>>>> bacf984d0abc677fd800912ddd2f0b4fbcd7af3b
     }
     .column {
         display: block;
@@ -183,8 +174,4 @@
         border-bottom: 3px solid #39398e;
         width: 80%;
     }
-<<<<<<< HEAD
 </style>
-=======
-</style>
->>>>>>> bacf984d0abc677fd800912ddd2f0b4fbcd7af3b
