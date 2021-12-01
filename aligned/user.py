@@ -92,6 +92,8 @@ class User:
         self.bio = js["bio"]
         # self.snapchat = js["snapchat"]
         # self.instagram = js["instagram"]
+        if "numLikes" in js:
+            self.numLikes = js["numLikes"]
      
     def getJSON(self):
         """
@@ -276,6 +278,8 @@ class User:
         Output: boolean
         """
 
+        if hasattr(user2, 'numLikes') :
+            userDB.updateUser(self.uid, {'numLikes': user2.numLikes + 1})
         # check for match
         theirLikes = userDB.getUser(user2.uid, parameter='likes')
         if (self.uid in theirLikes):

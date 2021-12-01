@@ -56,6 +56,7 @@ let bio = "I like food, dogs, and naps! More words go here.. and here.. words, w
     */
     .option {
         text-align: center;
+        font-size: 60px;
         color: white;
         /* color: black; use this for gradient background */
     }
