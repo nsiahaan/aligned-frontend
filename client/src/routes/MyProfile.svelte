@@ -106,7 +106,7 @@
         height: auto;
         width: 100%;
         
-        background-color: pink;
+        background-color: white;
         background-image: url("https://i.imgur.com/sKGxBkW.png"); /* replace this with line 117 for gradient*/
         background-repeat: no-repeat;
         background-size: 100% auto; /**100% auto*/

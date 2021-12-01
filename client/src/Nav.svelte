@@ -63,7 +63,7 @@
         font-weight: bold;
     }
     .nav-link:hover{
-      color:#ffc2f8;
+      color:#26265f; /* #ffc2f8; pink*/
       text-decoration: none;
     }
     .nav{
@@ -75,7 +75,7 @@
       margin-top: -13px;
       height: 4px;
       width: 100%;
-      background-color: #ffc2f8;
+      background-color: #26265f;
     }
     .logo {
       background-color: blue;
