@@ -58,6 +58,7 @@
 
 <div class="bgd">
 <section>
+    <br>
     <div class="big-box">
         <div class="container">
             <div class="row">
@@ -104,7 +105,7 @@
                 </div>
             </div>
         </div> 
-        <br>
+        
     </div>
     <br>
 </section>
@@ -188,7 +189,8 @@
         width: 100%;
         
         background-color: white;
-        background-image: linear-gradient(180deg, white, #26265f);
+        /* background-image: linear-gradient(180deg, white, #26265f); */
+        background-image: url("https://i.imgur.com/NF8JmBa.png"); /* constellations, use line above for gradient */
         background-repeat: no-repeat;
         background-size: 100% auto; /**100% auto*/
         display: block;

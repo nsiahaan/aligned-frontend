@@ -12,6 +12,7 @@
     <div class='bgd'>
     <section>
         <div class="pack-remains">
+            <br>
             <p class="top-text">Packs Remaining - {$youser.numPacks}</p>
             <p class="top-text">Credits - {$youser.credits}</p>
         </div>
@@ -50,7 +51,7 @@
     .top-text{
         font-size:22px;
         font-weight: bold;
-        color: black;
+        color: white; /* CHANGE TO BLACK FOR GRADIENT BGD*/
     } 
     .bgd-bgd {
         position: relative;
@@ -58,7 +59,8 @@
         width: 100%;
 
         background-color: white;
-        background-image: linear-gradient(180deg, white, #26265f); /*url("https://i.imgur.com/bkyh0rc.png"); /* linear-gradient(90deg, #26265f, white), url("https://i.imgur.com/FsvQwxC.png");*/
+        /*background-image: linear-gradient(180deg, white, #26265f); /*url("https://i.imgur.com/bkyh0rc.png"); /* linear-gradient(90deg, #26265f, white), url("https://i.imgur.com/FsvQwxC.png");*/
+        background-image: url("https://i.imgur.com/NF8JmBa.png"); /* constellation bgd, use line above for gradient */
         background-repeat: no-repeat;
         background-size: 100% auto; /**100% auto*/
         display: block;

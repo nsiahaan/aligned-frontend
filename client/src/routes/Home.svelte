@@ -56,7 +56,8 @@ let bio = "I like food, dogs, and naps! More words go here.. and here.. words, w
     */
     .option {
         text-align: center;
-        /* color: white; use this for constellation background */
+        color: white;
+        /* color: black; use this for gradient background */
     }
     .bgd {
         position: relative;
@@ -64,8 +65,8 @@ let bio = "I like food, dogs, and naps! More words go here.. and here.. words, w
         width: 100%;
         
         background-color: white;
-        /* background-image: url("https://i.imgur.com/NF8JmBa.png"); constellation */
-        background-image: linear-gradient(180deg, white, #26265f);
+        background-image: url("https://i.imgur.com/NF8JmBa.png"); /* constellation, use below for gradient */
+        /* background-image: linear-gradient(180deg, white, #26265f); */
         background-repeat: no-repeat;
         background-size: cover; /**100% auto*/
         display: block;

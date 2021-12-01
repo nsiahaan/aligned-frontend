@@ -102,12 +102,12 @@
 
 <style>
     .bgd {
-        position: relative;
+        position: absolute;
         height: auto;
         width: 100%;
         
         background-color: pink;
-        background-image: url("https://i.imgur.com/LAHtf4u.png");
+        background-image: url("https://i.imgur.com/sKGxBkW.png"); /* replace this with line 117 for gradient*/
         background-repeat: no-repeat;
         background-size: 100% auto; /**100% auto*/
         display: block;
@@ -118,12 +118,14 @@
     */
     .card {
         display: flex;
+        margin-top: 2px;
         justify-content: center;
         align-items: center;
         float: left;
         width: 25rem;
         height: auto;
         margin-left: 8%;
+        box-shadow: 0px 0px 15px white; /* adjust the color as necessary */
         /*
         float: left;
         height: auto;
@@ -174,10 +176,11 @@
         margin-bottom: 50px; /* padding-bottom: 3em; */
         
         float: right;
-        border: 10px solid;
+        border: 5px solid;
         border-color: #26265f;
         border-radius: 4px;
         letter-spacing: 1px;
+        box-shadow: 0px 0px 20px white;
     }
     /*
     .row-box{
