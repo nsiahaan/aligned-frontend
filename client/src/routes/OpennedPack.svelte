@@ -151,7 +151,7 @@
         $timer++;
     }, 1000);
     let src = "../images/astro-card.webp";
-    
+
 
     //module.exports = getList;
 </script>
@@ -167,25 +167,32 @@
     
     <div class="cards-scroll" style="padding: 30px">
     {#if $timer >= 1 && !imready}
-    <img {src} alt="Open a pack here!"/>
+    <!-- <img {src} alt="Open a pack here!"/> -->
+    <img src="../images/leo-cardback.png" alt="Open a pack here!" style="width: 300px; height: auto;" />
     {/if}
     {#if $timer > 2.5 && !imready}
-    <img {src} alt="Open a pack here!"/>
+    <!-- <img {src} alt="Open a pack here!"/> -->
+    <img src="../images/gemini-cardback.png" alt="Open a pack here!"  style="width: 300px; height: auto;"/>
     {/if}
     {#if $timer > 4 && !imready}
-    <img {src} alt="Open a pack here!"/>
+    <!-- <img {src} alt="Open a pack here!"/> -->
+    <img src="../images/libra-cardback.png" alt="Open a pack here!"  style="width: 300px; height: auto;"/>
     {/if}
     {#if $timer > 5.5 && !imready}
-    <img {src} alt="Open a pack here!"/>
+    <!-- <img {src} alt="Open a pack here!"/> -->
+    <img src="../images/cancer-cardback.png" alt="Open a pack here!"  style="width: 300px; height: auto;"/>
     {/if}
     {#if $timer > 7 && !imready}
-    <img {src} alt="Open a pack here!"/>
+    <!-- <img {src} alt="Open a pack here!"/> -->
+    <img src="../images/aquarius-cardback.png" alt="Open a pack here!"  style="width: 300px; height: auto;"/>
     {/if}
     {#if $timer > 8.5 && !imready}
-    <img {src} alt="Open a pack here!"/>
+    <!-- <img {src} alt="Open a pack here!"/> -->
+    <img src="../images/aries-cardback.png" alt="Open a pack here!"  style="width: 300px; height: auto;"/>
     {/if}
     {#if $timer > 10 && !imready}
-    <img {src} alt="Open a pack here!"/>
+    <!-- <img {src} alt="Open a pack here!"/> -->
+    <img src="../images/capricorn-cardback.png" alt="Open a pack here!"  style="width: 300px; height: auto;"/>
     {/if}
     </div>
     <!-- {#if $timer > 25/7 && $timer < 35/7}
