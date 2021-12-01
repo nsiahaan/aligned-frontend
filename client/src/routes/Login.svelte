@@ -5,15 +5,17 @@
     crossorigin="anonymous">
 </head>
 
+
 <script>
-	import { youser,isAuthenticated, profilePic } from '../store.js'
+	import { youser, isAuthenticated, profilePic, horodict } from '../store.js'
 	export let page_tracker = "Home"
 	import {page} from '$app/stores';
 	import {onMount} from 'svelte';
 	onMount(() => {
 		youser.useLocalStorage();
 		isAuthenticated.useLocalStorage();
-		profilePic.useLocalStorage();	
+		profilePic.useLocalStorage();
+		horodict.useLocalStorage();	
 	})
 	
 	let email = "";
@@ -84,7 +86,7 @@
 				isAuthenticated.set(true);
 				getUser(data['email']);
 			}
-		}).then(d=>console.log(d))
+		})
 	}
 </script>
 
@@ -134,12 +136,11 @@
         top: 0;
         height: 100%;
         width: 100%;
-
         background-image: url("https://i.imgur.com/NF8JmBa.png");
         background-repeat: no-repeat;
         background-size: 100% auto;
         display: block;
-        /* background-color: #6c62c6; 
+        /* background-color: #6c62c6; */
         background-image: linear-gradient(135deg, #7777f1, #26265f) /* #36348b) */
     }
     img {
