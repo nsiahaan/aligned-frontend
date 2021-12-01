@@ -32,6 +32,8 @@
     }
     
     // let src = "https://firebasestorage.googleapis.com/v0/b/aligned-5a855.appspot.com/o/KmQOWT6ShjdiAXKAgcQYyM3rpCo1?alt=media";
+    
+    /* now-unused, commenting out temporarily to avoid warning messages...
     export let horoscope = "This is where my horoscope will be. Today, a surprise will befall you. \n Try and accept it, rather than reject.";
     export let name = "Kanye";
     export let MBTI = "ENTP";
@@ -42,6 +44,7 @@
     export let gender = "Male";
     export let instagram;
     export let snapchat;
+    */
     
     function logout () {
         youser.set({})
@@ -53,15 +56,17 @@
 
 <svelte:window on:load={getPic()}/>
 
+<div class="bgd">
 <section>
+    <br>
     <div class="big-box">
         <div class="container">
             <div class="row">
                 <div class="col">
                     <!-- svelte-ignore a11y-img-redundant-alt -->
-                    <div class="center"> 
+                    <div class="center">  
                         <img src={src} class="resize" alt="Profile Picture is displayed here"/>
-
+                        <!--src={src} "images/card-dark.png"-->
                         
                     </div>
                 </div>
@@ -79,29 +84,40 @@
                         <li><button type="button" class="dropdown-item" on:click={logout} >Logout</button></li>
                         </ul>
                     </div>
+                    <p> <b>Name: </b>{$youser.name} </p>
+                    <p> <b>MBTI: </b>{$youser.mbti} </p>
+                    <p> <b>Star Sign: </b>{$youser.astro} </p>
+                    <p> <b>Date of Birth: </b>{$youser.dob} </p>
+                    <p> <b>Instagram: </b>{$youser.instagram} </p>
+                    <p> <b>Snapchat: </b>{$youser.snapchat} </p>
+                    <p> <b>About Me: </b>{$youser.bio} </p>
+
+                    <!-- uncomment this to remove bolded labels..
                     <p> Name: {$youser.name} </p>
                     <p> MBTI: {$youser.mbti} </p>
                     <p> Star Sign: {$youser.astro} </p>
                     <p> Date of birth: {$youser.dob} </p>
                     <p> Instagram: {$youser.instagram} </p>
                     <p> Snapchat: {$youser.snapchat} </p>
-                    <p> {$youser.bio}
-                    </p>
+                    <p> {$youser.bio} </p>
+                    -->
                     
                 </div>
             </div>
         </div> 
+        
     </div>
-    
+    <br>
 </section>
-
-
-
+</div>
 
 <style>
-
+    .col-8 {
+        padding-right: 2%;
+    }
     p{
-        font-size:larger;
+        font-size: larger;
+        font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
     }
     .rounded{
         border-radius: 100% !important;
@@ -110,13 +126,17 @@
     }
     .center{
         text-align: center;
-        height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /*height: 300px; overflow: hidden; DOUBLE CHECK TO MAKE SURE THIS DOESN'T BREAK ANYTHING! */
         width: 300px;
-        overflow: hidden;
-        margin-top: 50px;
-        margin-bottom: 50px;
+        margin: auto;
+        padding-top: 15%
+        /*margin-top: 50px;
+        margin-bottom: 50px;*/
     }
-
+    /*
     .horoscope-text{
         padding-bottom: 3em;
         padding-top: 1em;
@@ -126,35 +146,53 @@
     .horoscope-bottom{
         padding-bottom: 1em;
     }
-
-    .resize {
+    */
+    .resize { /* note: this is the profile picture.. ? */
         height: 300px;
-        margin-left: -75px;
-        width: auto;
+        /*margin-left: -75px;*/
+        width: 300px;
+        overflow: hidden;
+        display: block;
         /*margin: auto;*/
+        box-shadow: 0px 0px 15px #18184b; /* delete this line to remove profile picture shadow */
     }
     .big-box{
-        background-color: #c1b8ed;
-        height: auto;
-        margin-top: 50px;
-        margin-bottom: 50px;
+        /* background-color: white;  #c1b8ed; */
+        background-color: aliceblue; /* white; */
+        height: 70%;
+        width: 80%;
+        margin: auto;
+        /* margin-top: 50px;
+        margin-bottom: 50px; */
         padding-bottom: 3em;
+        box-shadow: 8px 10px 5px #18184b;
     }
-
+    /*
     .row-box{
         background-color: #c1b8ed;
-        /* outline-style: solid; */
+        /* outline-style: solid; 
     }
-
     .horoscope {
         background-color: white !important;
     }
 
     .horoscope-wrapper{
         text-align: center;
-    }
+    } */
     .col{
         text-align: center;
         /* outline-style: solid; */
+    }
+    .bgd {
+        position: relative;
+        height: auto;
+        width: 100%;
+        
+        background-color: white;
+        /* background-image: linear-gradient(180deg, white, #26265f); */
+        background-image: url("https://i.imgur.com/NF8JmBa.png"); /* constellations, use line above for gradient */
+        background-repeat: no-repeat;
+        background-size: 100% auto; /**100% auto*/
+        display: block;
     }
 </style>

@@ -21,6 +21,10 @@
   }
 </script>
 
+<div class="logo">
+  <img src="images/logo-black-crop.png" alt="logo"/>
+</div>
+
 <section>
     <ul class="nav">
         <li class="nav-item">
@@ -31,8 +35,8 @@
         </li>
         <li class="nav-item">
 
-          <a class="nav-link" id="packslink" href="/#/packs" on:click={setPagePacks}>PACKS</a>
-          {#if page == "Packs" || page == "OpenPacks"}
+          <a class="nav-link" id="packslink" href="/#/packs" on:click={setpage_trackerPacks}>PACKS</a>
+          {#if page_tracker == "Packs" || page_tracker == "OpenPacks"}
             <div class="underline"></div>
           {/if}
         </li>
@@ -54,11 +58,12 @@
 <style>
     .nav-link {
         color:black;
-        font-family: Arial, Helvetica, sans-serif;
+        font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
         font-size: 30px;
+        font-weight: bold;
     }
     .nav-link:hover{
-      color:#ffc2f8;
+      color:#26265f; /* #ffc2f8; pink*/
       text-decoration: none;
     }
     .nav{
@@ -68,9 +73,15 @@
     }
     .underline {
       margin-top: -13px;
-      height:4px;
-      width:100%;
-      background-color: #ffc2f8;
+      height: 4px;
+      width: 100%;
+      background-color: #26265f;
+    }
+    .logo {
+      background-color: blue;
+      margin-top: 5%;
+      position: absolute;
+      left: 50%;
     }
 
 </style>

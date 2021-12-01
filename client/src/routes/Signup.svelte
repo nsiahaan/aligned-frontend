@@ -161,6 +161,10 @@ import {onMount} from 'svelte';
 
 </script>
 
+<div class="bgd">
+<br><br>
+<div class="whitebox">
+<br><br>
 <form on:submit|preventDefault={doPost}>
     <div class="form-group col-md-6 col-centered"> 
       <label for="name">Name</label>
@@ -204,7 +208,7 @@ import {onMount} from 'svelte';
           <option>ESFP</option>
           <option>ESTP</option>
         </select>
-        <small>If you don't know your MBTI?, takes this quick quiz! https://www.16personalities.com/free-personality-test</small><br><br>
+        <small>Don't know your MBTI? Take this quick quiz! https://www.16personalities.com/free-personality-test</small><br><br>
     </div>
     <div class="form-group col-md-6 col-centered">
         <label for="sexual-preference" id="sexual-prefInput">Sexual Preference</label> 
@@ -278,12 +282,12 @@ import {onMount} from 'svelte';
         <button type="submit" class="btn btn-outline-secondary">Submit</button>
     </div>    
 </form>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-
+<br>
+<br>
+</div>
+<br>
+<br>
+</div>
 
 <style>
 
@@ -292,7 +296,7 @@ import {onMount} from 'svelte';
     flex: 0 0 100%;
     margin: 0 2px;
     font-size: 0.8em;
-  }
+}
 textarea {
   width: 100%;
   height: 150px;
@@ -303,10 +307,27 @@ textarea {
   background-color: #f8f8f8;
   resize: none;
 }
-
 .col-centered{
     margin: 0 auto;
     float: none;
 }
-
+.bgd {
+    position: absolute;
+    height: auto;
+    width: 100%;
+    
+    background-color: white;
+    background-image: url("https://i.imgur.com/L8O2sKk.png");
+    /* background-image: linear-gradient(180deg, white, #26265f); */
+    background-repeat: repeat-y;
+    background-size: 100% auto; /**100% auto*/
+    display: block;
+}
+.whitebox {
+    background-color: white;
+    width: 70%;
+    margin: auto;
+    display: block;
+    border-radius: 10px;
+}
 </style>
