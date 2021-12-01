@@ -1,6 +1,6 @@
 <script>
     export let uid;
-    let src = "images/buy-pack.png";
+    let src = "images/card-light.png"; // "images/buy-pack.png";
     import { youser } from './store.js'
     import {onMount} from 'svelte';
     onMount(() => {
@@ -37,22 +37,27 @@
 </script>
 
 <img {src} class="resize" alt="Buy a pack here!"/>
-<br>
-<br>
+<!--two <br>'s were here-->
 <div class="button">
-<button class="btn btn-outline-dark" on:click={buyPackHandler}>
-    Buy Pack!
+<button class="btn btn-outline-light" on:click={buyPackHandler}>
+    BUY PACK
 </button>
 </div>
 
 <style>
     .resize {
-        height: 560px;
+        height: 450px; /* 560px */
         width: auto;
     }
     .button{
         float: center;
         text-align:center;
+        font-family: "Helvetica Neue", Arial, sans-serif
     }
-
+    img {
+        margin: auto;
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
 </style>

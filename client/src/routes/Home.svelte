@@ -20,31 +20,31 @@ let bio = "I like food, dogs, and naps! More words go here.. and here.. words, w
     crossorigin="anonymous">
 </head>
 
+<div class="bgd">
+    <div class="container">
+        <br><br>
+        <div class="row">
+            <h3 class = "option">MATCHES</h3>
+            <Matches/>
+        </div>
 
-
-<div class="container">
-    <div class="row">
-        <h3 class = "option"> MATCHES</h3>
-        <Matches/>
+        <div class="row" id="bottom">
+            <h3 class = "option">CRUSHES</h3>
+            <Crushes/>
+        </div>
     </div>
-
-    <div class="row">
-        <h3 class = "option">  CRUSHES </h3>
-        <Crushes/>
-    </div>
-
-
 </div>
 
 <style>
 
     h3{
         font-size: xxx-large;
+        font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
     }
-
     .row{
         padding-bottom: 10em;
     }
+    /*
     .card-holder {
         display: inline-block;
         margin: auto;
@@ -53,8 +53,26 @@ let bio = "I like food, dogs, and naps! More words go here.. and here.. words, w
     .card-body {
         text-align: center;
     }
+    */
     .option {
         text-align: center;
         font-size: 60px;
+        color: white;
+        /* color: black; use this for gradient background */
+    }
+    .bgd {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        
+        background-color: white;
+        background-image: url("https://i.imgur.com/NF8JmBa.png"); /* constellation, use below for gradient */
+        /* background-image: linear-gradient(180deg, white, #26265f); */
+        background-repeat: no-repeat;
+        background-size: cover; /**100% auto*/
+        display: block;
+    }
+    #bottom {
+        padding-bottom: 22%;
     }
 </style>
