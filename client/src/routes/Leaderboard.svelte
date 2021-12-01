@@ -22,14 +22,14 @@
         .then(list => {
             let females = []
             for (var i = list.length - 1; i >= 0; i--) {
-                if (list[i].gender == "female") {
+                if (list[i].numLikes > 130) {
                     females.push(list[i])
                 }
             }
             return females
         })
         .then(females => {
-            females.sort();
+            females.sort((first, second) => first.numLikes < second.numLikes);
             list = females.slice(0, 50);
             let uids = list.map(a => a.uid);
             return uids
