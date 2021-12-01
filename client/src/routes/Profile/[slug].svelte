@@ -57,8 +57,9 @@
   --->
 
 
-
+<div class="bgd">
 <section>
+    <br>
     <div class="big-box">
         <div class="container">
             <div class="row">
@@ -91,9 +92,9 @@
     <button type="button" class="btn btn-outline-dark" 
         on:click={() => {window.location.replace('/Home')}}>Back</button>
     </div>
-    
+    <br><br><br><br><br><br><br>
 </section>
-
+</div>
 
 
 
@@ -128,12 +129,29 @@
         width: auto;
         margin: auto;
     }
-    .big-box{
-        background-color: #c1b8ed;
-        height: auto;
-        margin-top: 50px;
-        margin-bottom: 50px;
+    .big-box {
+        /* background-color: white;  #c1b8ed; */
+        background-color: aliceblue; /* white; */
+        height: 70%;
+        width: 80%;
+        margin: auto;
+        /* margin-top: 50px;
+        margin-bottom: 50px; */
         padding-bottom: 3em;
+        box-shadow: 8px 10px 5px #18184b;
+    }
+ 
+    .bgd {
+        position: relative;
+        height: auto;
+        width: 100%;
+       
+        background-color: white;
+        /* background-image: linear-gradient(180deg, white, #26265f); */
+        background-image: url("https://i.imgur.com/NF8JmBa.png"); /* constellations, use line above for gradient */
+        background-repeat: no-repeat;
+        background-size: 100% auto; /**100% auto*/
+        display: block;
     }
 
     .row-box{
