@@ -134,8 +134,8 @@
         top: 0;
         height: 100%;
         width: 100%;
-        
-        background-image: url("https://i.imgur.com/LAHtf4u.png");
+
+        background-image: url("https://i.imgur.com/NF8JmBa.png");
         background-repeat: no-repeat;
         background-size: 100% auto;
         display: block;

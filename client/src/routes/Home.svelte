@@ -20,20 +20,19 @@ let bio = "I like food, dogs, and naps! More words go here.. and here.. words, w
     crossorigin="anonymous">
 </head>
 
+<div class="bgd">
+    <div class="container">
+        <br><br>
+        <div class="row">
+            <h3 class = "option">MATCHES</h3>
+            <Matches/>
+        </div>
 
-
-<div class="container">
-    <div class="row">
-        <h3 class = "option"> MATCHES</h3>
-        <Matches/>
+        <div class="row" id="bottom">
+            <h3 class = "option">CRUSHES</h3>
+            <Crushes/>
+        </div>
     </div>
-
-    <div class="row">
-        <h3 class = "option">  CRUSHES </h3>
-        <Crushes/>
-    </div>
-
-
 </div>
 
 <style>
@@ -57,5 +56,21 @@ let bio = "I like food, dogs, and naps! More words go here.. and here.. words, w
     */
     .option {
         text-align: center;
+        /* color: white; use this for constellation background */
+    }
+    .bgd {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        
+        background-color: white;
+        /* background-image: url("https://i.imgur.com/NF8JmBa.png"); constellation */
+        background-image: linear-gradient(180deg, white, #26265f);
+        background-repeat: no-repeat;
+        background-size: cover; /**100% auto*/
+        display: block;
+    }
+    #bottom {
+        padding-bottom: 22%;
     }
 </style>
