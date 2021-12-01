@@ -40,11 +40,12 @@ let bio = "I like food, dogs, and naps! More words go here.. and here.. words, w
 
     h3{
         font-size: xxx-large;
+        font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
     }
-
     .row{
         padding-bottom: 10em;
     }
+    /*
     .card-holder {
         display: inline-block;
         margin: auto;
@@ -53,6 +54,7 @@ let bio = "I like food, dogs, and naps! More words go here.. and here.. words, w
     .card-body {
         text-align: center;
     }
+    */
     .option {
         text-align: center;
     }

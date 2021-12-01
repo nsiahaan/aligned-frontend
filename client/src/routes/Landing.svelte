@@ -16,18 +16,17 @@
 
 <div class="image">
 <section>
-    <div class="nav-area">
+    <div class="buttons" id="nav-area">
         <button type="button" class="btn btn-outline-light" id="login-button"
         on:click={()=> window.location.href="/Login"}>Log In</button>
 
     </div>
 
     <div class="container1">
-        <!--<h1>aligned</h1>-->
         <!-- svelte-ignore a11y-missing-attribute -->
         <img src="/logo.png" class="logo"/>
         <h3>Calculated connections.</h3>
-        <p>It's like dating, but better. See what the skies may bring you as the stars align...</p>
+        <p>Dating, made better. See what the heavens may bring you as the stars align...</p>
         <div class="buttons">
             <button type="button" class="btn btn-outline-dark" id="signup-button"
             on:click={()=> window.location.href="/Signup"}>Sign Up</button>
@@ -54,18 +53,19 @@
         position: absolute;
         vertical-align: middle;
         top: 30%;
-        left: 8%
+        left: 6%
     }
     .logo {
         height: 200px;
         width: auto
     }
-    .nav-area {
+    #nav-area {
         float: right;
-        padding-right: 5%
+        padding-right: 4%;
+        padding-top: 3%
     }
     .buttons {
-        padding-top: 25px
+        padding-top: 25px;
     }
     #login-button {
         background-color: white;
@@ -80,8 +80,12 @@
     h3 {
         font-weight: bold;
         font-size: 200%;
+        font-family: 'Open Sans', Arial, sans-serif;
     }
     p {
         font-size: large;
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        font-size: 125%;
+        font-weight: 400;
     }
 </style>

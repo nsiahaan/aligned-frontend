@@ -5,17 +5,15 @@
     crossorigin="anonymous">
 </head>
 
-
 <script>
-	import { youser, isAuthenticated, profilePic, horodict } from '../store.js'
+	import { youser,isAuthenticated, profilePic } from '../store.js'
 	export let page_tracker = "Home"
 	import {page} from '$app/stores';
 	import {onMount} from 'svelte';
 	onMount(() => {
 		youser.useLocalStorage();
 		isAuthenticated.useLocalStorage();
-		profilePic.useLocalStorage();
-		horodict.useLocalStorage();	
+		profilePic.useLocalStorage();	
 	})
 	
 	let email = "";
@@ -39,6 +37,7 @@
 	        }).then(d => {
 	        	let uid = d.uid
 		        let params = "?uid=" + uid
+<<<<<<< HEAD
 				let url = "http://127.0.0.1:5005/horoscope" + params
 				fetch(url)
 				.then(d => d.json())
@@ -56,6 +55,20 @@
 				})
         	})
 		})
+=======
+
+		        let url = "http://127.0.0.1:5005/getPic" + params
+		        fetch(url)
+		        .then(d => d.json())
+		        .then(d => {
+		        	console.log(d[uid])
+		            profilePic.set(d[uid])
+		            return d[uid]
+		        })
+	        })
+        })
+
+>>>>>>> bacf984d0abc677fd800912ddd2f0b4fbcd7af3b
     }
 
 	function submitCreds() {
@@ -83,10 +96,16 @@
 			} else {
 				invalidCreds = false;
 				page_tracker = "Home";
+<<<<<<< HEAD
 				isAuthenticated.set(true);
 				getUser(data['email']);
+=======
+				isAuthenticated.set(true)
+				getUser(data['email'])
+				window.location.replace('/Home')
+>>>>>>> bacf984d0abc677fd800912ddd2f0b4fbcd7af3b
 			}
-		})
+		}).then(d=>console.log(d))
 	}
 </script>
 
@@ -141,7 +160,10 @@
     }
     img {
         display: block;
+<<<<<<< HEAD
         right: 100%;
+=======
+>>>>>>> bacf984d0abc677fd800912ddd2f0b4fbcd7af3b
     }
     .column {
         display: block;
@@ -176,4 +198,8 @@
         border-bottom: 3px solid #39398e;
         width: 80%;
     }
+<<<<<<< HEAD
 </style>
+=======
+</style>
+>>>>>>> bacf984d0abc677fd800912ddd2f0b4fbcd7af3b
