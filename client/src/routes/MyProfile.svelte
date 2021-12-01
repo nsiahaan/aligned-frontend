@@ -103,7 +103,7 @@
 <style>
     .bgd {
         position: absolute;
-        height: auto;
+        height: 100%;
         width: 100%;
         
         background-color: white;

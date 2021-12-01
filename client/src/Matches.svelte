@@ -42,7 +42,12 @@
         .then(d => d.json())
         .then(d => {
 
-            list = Object.values(d);
+            if (uids.length == 1) {
+                list = [d]
+            }
+            else {
+                list = Object.values(d);
+            }
 
             return list;
         })
