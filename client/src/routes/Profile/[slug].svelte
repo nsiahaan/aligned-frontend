@@ -89,7 +89,8 @@
         </div> 
     </div>
     <div style="text-align:center;">
-    <button type="button" class="btn btn-outline-dark" 
+        <br>
+    <button type="button" class="btn btn-outline-light" 
         on:click={() => {window.location.replace('/Home')}}>Back</button>
     </div>
     <br><br><br><br><br><br><br>
