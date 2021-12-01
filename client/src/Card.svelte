@@ -76,7 +76,7 @@
         display: none;  /* Safari and Chrome */
     }
     .bottom-text {
-        background-color: aliceblue; /* #c1b8ed; */
+        background-color: #b8cded; /* #c1b8ed; */
         width:100%;
         height:350px;
     }
@@ -84,28 +84,29 @@
         padding: 0rem 0rem;
     }
     #card-img-top1{
-        margin-left: 10px;
         width: 10%;
-        float:left;
-        margin-top:25%;
+        float: left;
+        margin-top: 15px;
     }
     #card-img-top2{
         width:48%;
-        margin:50px;
+        margin: 25px;
         margin-top:10px;
         margin-bottom: 5px;
         vertical-align: middle;
-        border: 5px solid white;
+        border: 2px solid white;
         border-radius: 50%;
     }
     #card-img-top3{
         width: 12%;
         float:right;
-        margin-top:22.5%;
+        margin-top: 15px;
         /*/margin-right:5px;*/
     }
     .pics{
-        display: inline-block;
+        display: flex;
+        justify-content: center;
+        align-items: center;    
         vertical-align: middle;
         height: 100%;
     }

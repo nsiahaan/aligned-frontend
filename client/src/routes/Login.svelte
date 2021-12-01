@@ -134,7 +134,12 @@
         top: 0;
         height: 100%;
         width: 100%;
-        /* background-color: #6c62c6; */
+        
+        background-image: url("https://i.imgur.com/LAHtf4u.png");
+        background-repeat: no-repeat;
+        background-size: 100% auto;
+        display: block;
+        /* background-color: #6c62c6; 
         background-image: linear-gradient(135deg, #7777f1, #26265f) /* #36348b) */
     }
     img {
