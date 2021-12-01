@@ -53,9 +53,9 @@ let isOpen = false;
               <div class="underline"></div>
             {/if}
           </li>
-          <li class="nav-item p-3" class:active={$page.path === '/MyAccount'}>
+          <li class="nav-item p-3" class:active={$page.path === '/MyAccount' || $page.path === '/Leaderboard'}>
             <a sveltekit:prefetch class="nav-link" id="accountlink" href="/MyAccount" on:click={setpage_trackerAccount}>ACCOUNT</a>
-            {#if page_tracker == "Account"}
+            {#if page_tracker == "Account" || page_tracker == "Leaderboard"}
               <div class="underline"></div>
             {/if}
           </li>

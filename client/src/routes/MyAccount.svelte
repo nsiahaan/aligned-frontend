@@ -76,6 +76,7 @@
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <li><a class="dropdown-item" href="http://localhost:3000/EditAccount">Edit Profile</a></li>
                         <li><a class="dropdown-item" href="https://www.16personalities.com/free-personality-test">Take Personality Test</a></li>
+                        <li><a class="dropdown-item" href="http://localhost:3000/Leaderboard">Leaderboard</a></li>
                         <li><button type="button" class="dropdown-item" on:click={logout} >Logout</button></li>
                         </ul>
                     </div>
