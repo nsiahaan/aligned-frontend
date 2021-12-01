@@ -27,7 +27,7 @@
         <img src={PersonalityPic} id="card-img-top3" alt="...">
     </div>
     <div class="card-body">
-    <h5 class="card-title">{Name}</h5>
+    <h5 class="card-title"><b>{Name}</b></h5>
     <h6 class="card-subtitle mb-2 text-muted">{Astro}  |  {Personality}</h6>
     <h6 class="card-subtitle mb-2 text-muted">{Age}, {Gender}</h6>
         <div class="bottom-text"> 
@@ -38,6 +38,7 @@
 
 
 <style>
+    /*
     .coverShit{
         background-color: white;
         width: 105%;
@@ -46,9 +47,10 @@
         margin-left:-2%;
         border-color: white;
     }
+    */
     .card{
-        border:10px solid;
-        border-color: #c9d7f8;
+        border: 10px solid #26265f;
+        /*border-color: #26265f; /* #c9d7f8; */
         height: 650px;
     }
     .card-title {
@@ -56,7 +58,7 @@
     }
     .card-subtitle {
         text-align: center;
-        font-size: 12px;
+        font-size: 14px;
     }
     .card-text {
         text-align: center;
@@ -74,7 +76,7 @@
         display: none;  /* Safari and Chrome */
     }
     .bottom-text {
-        background-color: #c1b8ed;
+        background-color: aliceblue; /* #c1b8ed; */
         width:100%;
         height:350px;
     }

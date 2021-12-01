@@ -28,6 +28,7 @@
     
     let src = "images/default_profile_pics/kanye-west.png";
     import Card from '../Card.svelte';
+    /* commenting to remove warning messages...
     export let name = "Kanye";
     export let MBTI = "ENTP";
     export let starSign = "Taurus";
@@ -35,87 +36,109 @@
     let taurusLink = 'images/signs/taurus.png';
 
     export let profileDescription = "This is my cute profile description.";
-    export let gender = "Male";
+    export let gender = "Male"; */
     
 
 </script>
 
-<section>
-<div>
-    <div class="card">
-        {#if $youser.uid}
-        <Card 
-        AstroPic={$astroPicPath + $youser.astro + '.png'}
-        Picture={$profilePic}
-        PersonalityPic = {$mbtiPicPath + $youser.mbti + '.png'}
-        Name = {$youser.name}
-        Astro = {$youser.astro}
-        Personality = {$youser.mbti}
-        Age = {$youser.dob}
-        Gender = {$youser.gender}
-        Bio = {$youser.bio}
-        />
-        {/if} 
-    </div>
-    <div class="big-box">
-        <div class="container">           
-            <div class="row horoscope-wrapper">
-                <br>
-                <p> Daily Horoscope </p>
-            </div>
-            <div class="row horoscope-text horoscope">
-                <p>{$horodict.description}</p>
-            </div>
-            <div class="row horoscope horoscope-bottom">
-                <div class="col">
-                Daily Love Compatibility:
-                    <div>
-                        {$horodict.compatibility}
+<div class="bgd">
+    <section>
+    <div class="inner">
+        <div class="card">
+            {#if $youser.uid}
+            <Card 
+            AstroPic={$astroPicPath + $youser.astro + '.png'}
+            Picture={$profilePic}
+            PersonalityPic = {$mbtiPicPath + $youser.mbti + '.png'}
+            Name = {$youser.name}
+            Astro = {$youser.astro}
+            Personality = {$youser.mbti}
+            Age = {$youser.dob}
+            Gender = {$youser.gender}
+            Bio = {$youser.bio}
+            />
+            {/if} 
+        </div>
+        <div class="big-box">
+            <div class="container">           
+                <div class="row horoscope-wrapper">
+                    <p> </p>
+                    <p><b>✧ Daily Horoscope ✧</b></p>
+                </div>
+                <div class="row horoscope-text horoscope">
+                    <p><i>{$horodict.description}</i></p>
+                </div>
+                <div class="row horoscope horoscope-bottom">
+                    <div class="col">
+                        <b>Daily Love Compatibility</b>
+                        <div>
+                            {$horodict.compatibility}
+                        </div>
+                    </div>
+                    <div class="col">
+                        <b>Mood of the Day</b>
+                        <div>
+                            {$horodict.mood}
+                        </div>
+                    </div>
+                    <div class="col">
+                        <b>Lucky Number</b>
+                        <div>
+                            {$horodict.lucky_number}
+                        </div>
+                    </div>
+                    <div class="col">
+                        <b>Lucky Color</b>
+                        <div>
+                            {$horodict.color}
+                        </div>
                     </div>
                 </div>
-                <div class="col">
-                Mood of the Day:
-                    <div>
-                        {$horodict.mood}
-                    </div>
-                </div>
-                <div class="col">
-                Lucky Number:
-                    <div>
-                        {$horodict.lucky_number}
-                    </div>
-                </div>
-                <div class="col">
-                Lucky Color:
-                    <div>
-                        {$horodict.color}
-                    </div>
-                </div>
-            </div>
-        </div> 
-    </div>
+            </div> 
+        </div>
+    </div>      
+    </section>    
 </div>
-    
-</section>
-
-
-
 
 <style>
-
-    .card{
+    .bgd {
+        position: relative;
+        height: auto;
+        width: 100%;
+        
+        background-color: pink;
+        background-image: url("https://i.imgur.com/LAHtf4u.png");
+        background-repeat: no-repeat;
+        background-size: 100% auto; /**100% auto*/
+        display: block;
+    }
+    /*
+        WHY WONT THIS WORK OMG
+        background-image: linear-gradient(180deg, white, #26265f);
+    */
+    .card {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        float: left;
+        width: 25rem;
+        height: auto;
+        margin-left: 8%;
+        /*
         float: left;
         height: auto;
-        display:inline-block;
+        display: block;
         margin-top: 10vh;
         margin-left: 40px;
         margin-right: 20px;
         margin-bottom: 15px;
+        */
     }
     p{
         font-size: larger;
 
     }
+    /* 
     .rounded{
         border-radius: 100% !important;
         background-color: white;
@@ -126,7 +149,7 @@
         margin-top: 50px;
         margin-bottom: 50px;
     }
-
+    */
     .horoscope-text{
         padding-bottom: 3em;
         padding-top: 1em;
@@ -136,35 +159,38 @@
     .horoscope-bottom{
         padding-bottom: 1em;
     }
-
+    /*
     .resize {
         height: 300px;
         width: auto;
         margin: auto;
-    }
-    .big-box{
+    } */
+    .big-box{ /* this holds the horoscope stuff! */
         width: 50%;
         margin-right: 10%;
-        background-color: #c1b8ed;
-        height: auto;
+        background-color: #39398e; /* #c1b8ed; outline-style*/
+        height: 50% auto;
         margin-top: 10%;
-        margin-bottom: 50px;
-        padding-bottom: 3em;
+        margin-bottom: 50px; /* padding-bottom: 3em; */
+        
         float: right;
-        outline-style: solid;
+        border: 10px solid;
+        border-color: #26265f;
+        border-radius: 4px;
+        letter-spacing: 1px;
     }
-
+    /*
     .row-box{
         background-color: #c1b8ed;
-        /* outline-style: solid; */
-    }
+        /* outline-style: solid; 
+    } */
 
     .horoscope {
-        background-color: white !important;
+        background-color: aliceblue !important;
     }
-
     .horoscope-wrapper{
         text-align: center;
+        color: aliceblue;
     }
     .col{
         text-align: center;
